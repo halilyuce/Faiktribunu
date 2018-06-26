@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D06B90720C6D07600C3C269 /* StaticVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D06B90620C6D07600C3C269 /* StaticVariables.swift */; };
 		7D7172D020BBEDBD00EEA074 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7172CF20BBEDBD00EEA074 /* AppDelegate.swift */; };
 		7D7172D220BBEDBD00EEA074 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7172D120BBEDBD00EEA074 /* ViewController.swift */; };
 		7D7172D520BBEDBD00EEA074 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7172D320BBEDBD00EEA074 /* Main.storyboard */; };
 		7D7172D720BBEDBF00EEA074 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D7172D620BBEDBF00EEA074 /* Assets.xcassets */; };
 		7D7172DA20BBEDBF00EEA074 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7172D820BBEDBF00EEA074 /* LaunchScreen.storyboard */; };
+		7D78FAF820C13E9A00314EA2 /* Yazilar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D78FAF720C13E9A00314EA2 /* Yazilar.swift */; };
+		7D9DA3AA20C584EC009A5BA1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9DA3A920C584EC009A5BA1 /* CollectionViewCell.swift */; };
+		7DBECAFC20BC44E100A4253C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBECAFB20BC44E100A4253C /* Extensions.swift */; };
+		B17C46DBE595DDAF19284316 /* Pods_faiktribunu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4438E2063C9F38E306755B6 /* Pods_faiktribunu.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D06B90620C6D07600C3C269 /* StaticVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticVariables.swift; sourceTree = "<group>"; };
 		7D7172CC20BBEDBD00EEA074 /* faiktribunu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = faiktribunu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D7172CF20BBEDBD00EEA074 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D7172D120BBEDBD00EEA074 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +28,12 @@
 		7D7172D620BBEDBF00EEA074 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D7172D920BBEDBF00EEA074 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7D7172DB20BBEDBF00EEA074 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D78FAF720C13E9A00314EA2 /* Yazilar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Yazilar.swift; sourceTree = "<group>"; };
+		7D9DA3A920C584EC009A5BA1 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		7DBECAFB20BC44E100A4253C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B557EBFAD21F21E3C5897E4B /* Pods-faiktribunu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-faiktribunu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-faiktribunu/Pods-faiktribunu.debug.xcconfig"; sourceTree = "<group>"; };
+		C4438E2063C9F38E306755B6 /* Pods_faiktribunu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_faiktribunu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F80A59D8AE459DE24BB840EF /* Pods-faiktribunu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-faiktribunu.release.xcconfig"; path = "Pods/Target Support Files/Pods-faiktribunu/Pods-faiktribunu.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +41,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B17C46DBE595DDAF19284316 /* Pods_faiktribunu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		018DD4A2FC46C7BD3B0CA247 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C4438E2063C9F38E306755B6 /* Pods_faiktribunu.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7D7172C320BBEDBD00EEA074 = {
 			isa = PBXGroup;
 			children = (
 				7D7172CE20BBEDBD00EEA074 /* faiktribunu */,
 				7D7172CD20BBEDBD00EEA074 /* Products */,
+				B28BEECC3F6444ABB6008A70 /* Pods */,
+				018DD4A2FC46C7BD3B0CA247 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,11 +80,24 @@
 				7D7172CF20BBEDBD00EEA074 /* AppDelegate.swift */,
 				7D7172D120BBEDBD00EEA074 /* ViewController.swift */,
 				7D7172D320BBEDBD00EEA074 /* Main.storyboard */,
+				7D9DA3A920C584EC009A5BA1 /* CollectionViewCell.swift */,
 				7D7172D620BBEDBF00EEA074 /* Assets.xcassets */,
-				7D7172D820BBEDBF00EEA074 /* LaunchScreen.storyboard */,
 				7D7172DB20BBEDBF00EEA074 /* Info.plist */,
+				7DBECAFB20BC44E100A4253C /* Extensions.swift */,
+				7D78FAF720C13E9A00314EA2 /* Yazilar.swift */,
+				7D7172D820BBEDBF00EEA074 /* LaunchScreen.storyboard */,
+				7D06B90620C6D07600C3C269 /* StaticVariables.swift */,
 			);
 			path = faiktribunu;
+			sourceTree = "<group>";
+		};
+		B28BEECC3F6444ABB6008A70 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B557EBFAD21F21E3C5897E4B /* Pods-faiktribunu.debug.xcconfig */,
+				F80A59D8AE459DE24BB840EF /* Pods-faiktribunu.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +107,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7D7172DE20BBEDBF00EEA074 /* Build configuration list for PBXNativeTarget "faiktribunu" */;
 			buildPhases = (
+				23DF9BD1979C2519428A388D /* [CP] Check Pods Manifest.lock */,
 				7D7172C820BBEDBD00EEA074 /* Sources */,
 				7D7172C920BBEDBD00EEA074 /* Frameworks */,
 				7D7172CA20BBEDBD00EEA074 /* Resources */,
+				1E841A60FF92B8F41D5A79AE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,12 +168,57 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1E841A60FF92B8F41D5A79AE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-faiktribunu/Pods-faiktribunu-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/PSHTMLView/PSHTMLView.framework",
+				"${BUILT_PRODUCTS_DIR}/ScrollableSegmentedControl/ScrollableSegmentedControl.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSHTMLView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ScrollableSegmentedControl.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-faiktribunu/Pods-faiktribunu-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		23DF9BD1979C2519428A388D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-faiktribunu-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7D7172C820BBEDBD00EEA074 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D9DA3AA20C584EC009A5BA1 /* CollectionViewCell.swift in Sources */,
+				7D78FAF820C13E9A00314EA2 /* Yazilar.swift in Sources */,
 				7D7172D220BBEDBD00EEA074 /* ViewController.swift in Sources */,
+				7D06B90720C6D07600C3C269 /* StaticVariables.swift in Sources */,
+				7DBECAFC20BC44E100A4253C /* Extensions.swift in Sources */,
 				7D7172D020BBEDBD00EEA074 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,7 +296,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -267,7 +350,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -278,14 +361,14 @@
 		};
 		7D7172DF20BBEDBF00EEA074 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B557EBFAD21F21E3C5897E4B /* Pods-faiktribunu.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 24G3237JT8;
 				INFOPLIST_FILE = faiktribunu/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.labters.faiktribunu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -295,14 +378,14 @@
 		};
 		7D7172E020BBEDBF00EEA074 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F80A59D8AE459DE24BB840EF /* Pods-faiktribunu.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 24G3237JT8;
 				INFOPLIST_FILE = faiktribunu/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.labters.faiktribunu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
