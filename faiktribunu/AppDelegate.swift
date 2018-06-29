@@ -18,9 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         let segmentedControlAppearance = ScrollableSegmentedControl.appearance()
-        segmentedControlAppearance.segmentContentColor = UIColor.white
-        segmentedControlAppearance.selectedSegmentContentColor = UIColor.yellow
+        segmentedControlAppearance.segmentContentColor = UIColor.gray
+        segmentedControlAppearance.selectedSegmentContentColor = UIColor.white
         segmentedControlAppearance.backgroundColor = UIColor.black
+        segmentedControlAppearance.tintColor = UIColor.red
 
         return true
     }

@@ -7,95 +7,114 @@
 //
 
 import UIKit
-import PSHTMLView
+import ScrollableSegmentedControl
+import AVKit
 
-let postUrl = URL(string:StaticVariables.baseUrl + StaticVariables.postUrl)!
-let postData = try! Data(contentsOf: postUrl)
-var jsonDecoder = JSONDecoder()
-
-var basliklar = [String]()
-var catStr = [String]()
-var catResim = [String]()
-var resimStr = [String]()
-var resimLink = [String]()
-
-
-
-class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-
-    
+class ViewController: UIViewController {
+   
+    @IBOutlet weak var mViewMain: UIView!
+    @IBOutlet weak var segmentedControl: ScrollableSegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        segmentedControl.segmentStyle = .textOnly
+        segmentedControl.insertSegment(withTitle: "YAZILAR", at: 0)
+        segmentedControl.insertSegment(withTitle: "GÜNDEM", at: 1)
+        segmentedControl.insertSegment(withTitle: "VİDEOLAR", at: 2)
+        segmentedControl.insertSegment(withTitle: "TARİH", at: 3)
+        segmentedControl.insertSegment(withTitle: "SÖYLEYİŞİ", at: 4)
+        segmentedControl.insertSegment(withTitle: "KONUKLAR", at: 5)
+        
+        segmentedControl.underlineSelected = true
+        
+        segmentedControl.selectedSegmentIndex = 0
+ 
+        segmentedControl.addTarget(self, action: #selector(ViewController.segmentSelected(sender:)), for: .valueChanged)
+        
+
         // Do any additional setup after loading the view.
         
-        let fav = UIButton(type: .custom)
-        fav.setImage(UIImage(named: "television"), for: .normal)
-        fav.addTarget(self, action: #selector(self.FavMethod), for: .touchUpInside)
-        let favbtn = UIBarButtonItem(customView: fav)
+        let bjktv = UIButton(type: .custom)
+        bjktv.setImage(UIImage(named: "television"), for: .normal)
+        bjktv.addTarget(self, action: #selector(self.bjkMethod), for: .touchUpInside)
+        let bjktvbtn = UIBarButtonItem(customView: bjktv)
         
-        fav.widthAnchor.constraint(equalToConstant: 32.0).isActive = true
-        fav.heightAnchor.constraint(equalToConstant: 32.0).isActive = true
+        bjktv.widthAnchor.constraint(equalToConstant: 28.0).isActive = true
+        bjktv.heightAnchor.constraint(equalToConstant: 28.0).isActive = true
     
 
-        self.navigationItem.setRightBarButtonItems([favbtn], animated: true)
+        self.navigationItem.setRightBarButtonItems([bjktvbtn], animated: true)
         
 
         self.setupNavigationBar(image: UIImage(named: "navlogo")!)
         
+        if let mYazilarViewController = YazilarViewController(nibName:"YazilarViewController", bundle: nil) as? YazilarViewController {
+            addChildViewController(mYazilarViewController)
+            mYazilarViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
+            if let aView = mYazilarViewController.view {
+                aView.tag = 101
+                self.mViewMain.addSubview(aView)
+            }
+            mYazilarViewController.didMove(toParentViewController: self)
+        }
         
-        let yazilar = try? jsonDecoder.decode([Yazilar].self, from: postData)
-        if let yazi = yazilar {
-            for y in yazi{
-                
-                basliklar.append(y.title.rendered)
-                resimStr.append("\(y.featured_media)")
-                catStr.append("\(y.categories[0])")
-                
-                let resUrl = URL(string: StaticVariables.baseUrl + StaticVariables.resimUrl + "\(y.featured_media)")
-                let resimData = try! Data(contentsOf: resUrl!)
-                let resimler = try? jsonDecoder.decode(Resim.self, from: resimData)
-                resimLink.append((resimler?.guid.rendered)!)
-                
-                catResim.append(StaticVariables.homeUrl + StaticVariables.catAvatar + "\(y.categories[0])" + ".png")
-                
+    }
+    
+    @objc func bjkMethod(){
+        
+       /*let mbjkViewController = BJKTVViewController(nibName: "BJKTVViewController", bundle: nil)
+        self.navigationController?.pushViewController(mbjkViewController, animated: true)*/
+        
+        
+        
+        if let videoURL = URL.init(string: "https://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"){
+           let avPlayerController = AVPlayerViewController()
+            avPlayerController.player = AVPlayer.init(url: videoURL)
+            self.present(avPlayerController, animated: true) {
+                avPlayerController.player?.play()
             }
         }
         
-      
-        
-       
-        
-        
+
     }
     
-    @objc func FavMethod(){
+    @objc func segmentSelected(sender:ScrollableSegmentedControl) {
+        print("Segment at index \(sender.selectedSegmentIndex)  selected")
+        
+        if let subview = self.mViewMain.viewWithTag(101){
+            subview.removeFromSuperview()
+        }
+        switch sender.selectedSegmentIndex {
+        case 0:
+            
+            
+            if let mYazilarViewController = YazilarViewController(nibName:"YazilarViewController", bundle: nil) as? YazilarViewController {
+                addChildViewController(mYazilarViewController)
+                mYazilarViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
+                if let aView = mYazilarViewController.view {
+                    aView.tag = 101
+                    self.mViewMain.addSubview(aView)
+                }
+                mYazilarViewController.didMove(toParentViewController: self)
+            }
+
+        default:
+            if let mBJKTVViewController = BJKTVViewController(nibName:"BJKTVViewController", bundle: nil) as? BJKTVViewController {
+                addChildViewController(mBJKTVViewController)
+                mBJKTVViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
+                if let aView = mBJKTVViewController.view {
+                    aView.tag = 101
+                    self.mViewMain.addSubview(aView)
+                }
+                mBJKTVViewController.didMove(toParentViewController: self)
+            }
+            
+        }
         
     }
 
-   
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return basliklar.count
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath) as! CollectionViewCell
-        cell.baslik.text = basliklar[indexPath.row].html2String
-        cell.yazarAvatar.downloadedFrom(link: catResim[indexPath.row])
-        cell.haberGorseli.downloadedFrom(link: resimLink[indexPath.row])
-        cell.yazarAvatar.layer.cornerRadius = cell.yazarAvatar.frame.height/2
-        cell.yazarAvatar.clipsToBounds = true
-        
-        cell.layer.shadowColor = UIColor.black.cgColor
-        cell.layer.shadowOpacity = 0.25
-        cell.layer.shadowOffset = CGSize(width: 0, height: 5)
-        cell.layer.shadowRadius = 12
-        cell.layer.masksToBounds = false
-        return cell
-    }
-    
     
 }
 

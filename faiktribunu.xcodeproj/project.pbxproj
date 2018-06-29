@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		7D06B90720C6D07600C3C269 /* StaticVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D06B90620C6D07600C3C269 /* StaticVariables.swift */; };
+		7D6027A620E3741E008CC1CA /* BJKTVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6027A420E3741E008CC1CA /* BJKTVViewController.swift */; };
+		7D6027A720E3741E008CC1CA /* BJKTVViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D6027A520E3741E008CC1CA /* BJKTVViewController.xib */; };
+		7D6027AE20E38C90008CC1CA /* YazilarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6027AC20E38C90008CC1CA /* YazilarCollectionViewCell.swift */; };
+		7D6027AF20E38C90008CC1CA /* YazilarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D6027AD20E38C90008CC1CA /* YazilarCollectionViewCell.xib */; };
 		7D7172D020BBEDBD00EEA074 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7172CF20BBEDBD00EEA074 /* AppDelegate.swift */; };
 		7D7172D220BBEDBD00EEA074 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7172D120BBEDBD00EEA074 /* ViewController.swift */; };
 		7D7172D520BBEDBD00EEA074 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7172D320BBEDBD00EEA074 /* Main.storyboard */; };
@@ -16,11 +20,17 @@
 		7D78FAF820C13E9A00314EA2 /* Yazilar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D78FAF720C13E9A00314EA2 /* Yazilar.swift */; };
 		7D9DA3AA20C584EC009A5BA1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9DA3A920C584EC009A5BA1 /* CollectionViewCell.swift */; };
 		7DBECAFC20BC44E100A4253C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBECAFB20BC44E100A4253C /* Extensions.swift */; };
+		7DFE381320E512D80003E517 /* YazilarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE381120E512D80003E517 /* YazilarViewController.swift */; };
+		7DFE381420E512D80003E517 /* YazilarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DFE381220E512D80003E517 /* YazilarViewController.xib */; };
 		B17C46DBE595DDAF19284316 /* Pods_faiktribunu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4438E2063C9F38E306755B6 /* Pods_faiktribunu.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7D06B90620C6D07600C3C269 /* StaticVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticVariables.swift; sourceTree = "<group>"; };
+		7D6027A420E3741E008CC1CA /* BJKTVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BJKTVViewController.swift; sourceTree = "<group>"; };
+		7D6027A520E3741E008CC1CA /* BJKTVViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BJKTVViewController.xib; sourceTree = "<group>"; };
+		7D6027AC20E38C90008CC1CA /* YazilarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YazilarCollectionViewCell.swift; sourceTree = "<group>"; };
+		7D6027AD20E38C90008CC1CA /* YazilarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YazilarCollectionViewCell.xib; sourceTree = "<group>"; };
 		7D7172CC20BBEDBD00EEA074 /* faiktribunu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = faiktribunu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D7172CF20BBEDBD00EEA074 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D7172D120BBEDBD00EEA074 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -31,6 +41,8 @@
 		7D78FAF720C13E9A00314EA2 /* Yazilar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Yazilar.swift; sourceTree = "<group>"; };
 		7D9DA3A920C584EC009A5BA1 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		7DBECAFB20BC44E100A4253C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		7DFE381120E512D80003E517 /* YazilarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YazilarViewController.swift; sourceTree = "<group>"; };
+		7DFE381220E512D80003E517 /* YazilarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YazilarViewController.xib; sourceTree = "<group>"; };
 		B557EBFAD21F21E3C5897E4B /* Pods-faiktribunu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-faiktribunu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-faiktribunu/Pods-faiktribunu.debug.xcconfig"; sourceTree = "<group>"; };
 		C4438E2063C9F38E306755B6 /* Pods_faiktribunu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_faiktribunu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F80A59D8AE459DE24BB840EF /* Pods-faiktribunu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-faiktribunu.release.xcconfig"; path = "Pods/Target Support Files/Pods-faiktribunu/Pods-faiktribunu.release.xcconfig"; sourceTree = "<group>"; };
@@ -77,6 +89,7 @@
 		7D7172CE20BBEDBD00EEA074 /* faiktribunu */ = {
 			isa = PBXGroup;
 			children = (
+				7DFE381020E512530003E517 /* Tablar */,
 				7D7172CF20BBEDBD00EEA074 /* AppDelegate.swift */,
 				7D7172D120BBEDBD00EEA074 /* ViewController.swift */,
 				7D7172D320BBEDBD00EEA074 /* Main.storyboard */,
@@ -87,8 +100,29 @@
 				7D78FAF720C13E9A00314EA2 /* Yazilar.swift */,
 				7D7172D820BBEDBF00EEA074 /* LaunchScreen.storyboard */,
 				7D06B90620C6D07600C3C269 /* StaticVariables.swift */,
+				7D6027A420E3741E008CC1CA /* BJKTVViewController.swift */,
+				7D6027A520E3741E008CC1CA /* BJKTVViewController.xib */,
 			);
 			path = faiktribunu;
+			sourceTree = "<group>";
+		};
+		7DBC506C20E625FA0046EB9F /* YAZILAR */ = {
+			isa = PBXGroup;
+			children = (
+				7DFE381120E512D80003E517 /* YazilarViewController.swift */,
+				7DFE381220E512D80003E517 /* YazilarViewController.xib */,
+				7D6027AC20E38C90008CC1CA /* YazilarCollectionViewCell.swift */,
+				7D6027AD20E38C90008CC1CA /* YazilarCollectionViewCell.xib */,
+			);
+			path = YAZILAR;
+			sourceTree = "<group>";
+		};
+		7DFE381020E512530003E517 /* Tablar */ = {
+			isa = PBXGroup;
+			children = (
+				7DBC506C20E625FA0046EB9F /* YAZILAR */,
+			);
+			path = Tablar;
 			sourceTree = "<group>";
 		};
 		B28BEECC3F6444ABB6008A70 /* Pods */ = {
@@ -161,6 +195,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D7172DA20BBEDBF00EEA074 /* LaunchScreen.storyboard in Resources */,
+				7DFE381420E512D80003E517 /* YazilarViewController.xib in Resources */,
+				7D6027A720E3741E008CC1CA /* BJKTVViewController.xib in Resources */,
+				7D6027AF20E38C90008CC1CA /* YazilarCollectionViewCell.xib in Resources */,
 				7D7172D720BBEDBF00EEA074 /* Assets.xcassets in Resources */,
 				7D7172D520BBEDBD00EEA074 /* Main.storyboard in Resources */,
 			);
@@ -217,9 +254,12 @@
 				7D9DA3AA20C584EC009A5BA1 /* CollectionViewCell.swift in Sources */,
 				7D78FAF820C13E9A00314EA2 /* Yazilar.swift in Sources */,
 				7D7172D220BBEDBD00EEA074 /* ViewController.swift in Sources */,
+				7DFE381320E512D80003E517 /* YazilarViewController.swift in Sources */,
+				7D6027A620E3741E008CC1CA /* BJKTVViewController.swift in Sources */,
 				7D06B90720C6D07600C3C269 /* StaticVariables.swift in Sources */,
 				7DBECAFC20BC44E100A4253C /* Extensions.swift in Sources */,
 				7D7172D020BBEDBD00EEA074 /* AppDelegate.swift in Sources */,
+				7D6027AE20E38C90008CC1CA /* YazilarCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,7 +408,10 @@
 				DEVELOPMENT_TEAM = 24G3237JT8;
 				INFOPLIST_FILE = faiktribunu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.labters.faiktribunu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -385,7 +428,10 @@
 				DEVELOPMENT_TEAM = 24G3237JT8;
 				INFOPLIST_FILE = faiktribunu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.labters.faiktribunu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

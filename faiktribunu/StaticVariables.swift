@@ -7,9 +7,14 @@
 //
 
 import Foundation
+import UIKit
 
 class StaticVariables: NSObject{
     
+    
+    public static let screenSize = UIScreen.main.bounds
+    public static let screenWidth:CGFloat = screenSize.width
+    public static let screenHeight:CGFloat = screenSize.height
     
     public static let baseUrl:String = "https://www.faiktribunu.com/index.php/wp-json/wp/v2/"
     public static let homeUrl:String = "https://www.faiktribunu.com/"
