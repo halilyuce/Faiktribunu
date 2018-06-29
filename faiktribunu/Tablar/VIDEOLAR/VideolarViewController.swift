@@ -1,19 +1,19 @@
 //
-//  YazilarViewController.swift
+//  VideolarViewController.swift
 //  faiktribunu
 //
-//  Created by Halil İbrahim YÜCE on 28.06.2018.
+//  Created by Halil İbrahim YÜCE on 29.06.2018.
 //  Copyright © 2018 Halil İbrahim YÜCE. All rights reserved.
 //
 
 import UIKit
 import PSHTMLView
 
-class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-
-    @IBOutlet weak var mCollectionView: UICollectionView!
+class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
-    let postUrl = URL(string:StaticVariables.baseUrl + StaticVariables.postUrl)!
+    @IBOutlet weak var vCollectionView: UICollectionView!
+    
+    let postUrl = URL(string:StaticVariables.baseUrl + "posts?categories=9")!
     
     var jsonDecoder = JSONDecoder()
     
@@ -25,12 +25,12 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        mCollectionView.register(YazilarCollectionViewCell.self, forCellWithReuseIdentifier: "YazilarCollectionViewCell")
-        mCollectionView.register(UINib.init(nibName: "YazilarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "YazilarCollectionViewCell")
+
+        vCollectionView.register(VideolarCollectionViewCell.self, forCellWithReuseIdentifier: "VideolarCollectionViewCell")
+        vCollectionView.register(UINib.init(nibName: "VideolarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "VideolarCollectionViewCell")
         
         let postData = try! Data(contentsOf: postUrl)
-        self.mCollectionView.delegate = self
+        self.vCollectionView.delegate = self
         let yazilar = try? jsonDecoder.decode([Yazilar].self, from: postData)
         if let yazi = yazilar {
             for y in yazi{
@@ -45,7 +45,7 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
                 resimLink.append((resimler?.guid.rendered)!)
                 
                 catResim.append(StaticVariables.homeUrl + StaticVariables.catAvatar + "\(y.categories[0])" + ".png")
-                self.mCollectionView.reloadData()
+                self.vCollectionView.reloadData()
                 
             }
         }
@@ -53,7 +53,7 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
         
         
     }
-
+    
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -66,7 +66,7 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "YazilarCollectionViewCell", for: indexPath) as! YazilarCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideolarCollectionViewCell", for: indexPath) as! VideolarCollectionViewCell
         
         cell.baslik.text = basliklar[indexPath.row].html2String
         cell.yazarAvatar.downloadedFrom(link: catResim[indexPath.row])
@@ -81,5 +81,7 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
         cell.layer.masksToBounds = false
         return cell
     }
+
+    
 
 }

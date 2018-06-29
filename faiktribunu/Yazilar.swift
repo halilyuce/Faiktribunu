@@ -10,8 +10,13 @@ import Foundation
 
 struct Yazilar:Codable{
     var title:Title
+    var content:Content
     var featured_media:Int
     var categories: [Int]
+    
+    struct Content:Codable {
+        var rendered:String
+    }
     
     struct Title:Codable {
         var rendered:String

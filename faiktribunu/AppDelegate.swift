@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  Parrotize
+//  Faiktribunu
 //
-//  Created by Okan Yücel on 29.10.2017.
-//  Copyright © 2017 Okan Yücel. All rights reserved.
+//  Created by Halil İbrahim YÜCE on 26.06.2018.
+//  Copyright © 2018 Halil İbrahim YÜCE. All rights reserved.
 //
 
 import UIKit

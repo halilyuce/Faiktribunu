@@ -21,16 +21,18 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eMC-VW-eVd">
-                    <rect key="frame" x="10" y="30" width="355" height="617"/>
+                    <rect key="frame" x="10" y="30" width="355" height="250"/>
                     <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="250" id="go3-fT-hQK"/>
+                    </constraints>
                 </webView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="eMC-VW-eVd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="Eyr-qd-F4P"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="eMC-VW-eVd" secondAttribute="bottom" constant="20" id="lFv-RU-3OI"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="eMC-VW-eVd" secondAttribute="trailing" constant="10" id="ncw-ar-BGm"/>
-                <constraint firstItem="eMC-VW-eVd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="qRv-ds-SmD"/>
+                <constraint firstItem="eMC-VW-eVd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="JZb-Kq-BnH"/>
+                <constraint firstItem="eMC-VW-eVd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="qs7-vG-lqJ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="eMC-VW-eVd" secondAttribute="trailing" constant="10" id="xAC-uI-gT0"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="33.5" y="102.5"/>

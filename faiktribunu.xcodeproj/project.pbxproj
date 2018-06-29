@@ -19,6 +19,12 @@
 		7D7172DA20BBEDBF00EEA074 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7172D820BBEDBF00EEA074 /* LaunchScreen.storyboard */; };
 		7D78FAF820C13E9A00314EA2 /* Yazilar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D78FAF720C13E9A00314EA2 /* Yazilar.swift */; };
 		7D9DA3AA20C584EC009A5BA1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9DA3A920C584EC009A5BA1 /* CollectionViewCell.swift */; };
+		7DBC507020E62A070046EB9F /* VideolarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC506E20E62A070046EB9F /* VideolarViewController.swift */; };
+		7DBC507120E62A070046EB9F /* VideolarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DBC506F20E62A070046EB9F /* VideolarViewController.xib */; };
+		7DBC507420E62A2E0046EB9F /* VideolarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC507220E62A2E0046EB9F /* VideolarCollectionViewCell.swift */; };
+		7DBC507520E62A2E0046EB9F /* VideolarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DBC507320E62A2E0046EB9F /* VideolarCollectionViewCell.xib */; };
+		7DBC507820E63D8C0046EB9F /* DetayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC507620E63D8C0046EB9F /* DetayViewController.swift */; };
+		7DBC507920E63D8C0046EB9F /* DetayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DBC507720E63D8C0046EB9F /* DetayViewController.xib */; };
 		7DBECAFC20BC44E100A4253C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBECAFB20BC44E100A4253C /* Extensions.swift */; };
 		7DFE381320E512D80003E517 /* YazilarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE381120E512D80003E517 /* YazilarViewController.swift */; };
 		7DFE381420E512D80003E517 /* YazilarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DFE381220E512D80003E517 /* YazilarViewController.xib */; };
@@ -40,6 +46,12 @@
 		7D7172DB20BBEDBF00EEA074 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D78FAF720C13E9A00314EA2 /* Yazilar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Yazilar.swift; sourceTree = "<group>"; };
 		7D9DA3A920C584EC009A5BA1 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		7DBC506E20E62A070046EB9F /* VideolarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideolarViewController.swift; sourceTree = "<group>"; };
+		7DBC506F20E62A070046EB9F /* VideolarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideolarViewController.xib; sourceTree = "<group>"; };
+		7DBC507220E62A2E0046EB9F /* VideolarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideolarCollectionViewCell.swift; sourceTree = "<group>"; };
+		7DBC507320E62A2E0046EB9F /* VideolarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideolarCollectionViewCell.xib; sourceTree = "<group>"; };
+		7DBC507620E63D8C0046EB9F /* DetayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetayViewController.swift; sourceTree = "<group>"; };
+		7DBC507720E63D8C0046EB9F /* DetayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetayViewController.xib; sourceTree = "<group>"; };
 		7DBECAFB20BC44E100A4253C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7DFE381120E512D80003E517 /* YazilarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YazilarViewController.swift; sourceTree = "<group>"; };
 		7DFE381220E512D80003E517 /* YazilarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YazilarViewController.xib; sourceTree = "<group>"; };
@@ -98,6 +110,8 @@
 				7D7172DB20BBEDBF00EEA074 /* Info.plist */,
 				7DBECAFB20BC44E100A4253C /* Extensions.swift */,
 				7D78FAF720C13E9A00314EA2 /* Yazilar.swift */,
+				7DBC507620E63D8C0046EB9F /* DetayViewController.swift */,
+				7DBC507720E63D8C0046EB9F /* DetayViewController.xib */,
 				7D7172D820BBEDBF00EEA074 /* LaunchScreen.storyboard */,
 				7D06B90620C6D07600C3C269 /* StaticVariables.swift */,
 				7D6027A420E3741E008CC1CA /* BJKTVViewController.swift */,
@@ -117,9 +131,21 @@
 			path = YAZILAR;
 			sourceTree = "<group>";
 		};
+		7DBC506D20E629CF0046EB9F /* VIDEOLAR */ = {
+			isa = PBXGroup;
+			children = (
+				7DBC506E20E62A070046EB9F /* VideolarViewController.swift */,
+				7DBC506F20E62A070046EB9F /* VideolarViewController.xib */,
+				7DBC507220E62A2E0046EB9F /* VideolarCollectionViewCell.swift */,
+				7DBC507320E62A2E0046EB9F /* VideolarCollectionViewCell.xib */,
+			);
+			path = VIDEOLAR;
+			sourceTree = "<group>";
+		};
 		7DFE381020E512530003E517 /* Tablar */ = {
 			isa = PBXGroup;
 			children = (
+				7DBC506D20E629CF0046EB9F /* VIDEOLAR */,
 				7DBC506C20E625FA0046EB9F /* YAZILAR */,
 			);
 			path = Tablar;
@@ -194,12 +220,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DBC507920E63D8C0046EB9F /* DetayViewController.xib in Resources */,
 				7D7172DA20BBEDBF00EEA074 /* LaunchScreen.storyboard in Resources */,
 				7DFE381420E512D80003E517 /* YazilarViewController.xib in Resources */,
 				7D6027A720E3741E008CC1CA /* BJKTVViewController.xib in Resources */,
 				7D6027AF20E38C90008CC1CA /* YazilarCollectionViewCell.xib in Resources */,
+				7DBC507520E62A2E0046EB9F /* VideolarCollectionViewCell.xib in Resources */,
 				7D7172D720BBEDBF00EEA074 /* Assets.xcassets in Resources */,
 				7D7172D520BBEDBD00EEA074 /* Main.storyboard in Resources */,
+				7DBC507120E62A070046EB9F /* VideolarViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +280,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DBC507020E62A070046EB9F /* VideolarViewController.swift in Sources */,
+				7DBC507420E62A2E0046EB9F /* VideolarCollectionViewCell.swift in Sources */,
 				7D9DA3AA20C584EC009A5BA1 /* CollectionViewCell.swift in Sources */,
 				7D78FAF820C13E9A00314EA2 /* Yazilar.swift in Sources */,
 				7D7172D220BBEDBD00EEA074 /* ViewController.swift in Sources */,
@@ -259,6 +290,7 @@
 				7D06B90720C6D07600C3C269 /* StaticVariables.swift in Sources */,
 				7DBECAFC20BC44E100A4253C /* Extensions.swift in Sources */,
 				7D7172D020BBEDBD00EEA074 /* AppDelegate.swift in Sources */,
+				7DBC507820E63D8C0046EB9F /* DetayViewController.swift in Sources */,
 				7D6027AE20E38C90008CC1CA /* YazilarCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

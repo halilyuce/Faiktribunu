@@ -64,18 +64,18 @@ class ViewController: UIViewController {
     
     @objc func bjkMethod(){
         
-       /*let mbjkViewController = BJKTVViewController(nibName: "BJKTVViewController", bundle: nil)
-        self.navigationController?.pushViewController(mbjkViewController, animated: true)*/
+        let mDetayViewController = DetayViewController(nibName: "DetayViewController", bundle: nil)
+        self.navigationController?.pushViewController(mDetayViewController, animated: true)
         
         
         
-        if let videoURL = URL.init(string: "https://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"){
+        /*if let videoURL = URL.init(string: "https://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"){
            let avPlayerController = AVPlayerViewController()
             avPlayerController.player = AVPlayer.init(url: videoURL)
             self.present(avPlayerController, animated: true) {
                 avPlayerController.player?.play()
             }
-        }
+        }*/
         
 
     }
@@ -88,8 +88,6 @@ class ViewController: UIViewController {
         }
         switch sender.selectedSegmentIndex {
         case 0:
-            
-            
             if let mYazilarViewController = YazilarViewController(nibName:"YazilarViewController", bundle: nil) as? YazilarViewController {
                 addChildViewController(mYazilarViewController)
                 mYazilarViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
@@ -99,16 +97,26 @@ class ViewController: UIViewController {
                 }
                 mYazilarViewController.didMove(toParentViewController: self)
             }
-
-        default:
-            if let mBJKTVViewController = BJKTVViewController(nibName:"BJKTVViewController", bundle: nil) as? BJKTVViewController {
-                addChildViewController(mBJKTVViewController)
-                mBJKTVViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
-                if let aView = mBJKTVViewController.view {
+        case 2:
+            if let vVideolarViewController = VideolarViewController(nibName:"VideolarViewController", bundle: nil) as? VideolarViewController {
+                addChildViewController(vVideolarViewController)
+                vVideolarViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
+                if let aView = vVideolarViewController.view {
                     aView.tag = 101
                     self.mViewMain.addSubview(aView)
                 }
-                mBJKTVViewController.didMove(toParentViewController: self)
+                vVideolarViewController.didMove(toParentViewController: self)
+            }
+
+        default:
+            if let mYazilarViewController = YazilarViewController(nibName:"YazilarViewController", bundle: nil) as? YazilarViewController {
+                addChildViewController(mYazilarViewController)
+                mYazilarViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
+                if let aView = mYazilarViewController.view {
+                    aView.tag = 101
+                    self.mViewMain.addSubview(aView)
+                }
+                mYazilarViewController.didMove(toParentViewController: self)
             }
             
         }
