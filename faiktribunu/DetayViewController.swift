@@ -26,6 +26,7 @@ class DetayViewController: UIViewController {
         let postData = try! Data(contentsOf: postUrl)
         let yazilar = try? jsonDecoder.decode(Yazilar.self, from: postData)
         detayBaslik.text = yazilar?.title.rendered.html2String
+        self.title = yazilar?.title.rendered.html2String
         detayIcerik.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><style>img{display: inline;height: auto;max-width:100%;}iframe {width:100%;}</style>" + (yazilar?.content.rendered)!, baseURL: nil)
         let resUrl = URL(string: StaticVariables.baseUrl + StaticVariables.resimUrl + "\((yazilar?.featured_media)!)")!
         let resimData = try! Data(contentsOf: resUrl)

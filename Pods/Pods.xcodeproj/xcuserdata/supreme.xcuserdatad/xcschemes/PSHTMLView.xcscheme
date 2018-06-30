@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C3FE0507AB7B774D79AABD03BFDD0FB3"
+               BlueprintIdentifier = "328E8348CA31557B61139EDF467DB52D"
                BlueprintName = "PSHTMLView"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "PSHTMLView.framework">

@@ -1,20 +1,24 @@
 PODS:
+  - Alamofire (4.7.2)
   - PSHTMLView (0.1.5)
   - ScrollableSegmentedControl (1.3.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.7)
   - PSHTMLView
   - ScrollableSegmentedControl (~> 1.3.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
     - PSHTMLView
     - ScrollableSegmentedControl
 
 SPEC CHECKSUMS:
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   PSHTMLView: abb9f6015940c4f76536c229ea9d3ad0a2a7ae7d
   ScrollableSegmentedControl: a90ae91537fd670a46b177301d035223e3bd149e
 
-PODFILE CHECKSUM: 62be5649ebe77c419c918cf72e79db3432277f5f
+PODFILE CHECKSUM: d518f2701ee443b5bb27e864f307b5f1bef6020d
 
 COCOAPODS: 1.5.2
