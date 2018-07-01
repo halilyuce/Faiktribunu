@@ -8,6 +8,8 @@ target 'faiktribunu' do
 pod 'PSHTMLView'
 pod 'ScrollableSegmentedControl', '~> 1.3.0'
 pod 'Alamofire', '~> 4.7'
+pod 'AlamofireObjectMapper'
+pod 'SwiftyJSON'
   # Pods for faiktribunu
 
 end

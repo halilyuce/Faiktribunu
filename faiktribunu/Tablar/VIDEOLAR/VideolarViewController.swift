@@ -8,48 +8,116 @@
 
 import UIKit
 import PSHTMLView
+import Alamofire
+import SwiftyJSON
+import ObjectMapper
 
 class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var vCollectionView: UICollectionView!
-    
-    let postUrl = URL(string:StaticVariables.baseUrl + "posts?categories=9")!
-    
-    var jsonDecoder = JSONDecoder()
-    
+
     var basliklar = [String]()
-    var catStr = [String]()
-    var catResim = [String]()
-    var resimStr = [String]()
+    var resimStr = String()
     var resimLink = [String]()
+    var catResim = [String]()
+    var base = [Base]()
+    var resBase = [ResBase]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         vCollectionView.register(VideolarCollectionViewCell.self, forCellWithReuseIdentifier: "VideolarCollectionViewCell")
         vCollectionView.register(UINib.init(nibName: "VideolarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "VideolarCollectionViewCell")
-        
-        let postData = try! Data(contentsOf: postUrl)
+
         self.vCollectionView.delegate = self
-        let yazilar = try? jsonDecoder.decode([Yazilar].self, from: postData)
-        if let yazi = yazilar {
-            for y in yazi{
-                
-                basliklar.append(y.title.rendered)
-                resimStr.append("\(y.featured_media)")
-                catStr.append("\(y.categories[0])")
-                
-                let resUrl = URL(string: StaticVariables.baseUrl + StaticVariables.resimUrl + "\(y.featured_media)")
-                let resimData = try! Data(contentsOf: resUrl!)
-                let resimler = try? jsonDecoder.decode(Resim.self, from: resimData)
-                resimLink.append((resimler?.guid.rendered)!)
-                
-                catResim.append(StaticVariables.homeUrl + StaticVariables.catAvatar + "\(y.categories[0])" + ".png")
-                self.vCollectionView.reloadData()
-                
-            }
-        }
         
+        let url = StaticVariables.baseUrl + "posts?categories=9"
+        
+        Alamofire.request(url, method: .get, parameters: nil)
+            .responseString { response in
+                
+                switch(response.result) {
+                case .success(_):
+                    
+                    if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                        
+                        let jsonString: String = "{\"lst\":" + utf8Text + "}"
+                        
+                        if let item = Mapper<List>().map(JSONString: jsonString){
+                            
+                            if let item = item.lst{
+                                
+                                self.base = item
+                                
+                                for title in item{
+                                    
+                                    self.basliklar.append((title.title?.rendered)!)
+                                    
+                                    self.resimStr = "\(title.media!)"
+                                    
+                                    self.catResim.append(StaticVariables.homeUrl + StaticVariables.catAvatar + "\(title.categories![0])" + ".png")
+                                    
+                                    let resUrl = URL(string: StaticVariables.baseUrl + StaticVariables.resimUrl + self.resimStr)!
+                                    
+                                    
+                                    Alamofire.request(resUrl, method: .get, parameters: nil)
+                                        .responseString { mresponse in
+                                            
+                                            switch(mresponse.result) {
+                                            case .success(_):
+                                                
+                                                if let mdata = mresponse.data, let mutf8Text = String(data: mdata, encoding: .utf8) {
+                                                    
+                                                    //let mjsonString: String = "{\"rst\":" + mutf8Text + "}"
+                                                    
+                                                    if let guid = Mapper<ResList>().map(JSONString: mutf8Text){
+                                                        
+                                                        let resimUrl = guid.guid?.rendered
+                                                        
+                                                        self.resimLink.append(resimUrl!)
+                                                        
+                                                        if item.last?.id == title.id{
+                                                            self.vCollectionView.reloadData()
+                                                        }
+                                                        
+                                                    }
+                                                    else{
+                                                        print("hatalı json")
+                                                        
+                                                    }
+                                                    
+                                                }
+                                                
+                                            case .failure(_):
+                                                print("Error message:\(String(describing: response.result.error))")
+                                                break
+                                            }
+                                            
+                                            
+                                    }
+                                    
+                                    
+                                    
+                                }
+                                
+                                
+                            }
+                            
+                        }
+                        else{
+                            print("hatalı json")
+                            
+                        }
+                        
+                    }
+                    
+                case .failure(_):
+                    print("Error message:\(String(describing: response.result.error))")
+                    break
+                }
+                
+                
+        }
         
         
     }
