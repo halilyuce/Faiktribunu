@@ -34,6 +34,7 @@
 		7DBC507820E63D8C0046EB9F /* DetayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC507620E63D8C0046EB9F /* DetayViewController.swift */; };
 		7DBC507920E63D8C0046EB9F /* DetayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DBC507720E63D8C0046EB9F /* DetayViewController.xib */; };
 		7DBECAFC20BC44E100A4253C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBECAFB20BC44E100A4253C /* Extensions.swift */; };
+		7DEE4FAD20EA3F060099839B /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE4FAC20EA3F060099839B /* Content.swift */; };
 		7DFE381320E512D80003E517 /* YazilarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE381120E512D80003E517 /* YazilarViewController.swift */; };
 		7DFE381420E512D80003E517 /* YazilarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DFE381220E512D80003E517 /* YazilarViewController.xib */; };
 		B17C46DBE595DDAF19284316 /* Pods_faiktribunu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4438E2063C9F38E306755B6 /* Pods_faiktribunu.framework */; };
@@ -69,6 +70,7 @@
 		7DBC507620E63D8C0046EB9F /* DetayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetayViewController.swift; sourceTree = "<group>"; };
 		7DBC507720E63D8C0046EB9F /* DetayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetayViewController.xib; sourceTree = "<group>"; };
 		7DBECAFB20BC44E100A4253C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		7DEE4FAC20EA3F060099839B /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		7DFE381120E512D80003E517 /* YazilarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YazilarViewController.swift; sourceTree = "<group>"; };
 		7DFE381220E512D80003E517 /* YazilarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YazilarViewController.xib; sourceTree = "<group>"; };
 		B557EBFAD21F21E3C5897E4B /* Pods-faiktribunu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-faiktribunu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-faiktribunu/Pods-faiktribunu.debug.xcconfig"; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				7D14368820E94A58002C8D9E /* Guid.swift */,
 				7D14368A20E94C33002C8D9E /* ResList.swift */,
 				7D14368C20E989D4002C8D9E /* DetayList.swift */,
+				7DEE4FAC20EA3F060099839B /* Content.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -203,7 +206,7 @@
 				7D7172C820BBEDBD00EEA074 /* Sources */,
 				7D7172C920BBEDBD00EEA074 /* Frameworks */,
 				7D7172CA20BBEDBD00EEA074 /* Resources */,
-				1E841A60FF92B8F41D5A79AE /* [CP] Embed Pods Frameworks */,
+				6D1FD235463613E7559CA7A7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -267,34 +270,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1E841A60FF92B8F41D5A79AE /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-faiktribunu/Pods-faiktribunu-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/PSHTMLView/PSHTMLView.framework",
-				"${BUILT_PRODUCTS_DIR}/ScrollableSegmentedControl/ScrollableSegmentedControl.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSHTMLView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ScrollableSegmentedControl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-faiktribunu/Pods-faiktribunu-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		23DF9BD1979C2519428A388D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -313,6 +288,36 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6D1FD235463613E7559CA7A7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-faiktribunu/Pods-faiktribunu-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Kamagari/Kamagari.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PSHTMLView/PSHTMLView.framework",
+				"${BUILT_PRODUCTS_DIR}/ScrollableSegmentedControl/ScrollableSegmentedControl.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kamagari.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSHTMLView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ScrollableSegmentedControl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-faiktribunu/Pods-faiktribunu-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -322,6 +327,7 @@
 			files = (
 				7DBC507020E62A070046EB9F /* VideolarViewController.swift in Sources */,
 				7D14368720E949EF002C8D9E /* ResBase.swift in Sources */,
+				7DEE4FAD20EA3F060099839B /* Content.swift in Sources */,
 				7DBC507420E62A2E0046EB9F /* VideolarCollectionViewCell.swift in Sources */,
 				7D9DA3AA20C584EC009A5BA1 /* CollectionViewCell.swift in Sources */,
 				7D14368B20E94C33002C8D9E /* ResList.swift in Sources */,

@@ -17,6 +17,7 @@ public class Base: BaseItem {
         static let id = "id"
         static let categories = "categories"
         static let title = "title"
+        static let content = "content"
     }
     
     // MARK: Properties
@@ -24,6 +25,7 @@ public class Base: BaseItem {
     public var id: Int?
     public var categories: [Int]?
     public var title: Title?
+    public var content: Content?
     
     // MARK: ObjectMapper Initializers
     /// Map a JSON object to this class using ObjectMapper.
@@ -38,6 +40,7 @@ public class Base: BaseItem {
         id <- map[SerializationKeys.id]
         categories <- map[SerializationKeys.categories]
         title <- map[SerializationKeys.title]
+        content <- map[SerializationKeys.content]
     }
     
     /// Generates description of the object in the form of a NSDictionary.
@@ -49,6 +52,7 @@ public class Base: BaseItem {
         if let value = id { dictionary[SerializationKeys.id] = value }
         if let value = categories { dictionary[SerializationKeys.categories] = value }
         if let value = title { dictionary[SerializationKeys.title] = value }
+        if let value = content { dictionary[SerializationKeys.content] = value }
         return dictionary as [String : AnyObject] as [String : AnyObject]
     }
     
