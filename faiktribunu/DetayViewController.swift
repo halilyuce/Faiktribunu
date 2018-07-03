@@ -25,14 +25,22 @@ class DetayViewController: UIViewController {
     var base = [Base]()
     var detayBase = [Title]()
     var resBase = [ResBase]()
-
+    var yaziNumara = String()
+    
+    
+    let imagePicker = UIImagePickerController()
+    let messageFrame = UIView()
+    var activityIndicator = UIActivityIndicatorView()
+    var strLabel = UILabel()
+    let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         let share = UIButton(type: .custom)
-        share.setImage(UIImage(named: "share"), for: .normal)
-        share.addTarget(self, action: #selector(self.shareMethod), for: .touchUpInside)
+        share.setImage(UIImage(named: "share"), for: UIControl.State.normal)
+        share.addTarget(self, action: #selector(self.shareMethod), for: UIControl.Event.touchUpInside)
         let sharebtn = UIBarButtonItem(customView: share)
         
         share.widthAnchor.constraint(equalToConstant: 28.0).isActive = true
@@ -42,14 +50,16 @@ class DetayViewController: UIViewController {
         self.navigationItem.setRightBarButtonItems([sharebtn], animated: true)
         
         
-        let detayUrl = StaticVariables.baseUrl + "posts/12349"
+        self.activityIndicator("Yükleniyor")
+        
+        let detayUrl = StaticVariables.baseUrl + "posts/\(yaziNumara)"
         Alamofire.request(detayUrl, method: .get, parameters: nil)
             .responseString { response in
                 switch(response.result) {
                 case .success(_):
                     if let ddata = response.data, let dutf8Text = String(data: ddata, encoding: .utf8) {
                         if let detay = Mapper<DetayList>().map(JSONString: dutf8Text){
-                                    self.title = detay.title?.rendered
+                                    self.title = detay.title?.rendered?.html2String
                             self.baslik.append((detay.title?.rendered)!)
                                     self.resimStr = "\(detay.media!)"
                             
@@ -68,6 +78,7 @@ class DetayViewController: UIViewController {
                                                 
                                                 self.detayIcerik.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><style>img{display: inline;height: auto;max-width:100%;}iframe {width:100%;}</style> <img src=\"\((guid.guid?.rendered)!)\"> <br> <h3> \((detay.title?.rendered?.html2String)!) </h3>" + (detay.content?.rendered)!, baseURL: nil)
                                                 
+                                                self.effectView.removeFromSuperview()
                                                 
                                             }
                                             else{
@@ -95,12 +106,16 @@ class DetayViewController: UIViewController {
                     break
                 }
         }
+
     }
     
+    
+    
+
     @objc func shareMethod(){
 
         let string: String = baslik
-        let URL: String = "http://faiktribunu.com/?p=12349"
+        let URL: String = "http://faiktribunu.com/?p=\(yaziNumara)"
         
         let activityViewController = UIActivityViewController(activityItems: [string, URL], applicationActivities: nil)
         navigationController?.present(activityViewController, animated: true) {
@@ -108,5 +123,31 @@ class DetayViewController: UIViewController {
         
         
     }
+    
+    
+    func activityIndicator(_ title: String) {
+        
+        strLabel.removeFromSuperview()
+        activityIndicator.removeFromSuperview()
+        effectView.removeFromSuperview()
+        
+        strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 160, height: 46))
+        strLabel.text = title
+        strLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        strLabel.textColor = UIColor(white: 0.9, alpha: 0.7)
+        
+        effectView.frame = CGRect(x: view.frame.midX - strLabel.frame.width/2 , y: view.frame.midY - strLabel.frame.height/2 , width: 160, height: 46)
+        effectView.layer.cornerRadius = 15
+        effectView.layer.masksToBounds = true
+        
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
+        activityIndicator.startAnimating()
+        
+        effectView.contentView.addSubview(activityIndicator)
+        effectView.contentView.addSubview(strLabel)
+        view.addSubview(effectView)
+    }
+    
 
 }

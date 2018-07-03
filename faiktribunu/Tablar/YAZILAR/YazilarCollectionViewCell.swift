@@ -13,6 +13,8 @@ class YazilarCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var haberGorseli: UIImageView!
     @IBOutlet weak var yazarAvatar: UIImageView!
     @IBOutlet weak var baslik: UILabel!
+
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

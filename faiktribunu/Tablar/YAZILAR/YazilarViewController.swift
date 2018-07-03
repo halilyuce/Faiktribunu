@@ -18,10 +18,19 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     var basliklar = [String]()
     var resimStr = String()
+    var yazinumara = [String]()
     var resimLink = [String]()
     var catResim = [String]()
     var base = [Base]()
     var resBase = [ResBase]()
+    
+    
+    let imagePicker = UIImagePickerController()
+    let messageFrame = UIView()
+    var activityIndicator = UIActivityIndicatorView()
+    var strLabel = UILabel()
+    let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +39,8 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
         mCollectionView.register(UINib.init(nibName: "YazilarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "YazilarCollectionViewCell")
 
         self.mCollectionView.delegate = self
+        
+        self.activityIndicator("Yükleniyor")
         
         let url = "https://www.faiktribunu.com/index.php/wp-json/wp/v2/posts/"
         
@@ -52,6 +63,8 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
                                 for title in item{
                                    
                                     self.basliklar.append((title.title?.rendered)!)
+                                    
+                                    self.yazinumara.append("\(title.id!)")
                                     
                                     self.resimStr = "\(title.media!)"
                                     
@@ -78,6 +91,9 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
                                                         
                                                         if item.last?.id == title.id{
                                                             self.mCollectionView.reloadData()
+                                                            self.effectView.removeFromSuperview()
+                                                            
+                                                            
                                                         }
                                                         
                                                     }
@@ -152,6 +168,16 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let selectedItem = yazinumara[indexPath.row]
+        
+        let mDetayViewController = DetayViewController(nibName: "DetayViewController", bundle: nil)
+        mDetayViewController.yaziNumara = selectedItem
+        self.navigationController?.pushViewController(mDetayViewController, animated: true)
+        
+    }
+    
     func jsonToString(json: AnyObject) -> String{
         do {
             let data1 =  try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted) // first of all convert json to the data
@@ -164,6 +190,30 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
             return "HATA"
         }
         
+    }
+    
+    func activityIndicator(_ title: String) {
+        
+        strLabel.removeFromSuperview()
+        activityIndicator.removeFromSuperview()
+        effectView.removeFromSuperview()
+        
+        strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 160, height: 46))
+        strLabel.text = title
+        strLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        strLabel.textColor = UIColor(white: 0.9, alpha: 0.7)
+        
+        effectView.frame = CGRect(x: view.frame.midX - strLabel.frame.width/2 , y: view.frame.midY - strLabel.frame.height/2 , width: 160, height: 46)
+        effectView.layer.cornerRadius = 15
+        effectView.layer.masksToBounds = true
+        
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
+        activityIndicator.startAnimating()
+        
+        effectView.contentView.addSubview(activityIndicator)
+        effectView.contentView.addSubview(strLabel)
+        view.addSubview(effectView)
     }
     
 

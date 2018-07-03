@@ -22,6 +22,13 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
     var catResim = [String]()
     var base = [Base]()
     var resBase = [ResBase]()
+    var yazinumara = [String]()
+    
+    let imagePicker = UIImagePickerController()
+    let messageFrame = UIView()
+    var activityIndicator = UIActivityIndicatorView()
+    var strLabel = UILabel()
+    let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +37,8 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
         vCollectionView.register(UINib.init(nibName: "VideolarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "VideolarCollectionViewCell")
 
         self.vCollectionView.delegate = self
+        
+        self.activityIndicator("Yükleniyor")
         
         let url = StaticVariables.baseUrl + "posts?categories=9"
         
@@ -52,6 +61,8 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
                                 for title in item{
                                     
                                     self.basliklar.append((title.title?.rendered)!)
+                                    
+                                    self.yazinumara.append("\(title.id!)")
                                     
                                     self.resimStr = "\(title.media!)"
                                     
@@ -78,6 +89,7 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
                                                         
                                                         if item.last?.id == title.id{
                                                             self.vCollectionView.reloadData()
+                                                            self.effectView.removeFromSuperview()
                                                         }
                                                         
                                                     }
@@ -149,7 +161,39 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
         cell.layer.masksToBounds = false
         return cell
     }
-
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let selectedItem = yazinumara[indexPath.row]
+        
+        let mDetayViewController = DetayViewController(nibName: "DetayViewController", bundle: nil)
+        mDetayViewController.yaziNumara = selectedItem
+        self.navigationController?.pushViewController(mDetayViewController, animated: true)
+        
+    }
+
+    func activityIndicator(_ title: String) {
+        
+        strLabel.removeFromSuperview()
+        activityIndicator.removeFromSuperview()
+        effectView.removeFromSuperview()
+        
+        strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 160, height: 46))
+        strLabel.text = title
+        strLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        strLabel.textColor = UIColor(white: 0.9, alpha: 0.7)
+        
+        effectView.frame = CGRect(x: view.frame.midX - strLabel.frame.width/2 , y: view.frame.midY - strLabel.frame.height/2 , width: 160, height: 46)
+        effectView.layer.cornerRadius = 15
+        effectView.layer.masksToBounds = true
+        
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
+        activityIndicator.startAnimating()
+        
+        effectView.contentView.addSubview(activityIndicator)
+        effectView.contentView.addSubview(strLabel)
+        view.addSubview(effectView)
+    }
 
 }

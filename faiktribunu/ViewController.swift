@@ -14,7 +14,7 @@ class ViewController: UIViewController {
    
     @IBOutlet weak var mViewMain: UIView!
     @IBOutlet weak var segmentedControl: ScrollableSegmentedControl!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,14 +31,14 @@ class ViewController: UIViewController {
         
         segmentedControl.selectedSegmentIndex = 0
  
-        segmentedControl.addTarget(self, action: #selector(ViewController.segmentSelected(sender:)), for: .valueChanged)
+        segmentedControl.addTarget(self, action: #selector(ViewController.segmentSelected(sender:)), for: UIControl.Event.valueChanged)
         
 
         // Do any additional setup after loading the view.
         
         let bjktv = UIButton(type: .custom)
-        bjktv.setImage(UIImage(named: "television"), for: .normal)
-        bjktv.addTarget(self, action: #selector(self.bjkMethod), for: .touchUpInside)
+        bjktv.setImage(UIImage(named: "television"), for: UIControl.State.normal)
+        bjktv.addTarget(self, action: #selector(self.bjkMethod), for: UIControl.Event.touchUpInside)
         let bjktvbtn = UIBarButtonItem(customView: bjktv)
         
         bjktv.widthAnchor.constraint(equalToConstant: 28.0).isActive = true
@@ -47,17 +47,18 @@ class ViewController: UIViewController {
 
         self.navigationItem.setRightBarButtonItems([bjktvbtn], animated: true)
         
+        
 
         self.setupNavigationBar(image: UIImage(named: "navlogo")!)
         
         if let mYazilarViewController = YazilarViewController(nibName:"YazilarViewController", bundle: nil) as? YazilarViewController {
-            addChildViewController(mYazilarViewController)
+            addChild(mYazilarViewController)
             mYazilarViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
             if let aView = mYazilarViewController.view {
                 aView.tag = 101
                 self.mViewMain.addSubview(aView)
             }
-            mYazilarViewController.didMove(toParentViewController: self)
+            mYazilarViewController.didMove(toParent: self)
         }
         
     }
@@ -89,34 +90,34 @@ class ViewController: UIViewController {
         switch sender.selectedSegmentIndex {
         case 0:
             if let mYazilarViewController = YazilarViewController(nibName:"YazilarViewController", bundle: nil) as? YazilarViewController {
-                addChildViewController(mYazilarViewController)
+                addChild(mYazilarViewController)
                 mYazilarViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
                 if let aView = mYazilarViewController.view {
                     aView.tag = 101
                     self.mViewMain.addSubview(aView)
                 }
-                mYazilarViewController.didMove(toParentViewController: self)
+                mYazilarViewController.didMove(toParent: self)
             }
         case 2:
             if let vVideolarViewController = VideolarViewController(nibName:"VideolarViewController", bundle: nil) as? VideolarViewController {
-                addChildViewController(vVideolarViewController)
+                addChild(vVideolarViewController)
                 vVideolarViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
                 if let aView = vVideolarViewController.view {
                     aView.tag = 101
                     self.mViewMain.addSubview(aView)
                 }
-                vVideolarViewController.didMove(toParentViewController: self)
+                vVideolarViewController.didMove(toParent: self)
             }
 
         default:
             if let mYazilarViewController = YazilarViewController(nibName:"YazilarViewController", bundle: nil) as? YazilarViewController {
-                addChildViewController(mYazilarViewController)
+                addChild(mYazilarViewController)
                 mYazilarViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
                 if let aView = mYazilarViewController.view {
                     aView.tag = 101
                     self.mViewMain.addSubview(aView)
                 }
-                mYazilarViewController.didMove(toParentViewController: self)
+                mYazilarViewController.didMove(toParent: self)
             }
             
         }
