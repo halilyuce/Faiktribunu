@@ -23,6 +23,8 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
     var base = [Base]()
     var resBase = [ResBase]()
     var yazinumara = [String]()
+    var format = [String]()
+    var videoLink = [String]()
     
     let imagePicker = UIImagePickerController()
     let messageFrame = UIView()
@@ -63,6 +65,10 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
                                     self.basliklar.append((title.title?.rendered)!)
                                     
                                     self.yazinumara.append("\(title.id!)")
+                                    
+                                    self.format.append((title.format)!)
+                                    
+                                    self.videoLink.append(title.video_url!)
                                     
                                     self.resimStr = "\(title.media!)"
                                     
@@ -149,8 +155,8 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideolarCollectionViewCell", for: indexPath) as! VideolarCollectionViewCell
         
         cell.baslik.text = basliklar[indexPath.row].html2String
-        cell.yazarAvatar.downloadedFrom(link: catResim[indexPath.row])
-        cell.haberGorseli.downloadedFrom(link: resimLink[indexPath.row])
+        cell.yazarAvatar.loadImageCacheWithUrlString(urlString: catResim[indexPath.row])
+        cell.haberGorseli.loadImageCacheWithUrlString(urlString: resimLink[indexPath.row])
         cell.yazarAvatar.layer.cornerRadius = cell.yazarAvatar.frame.height/2
         cell.yazarAvatar.clipsToBounds = true
         
@@ -165,9 +171,13 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let selectedItem = yazinumara[indexPath.row]
+        let videoItem = videoLink[indexPath.row]
+        let formatItem = format[indexPath.row]
         
         let mDetayViewController = DetayViewController(nibName: "DetayViewController", bundle: nil)
         mDetayViewController.yaziNumara = selectedItem
+        mDetayViewController.yaziFormat = formatItem
+        mDetayViewController.videoLink = videoItem
         self.navigationController?.pushViewController(mDetayViewController, animated: true)
         
     }

@@ -48,8 +48,16 @@ class ViewController: UIViewController {
         self.navigationItem.setRightBarButtonItems([bjktvbtn], animated: true)
         
         
-
-        self.setupNavigationBar(image: UIImage(named: "navlogo")!)
+        
+        let logoContainer = UIView(frame: CGRect(x: 0, y: 0, width: 144, height: 32))
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 144, height: 32))
+        imageView.contentMode = .scaleAspectFit
+        let image = UIImage(named: "faiknav")
+        imageView.image = image
+        logoContainer.addSubview(imageView)
+        navigationItem.titleView = logoContainer
+        
         
         if let mYazilarViewController = YazilarViewController(nibName:"YazilarViewController", bundle: nil) as? YazilarViewController {
             addChild(mYazilarViewController)
@@ -65,10 +73,8 @@ class ViewController: UIViewController {
     
     @objc func bjkMethod(){
         
-        let mDetayViewController = DetayViewController(nibName: "DetayViewController", bundle: nil)
-        self.navigationController?.pushViewController(mDetayViewController, animated: true)
-        
-        
+        let mBJKTVViewController = BJKTVViewController(nibName: "BJKTVViewController", bundle: nil)
+        self.navigationController?.pushViewController(mBJKTVViewController, animated: true)
         
         /*if let videoURL = URL.init(string: "https://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"){
            let avPlayerController = AVPlayerViewController()
@@ -78,7 +84,6 @@ class ViewController: UIViewController {
             }
         }*/
         
-
     }
     
     @objc func segmentSelected(sender:ScrollableSegmentedControl) {

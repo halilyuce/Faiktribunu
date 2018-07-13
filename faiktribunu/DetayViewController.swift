@@ -26,6 +26,8 @@ class DetayViewController: UIViewController {
     var detayBase = [Title]()
     var resBase = [ResBase]()
     var yaziNumara = String()
+    var yaziFormat = String()
+    var videoLink = String()
     
     
     let imagePicker = UIImagePickerController()
@@ -75,8 +77,17 @@ class DetayViewController: UIViewController {
                                             
                                             if let guid = Mapper<ResList>().map(JSONString: mutf8Text){
                                                 
-                                                
-                                                self.detayIcerik.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><style>img{display: inline;height: auto;max-width:100%;}iframe {width:100%;}</style> <img src=\"\((guid.guid?.rendered)!)\"> <br> <h3> \((detay.title?.rendered?.html2String)!) </h3>" + (detay.content?.rendered)!, baseURL: nil)
+                                                if self.yaziFormat == "video" {
+                                                    
+                                                    self.detayIcerik.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <style>.wp-caption{max-width:100%;background:#eee;padding: 5px;} .wp-caption img{max-width:100%;height:auto;width: 100%;} .entry-content img {max-width:100%;height:auto;} img{display:inline; height:auto; max-width:100%;} embed, iframe, object {max-width:100%;height:225px;}</style> <iframe width=\"100%\" height=\"225\" src=\"https://www.youtube.com/embed/\((detay.video_url)!)\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe> <br> <h3> \((detay.title?.rendered?.html2String)!) </h3>" + (detay.content?.rendered)!, baseURL: nil)
+                                                    
+                                                    
+                                                    
+                                                } else{
+                                                   
+                                                    self.detayIcerik.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <style>.wp-caption{max-width:100%;background:#eee;padding: 5px;} .wp-caption img{max-width:100%;height:auto;width: 100%;} .entry-content img {max-width:100%;height:auto;} img{display:inline; height:auto; max-width:100%;} embed, iframe, object {max-width:100%;height:225px;}</style> <img src=\"\((guid.guid?.rendered)!)\"> <br> <h3> \((detay.title?.rendered?.html2String)!) </h3>" + (detay.content?.rendered)!, baseURL: nil)
+                                                    
+                                                }
                                                 
                                                 self.effectView.removeFromSuperview()
                                                 

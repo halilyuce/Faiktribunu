@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,33 +13,32 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="Main" id="BYZ-38-t0r" customClass="ViewController" customModule="faiktribunu" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" restorationIdentifier="MainView" id="8bC-Xf-vdC" customClass="MainView">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="MainView" insetsLayoutMarginsFromSafeArea="NO" id="8bC-Xf-vdC" customClass="MainView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o9i-YN-fwH" customClass="ScrollableSegmentedControl" customModule="ScrollableSegmentedControl">
+                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9i-YN-fwH" customClass="ScrollableSegmentedControl" customModule="ScrollableSegmentedControl">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="39"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="J6S-GR-X3B"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lSB-yf-yPa">
+                            <view contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lSB-yf-yPa">
                                 <rect key="frame" x="0.0" y="39" width="375" height="563"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="o9i-YN-fwH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="5Cq-bB-qkc"/>
+                            <constraint firstItem="o9i-YN-fwH" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="5Cq-bB-qkc"/>
                             <constraint firstItem="lSB-yf-yPa" firstAttribute="top" secondItem="o9i-YN-fwH" secondAttribute="bottom" constant="1" id="DiV-js-EaS"/>
-                            <constraint firstItem="lSB-yf-yPa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Gc3-wi-SD7"/>
-                            <constraint firstItem="lSB-yf-yPa" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="IAH-Ow-bIb"/>
-                            <constraint firstItem="o9i-YN-fwH" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Is7-ag-tWx"/>
-                            <constraint firstItem="lSB-yf-yPa" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="P9f-9v-XxE"/>
-                            <constraint firstItem="o9i-YN-fwH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Ql3-h2-pUL"/>
+                            <constraint firstItem="lSB-yf-yPa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Gc3-wi-SD7"/>
+                            <constraint firstItem="lSB-yf-yPa" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="IAH-Ow-bIb"/>
+                            <constraint firstItem="o9i-YN-fwH" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="Is7-ag-tWx"/>
+                            <constraint firstItem="lSB-yf-yPa" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="P9f-9v-XxE"/>
+                            <constraint firstItem="o9i-YN-fwH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ql3-h2-pUL"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="1cU-fA-PSO"/>
                     <connections>

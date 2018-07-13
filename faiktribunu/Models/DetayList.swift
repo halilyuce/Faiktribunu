@@ -18,6 +18,8 @@ public class DetayList: BaseItem {
         static let categories = "categories"
         static let title = "title"
         static let content = "content"
+        static let video_url = "video_url"
+        static let format = "format"
         
     }
     
@@ -27,6 +29,8 @@ public class DetayList: BaseItem {
     public var categories: [Int]?
     public var title: Title?
     public var content: Content?
+    public var video_url: String?
+    public var format: String?
     
     // MARK: ObjectMapper Initializers
     /// Map a JSON object to this class using ObjectMapper.
@@ -42,6 +46,8 @@ public class DetayList: BaseItem {
         categories <- map[SerializationKeys.categories]
         title <- map[SerializationKeys.title]
         content <- map[SerializationKeys.content]
+        video_url <- map[SerializationKeys.video_url]
+        format <- map[SerializationKeys.format]
     }
     
     /// Generates description of the object in the form of a NSDictionary.
@@ -54,6 +60,8 @@ public class DetayList: BaseItem {
         if let value = categories { dictionary[SerializationKeys.categories] = value }
         if let value = title { dictionary[SerializationKeys.title] = value }
         if let value = content { dictionary[SerializationKeys.content] = value }
+        if let value = video_url { dictionary[SerializationKeys.video_url] = value }
+        if let value = format { dictionary[SerializationKeys.format] = value }
         return dictionary as [String : AnyObject] as [String : AnyObject]
     }
     

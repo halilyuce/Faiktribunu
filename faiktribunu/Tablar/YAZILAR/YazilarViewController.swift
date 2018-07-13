@@ -11,6 +11,7 @@ import PSHTMLView
 import Alamofire
 import SwiftyJSON
 import ObjectMapper
+import SVPullToRefresh
 
 class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
 
@@ -20,11 +21,13 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
     var resimStr = String()
     var yazinumara = [String]()
     var resimLink = [String]()
+    var videoLink = [String]()
     var catResim = [String]()
+    var format = [String]()
     var base = [Base]()
     var resBase = [ResBase]()
     
-    
+    var mPageIndex = 1
     let imagePicker = UIImagePickerController()
     let messageFrame = UIView()
     var activityIndicator = UIActivityIndicatorView()
@@ -38,6 +41,14 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
         mCollectionView.register(YazilarCollectionViewCell.self, forCellWithReuseIdentifier: "YazilarCollectionViewCell")
         mCollectionView.register(UINib.init(nibName: "YazilarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "YazilarCollectionViewCell")
 
+        self.mCollectionView.addPullToRefresh {
+            
+        }
+        
+        self.mCollectionView.pullToRefreshView.setTitle("Yenilemek için Aşağı Kaydır", forState: 0)
+        self.mCollectionView.pullToRefreshView.setTitle("Yenilemekten Vazgeç...", forState: 1)
+        self.mCollectionView.pullToRefreshView.setTitle("Yükleniyor...", forState: 2)
+  
         self.mCollectionView.delegate = self
         
         self.activityIndicator("Yükleniyor")
@@ -65,6 +76,10 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
                                     self.basliklar.append((title.title?.rendered)!)
                                     
                                     self.yazinumara.append("\(title.id!)")
+                                    
+                                    self.format.append((title.format)!)
+                                    
+                                    self.videoLink.append(title.video_url!)
                                     
                                     self.resimStr = "\(title.media!)"
                                     
@@ -154,9 +169,11 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "YazilarCollectionViewCell", for: indexPath) as! YazilarCollectionViewCell
         
+        /*resimLink[indexPath.row]catResim[indexPath.row]*/
+        
         cell.baslik.text = basliklar[indexPath.row].html2String
-        cell.yazarAvatar.downloadedFrom(link: catResim[indexPath.row])
-        cell.haberGorseli.downloadedFrom(link: resimLink[indexPath.row])
+        cell.yazarAvatar.loadImageCacheWithUrlString(urlString: catResim[indexPath.row])
+        cell.haberGorseli.loadImageCacheWithUrlString(urlString: resimLink[indexPath.row])
         cell.yazarAvatar.layer.cornerRadius = cell.yazarAvatar.frame.height/2
         cell.yazarAvatar.clipsToBounds = true
         
@@ -171,9 +188,13 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let selectedItem = yazinumara[indexPath.row]
+        let videoItem = videoLink[indexPath.row]
+        let formatItem = format[indexPath.row]
         
         let mDetayViewController = DetayViewController(nibName: "DetayViewController", bundle: nil)
         mDetayViewController.yaziNumara = selectedItem
+        mDetayViewController.yaziFormat = formatItem
+        mDetayViewController.videoLink = videoItem
         self.navigationController?.pushViewController(mDetayViewController, animated: true)
         
     }

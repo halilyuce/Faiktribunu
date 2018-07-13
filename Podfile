@@ -11,5 +11,6 @@ target 'faiktribunu' do
   pod 'AlamofireObjectMapper'
   pod 'SwiftyJSON'
   pod 'Kamagari'
+  pod 'SVPullToRefresh'
 
 end
