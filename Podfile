@@ -10,7 +10,7 @@ target 'faiktribunu' do
   pod 'Alamofire'
   pod 'AlamofireObjectMapper'
   pod 'SwiftyJSON'
-  pod 'Kamagari'
   pod 'SVPullToRefresh'
+  pod 'SDWebImage'
 
 end

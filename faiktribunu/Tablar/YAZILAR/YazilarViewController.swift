@@ -12,6 +12,7 @@ import Alamofire
 import SwiftyJSON
 import ObjectMapper
 import SVPullToRefresh
+import SDWebImage
 
 class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
 
@@ -35,8 +36,10 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
     let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         mCollectionView.register(YazilarCollectionViewCell.self, forCellWithReuseIdentifier: "YazilarCollectionViewCell")
         mCollectionView.register(UINib.init(nibName: "YazilarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "YazilarCollectionViewCell")
@@ -105,9 +108,9 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
                                                         self.resimLink.append(resimUrl!)
                                                         
                                                         if item.last?.id == title.id{
+                                                            
                                                             self.mCollectionView.reloadData()
                                                             self.effectView.removeFromSuperview()
-                                                            
                                                             
                                                         }
                                                         
@@ -169,11 +172,10 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "YazilarCollectionViewCell", for: indexPath) as! YazilarCollectionViewCell
         
-        /*resimLink[indexPath.row]catResim[indexPath.row]*/
-        
+
         cell.baslik.text = basliklar[indexPath.row].html2String
-        cell.yazarAvatar.loadImageCacheWithUrlString(urlString: catResim[indexPath.row])
-        cell.haberGorseli.loadImageCacheWithUrlString(urlString: resimLink[indexPath.row])
+        cell.yazarAvatar.sd_setImage(with: URL(string: catResim[indexPath.row]), placeholderImage: UIImage(named: "faiklogo"))
+        cell.haberGorseli.sd_setImage(with: URL(string: resimLink[indexPath.row]), placeholderImage: UIImage(named: "faiklogo"))
         cell.yazarAvatar.layer.cornerRadius = cell.yazarAvatar.frame.height/2
         cell.yazarAvatar.clipsToBounds = true
         
@@ -213,6 +215,7 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
         
     }
     
+    
     func activityIndicator(_ title: String) {
         
         strLabel.removeFromSuperview()
@@ -228,7 +231,7 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
         effectView.layer.cornerRadius = 15
         effectView.layer.masksToBounds = true
         
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        activityIndicator = UIActivityIndicatorView(style: .white)
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
         activityIndicator.startAnimating()
         

@@ -3,19 +3,21 @@ PODS:
   - AlamofireObjectMapper (5.1.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 3.3)
-  - Kamagari (1.2.0)
   - ObjectMapper (3.3.0)
   - PSHTMLView (0.1.5)
   - ScrollableSegmentedControl (1.3.0)
+  - SDWebImage (4.4.1):
+    - SDWebImage/Core (= 4.4.1)
+  - SDWebImage/Core (4.4.1)
   - SVPullToRefresh (0.4.1)
   - SwiftyJSON (4.1.0)
 
 DEPENDENCIES:
   - Alamofire
   - AlamofireObjectMapper
-  - Kamagari
   - PSHTMLView
   - ScrollableSegmentedControl (~> 1.3.0)
+  - SDWebImage
   - SVPullToRefresh
   - SwiftyJSON
 
@@ -23,23 +25,23 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - AlamofireObjectMapper
-    - Kamagari
     - ObjectMapper
     - PSHTMLView
     - ScrollableSegmentedControl
+    - SDWebImage
     - SVPullToRefresh
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   AlamofireObjectMapper: 3395e698901d8b0e6f48b7d0c43bd47875325102
-  Kamagari: 70369534bbbd357783efd2c2ae96de656583c471
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   PSHTMLView: abb9f6015940c4f76536c229ea9d3ad0a2a7ae7d
   ScrollableSegmentedControl: a90ae91537fd670a46b177301d035223e3bd149e
+  SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: 01ce9fec495d01ae53ab5c61424a0e26cce7920e
+PODFILE CHECKSUM: 39a292907ff9da3cfc9b2d0cf5a58d42af4e21fb
 
 COCOAPODS: 1.5.3

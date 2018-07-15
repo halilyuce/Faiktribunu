@@ -11,6 +11,7 @@ import PSHTMLView
 import Alamofire
 import SwiftyJSON
 import ObjectMapper
+import SDWebImage
 
 class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
@@ -155,8 +156,8 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideolarCollectionViewCell", for: indexPath) as! VideolarCollectionViewCell
         
         cell.baslik.text = basliklar[indexPath.row].html2String
-        cell.yazarAvatar.loadImageCacheWithUrlString(urlString: catResim[indexPath.row])
-        cell.haberGorseli.loadImageCacheWithUrlString(urlString: resimLink[indexPath.row])
+        cell.yazarAvatar.sd_setImage(with: URL(string: catResim[indexPath.row]), placeholderImage: UIImage(named: "faiklogo"))
+        cell.haberGorseli.sd_setImage(with: URL(string: resimLink[indexPath.row]), placeholderImage: UIImage(named: "faiklogo"))
         cell.yazarAvatar.layer.cornerRadius = cell.yazarAvatar.frame.height/2
         cell.yazarAvatar.clipsToBounds = true
         
@@ -197,7 +198,7 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
         effectView.layer.cornerRadius = 15
         effectView.layer.masksToBounds = true
         
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        activityIndicator = UIActivityIndicatorView(style: .white)
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
         activityIndicator.startAnimating()
         
