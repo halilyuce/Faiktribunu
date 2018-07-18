@@ -18,6 +18,9 @@ class YazilarCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.haberGorseli.image = nil
+    }
 
 }
