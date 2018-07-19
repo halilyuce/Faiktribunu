@@ -17,6 +17,8 @@ class BJKTVViewController: UIViewController {
         
         EmbedVideo(videoId: "x31omum")
         
+        
+        
     self.title = "BJK TV"
  
     }

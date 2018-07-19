@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SDWebImage
+
 class YazilarCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var haberGorseli: UIImageView!
@@ -21,6 +23,7 @@ class YazilarCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         self.haberGorseli.image = nil
+        self.haberGorseli.sd_cancelCurrentImageLoad()
     }
 
 }

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04D1D58820FFBCAA00538AEF /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1D58720FFBCAA00538AEF /* CustomTabBarController.swift */; };
+		04D7B20F2100844800E5F05A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7B20D2100844800E5F05A /* ViewController.swift */; };
+		04D7B2102100844800E5F05A /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D7B20E2100844800E5F05A /* ViewController.xib */; };
+		04D7B21421008DD600E5F05A /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7B21221008DD600E5F05A /* SplashViewController.swift */; };
+		04D7B21521008DD600E5F05A /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D7B21321008DD600E5F05A /* SplashViewController.xib */; };
 		7D06B90720C6D07600C3C269 /* StaticVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D06B90620C6D07600C3C269 /* StaticVariables.swift */; };
 		7D14367F20E90F6D002C8D9E /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D14367E20E90F6D002C8D9E /* Base.swift */; };
 		7D14368120E90FCD002C8D9E /* BaseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D14368020E90FCD002C8D9E /* BaseItem.swift */; };
@@ -21,8 +26,6 @@
 		7D6027AE20E38C90008CC1CA /* YazilarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6027AC20E38C90008CC1CA /* YazilarCollectionViewCell.swift */; };
 		7D6027AF20E38C90008CC1CA /* YazilarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D6027AD20E38C90008CC1CA /* YazilarCollectionViewCell.xib */; };
 		7D7172D020BBEDBD00EEA074 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7172CF20BBEDBD00EEA074 /* AppDelegate.swift */; };
-		7D7172D220BBEDBD00EEA074 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7172D120BBEDBD00EEA074 /* ViewController.swift */; };
-		7D7172D520BBEDBD00EEA074 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7172D320BBEDBD00EEA074 /* Main.storyboard */; };
 		7D7172D720BBEDBF00EEA074 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D7172D620BBEDBF00EEA074 /* Assets.xcassets */; };
 		7D7172DA20BBEDBF00EEA074 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7172D820BBEDBF00EEA074 /* LaunchScreen.storyboard */; };
 		7D78FAF820C13E9A00314EA2 /* Yazilar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D78FAF720C13E9A00314EA2 /* Yazilar.swift */; };
@@ -41,6 +44,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04D1D58720FFBCAA00538AEF /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		04D7B20D2100844800E5F05A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		04D7B20E2100844800E5F05A /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		04D7B21221008DD600E5F05A /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		04D7B21321008DD600E5F05A /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
 		7D06B90620C6D07600C3C269 /* StaticVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticVariables.swift; sourceTree = "<group>"; };
 		7D14367E20E90F6D002C8D9E /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		7D14368020E90FCD002C8D9E /* BaseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseItem.swift; sourceTree = "<group>"; };
@@ -56,8 +64,6 @@
 		7D6027AD20E38C90008CC1CA /* YazilarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YazilarCollectionViewCell.xib; sourceTree = "<group>"; };
 		7D7172CC20BBEDBD00EEA074 /* faiktribunu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = faiktribunu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D7172CF20BBEDBD00EEA074 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7D7172D120BBEDBD00EEA074 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		7D7172D420BBEDBD00EEA074 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7D7172D620BBEDBF00EEA074 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D7172D920BBEDBF00EEA074 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7D7172DB20BBEDBF00EEA074 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -98,6 +104,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		04D7B21121008DC200E5F05A /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				04D7B21221008DD600E5F05A /* SplashViewController.swift */,
+				04D7B21321008DD600E5F05A /* SplashViewController.xib */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
 		7D14367D20E90F5E002C8D9E /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,11 +150,12 @@
 		7D7172CE20BBEDBD00EEA074 /* faiktribunu */ = {
 			isa = PBXGroup;
 			children = (
+				04D7B21121008DC200E5F05A /* Splash */,
 				7D14367D20E90F5E002C8D9E /* Models */,
 				7DFE381020E512530003E517 /* Tablar */,
 				7D7172CF20BBEDBD00EEA074 /* AppDelegate.swift */,
-				7D7172D120BBEDBD00EEA074 /* ViewController.swift */,
-				7D7172D320BBEDBD00EEA074 /* Main.storyboard */,
+				04D7B20D2100844800E5F05A /* ViewController.swift */,
+				04D7B20E2100844800E5F05A /* ViewController.xib */,
 				7D9DA3A920C584EC009A5BA1 /* CollectionViewCell.swift */,
 				7D7172D620BBEDBF00EEA074 /* Assets.xcassets */,
 				7D7172DB20BBEDBF00EEA074 /* Info.plist */,
@@ -151,6 +167,7 @@
 				7D06B90620C6D07600C3C269 /* StaticVariables.swift */,
 				7D6027A420E3741E008CC1CA /* BJKTVViewController.swift */,
 				7D6027A520E3741E008CC1CA /* BJKTVViewController.xib */,
+				04D1D58720FFBCAA00538AEF /* CustomTabBarController.swift */,
 			);
 			path = faiktribunu;
 			sourceTree = "<group>";
@@ -259,11 +276,12 @@
 				7DBC507920E63D8C0046EB9F /* DetayViewController.xib in Resources */,
 				7D7172DA20BBEDBF00EEA074 /* LaunchScreen.storyboard in Resources */,
 				7DFE381420E512D80003E517 /* YazilarViewController.xib in Resources */,
+				04D7B21521008DD600E5F05A /* SplashViewController.xib in Resources */,
 				7D6027A720E3741E008CC1CA /* BJKTVViewController.xib in Resources */,
 				7D6027AF20E38C90008CC1CA /* YazilarCollectionViewCell.xib in Resources */,
 				7DBC507520E62A2E0046EB9F /* VideolarCollectionViewCell.xib in Resources */,
 				7D7172D720BBEDBF00EEA074 /* Assets.xcassets in Resources */,
-				7D7172D520BBEDBD00EEA074 /* Main.storyboard in Resources */,
+				04D7B2102100844800E5F05A /* ViewController.xib in Resources */,
 				7DBC507120E62A070046EB9F /* VideolarViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -333,9 +351,9 @@
 				7DEE4FAD20EA3F060099839B /* Content.swift in Sources */,
 				7DBC507420E62A2E0046EB9F /* VideolarCollectionViewCell.swift in Sources */,
 				7D9DA3AA20C584EC009A5BA1 /* CollectionViewCell.swift in Sources */,
+				04D7B21421008DD600E5F05A /* SplashViewController.swift in Sources */,
 				7D14368B20E94C33002C8D9E /* ResList.swift in Sources */,
 				7D78FAF820C13E9A00314EA2 /* Yazilar.swift in Sources */,
-				7D7172D220BBEDBD00EEA074 /* ViewController.swift in Sources */,
 				7D14367F20E90F6D002C8D9E /* Base.swift in Sources */,
 				7DFE381320E512D80003E517 /* YazilarViewController.swift in Sources */,
 				7D6027A620E3741E008CC1CA /* BJKTVViewController.swift in Sources */,
@@ -344,9 +362,11 @@
 				7D06B90720C6D07600C3C269 /* StaticVariables.swift in Sources */,
 				7D14368D20E989D4002C8D9E /* DetayList.swift in Sources */,
 				7D14368120E90FCD002C8D9E /* BaseItem.swift in Sources */,
+				04D1D58820FFBCAA00538AEF /* CustomTabBarController.swift in Sources */,
 				7DBECAFC20BC44E100A4253C /* Extensions.swift in Sources */,
 				7D7172D020BBEDBD00EEA074 /* AppDelegate.swift in Sources */,
 				7DBC507820E63D8C0046EB9F /* DetayViewController.swift in Sources */,
+				04D7B20F2100844800E5F05A /* ViewController.swift in Sources */,
 				7D14368920E94A58002C8D9E /* Guid.swift in Sources */,
 				7D6027AE20E38C90008CC1CA /* YazilarCollectionViewCell.swift in Sources */,
 			);
@@ -355,14 +375,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		7D7172D320BBEDBD00EEA074 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7D7172D420BBEDBD00EEA074 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		7D7172D820BBEDBF00EEA074 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
