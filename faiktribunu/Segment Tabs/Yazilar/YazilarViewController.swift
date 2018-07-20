@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PSHTMLView
 import Alamofire
 import SwiftyJSON
 import ObjectMapper
@@ -39,7 +38,6 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         mCollectionView.register(YazilarCollectionViewCell.self, forCellWithReuseIdentifier: "YazilarCollectionViewCell")
         mCollectionView.register(UINib.init(nibName: "YazilarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "YazilarCollectionViewCell")

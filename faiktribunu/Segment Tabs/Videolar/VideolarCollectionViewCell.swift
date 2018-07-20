@@ -1,19 +1,18 @@
 //
-//  YazilarCollectionViewCell.swift
+//  VideolarCollectionViewCell.swift
 //  faiktribunu
 //
-//  Created by Halil İbrahim YÜCE on 27.06.2018.
+//  Created by Halil İbrahim YÜCE on 29.06.2018.
 //  Copyright © 2018 Halil İbrahim YÜCE. All rights reserved.
 //
 
 import UIKit
-import SDWebImage
 
-class YazilarCollectionViewCell: UICollectionViewCell {
-    
-    @IBOutlet weak var haberGorseli: UIImageView!
-    @IBOutlet weak var yazarAvatar: UIImageView!
+class VideolarCollectionViewCell: UICollectionViewCell {
+
     @IBOutlet weak var baslik: UILabel!
+    @IBOutlet weak var yazarAvatar: UIImageView!
+    @IBOutlet weak var haberGorseli: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

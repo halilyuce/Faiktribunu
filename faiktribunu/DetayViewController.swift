@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PSHTMLView
 import Alamofire
 import SwiftyJSON
 import ObjectMapper

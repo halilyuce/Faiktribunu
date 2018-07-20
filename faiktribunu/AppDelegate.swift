@@ -44,8 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBar.backgroundColor = UIColor.white
         tabBar.unselectedItemTintColor = UIColor.gray
         
-        
-        
         let segmentedControlAppearance = ScrollableSegmentedControl.appearance()
         segmentedControlAppearance.segmentContentColor = UIColor.gray
         segmentedControlAppearance.selectedSegmentContentColor = UIColor.white

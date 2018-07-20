@@ -20,9 +20,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Geri", style: .plain, target: nil, action: nil)
+
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         mAppDelegate.mNavigationController?.setNavigationBarHidden(true, animated: false)
+        
         segmentedControl.segmentStyle = .textOnly
         segmentedControl.insertSegment(withTitle: "YAZILAR", at: 0)
         segmentedControl.insertSegment(withTitle: "GÜNDEM", at: 1)

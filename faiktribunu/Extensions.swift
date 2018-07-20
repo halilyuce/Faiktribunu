@@ -68,8 +68,6 @@ extension String {
 }
 
 
-
-
 extension UIImage {
     
     func resizeImageWidth(image: UIImage, newHeight: CGFloat) -> UIImage {

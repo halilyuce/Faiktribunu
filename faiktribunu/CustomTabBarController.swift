@@ -22,16 +22,16 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         navigationController.tabBarItem.image = UIImage(named: "news")
         navigationController.tabBarItem.tag = 0
         
-        let fiksturController = BJKTVViewController()
+        let fiksturController = FiksturViewController()
         let fiksturnavigationController = UINavigationController(rootViewController: fiksturController)
-        fiksturnavigationController.title = "Fikstür"
-        fiksturnavigationController.tabBarItem.image = UIImage(named: "fikstur")
+        fiksturnavigationController.title = "Puan & Fikstür"
+        fiksturnavigationController.tabBarItem.image = UIImage(named: "puan")
         fiksturnavigationController.tabBarItem.tag = 1
         
         let puanController = BJKTVViewController()
         let puannavigationController = UINavigationController(rootViewController: puanController)
         puannavigationController.title = "Puan Durumu"
-        puannavigationController.tabBarItem.image = UIImage(named: "puan")
+        puannavigationController.tabBarItem.image = UIImage(named: "fikstur")
         puannavigationController.tabBarItem.tag = 2
         
         let digerController = BJKTVViewController()
