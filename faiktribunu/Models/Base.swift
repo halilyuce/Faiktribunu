@@ -20,6 +20,7 @@ public class Base: BaseItem {
         static let content = "content"
         static let video_url = "video_url"
         static let format = "format"
+        static let betterimage = "better_featured_image"
     }
     
     // MARK: Properties
@@ -30,6 +31,7 @@ public class Base: BaseItem {
     public var content: Content?
     public var video_url: String?
     public var format: String?
+    public var betterimage: BetterImage?
     
     // MARK: ObjectMapper Initializers
     /// Map a JSON object to this class using ObjectMapper.
@@ -47,6 +49,7 @@ public class Base: BaseItem {
         content <- map[SerializationKeys.content]
         video_url <- map[SerializationKeys.video_url]
         format <- map[SerializationKeys.format]
+        betterimage <- map[SerializationKeys.betterimage]
     }
     
     /// Generates description of the object in the form of a NSDictionary.
@@ -61,6 +64,7 @@ public class Base: BaseItem {
         if let value = content { dictionary[SerializationKeys.content] = value }
         if let value = video_url { dictionary[SerializationKeys.video_url] = value }
         if let value = format { dictionary[SerializationKeys.format] = value }
+        if let value = betterimage { dictionary[SerializationKeys.betterimage] = value }
         return dictionary as [String : AnyObject] as [String : AnyObject]
     }
     

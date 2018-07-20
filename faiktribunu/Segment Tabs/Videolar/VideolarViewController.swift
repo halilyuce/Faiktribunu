@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import ObjectMapper
+import SVPullToRefresh
 import SDWebImage
 
 class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
@@ -18,13 +19,13 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
 
     var basliklar = [String]()
     var resimStr = String()
-    var resimLink = [String]()
-    var catResim = [String]()
-    var base = [Base]()
-    var resBase = [ResBase]()
     var yazinumara = [String]()
-    var format = [String]()
+    var resimLink = [String]()
     var videoLink = [String]()
+    var catResim = [String]()
+    var format = [String]()
+    var base = [Base]()
+    var loadMore = 1
     
     let imagePicker = UIImagePickerController()
     let messageFrame = UIView()
@@ -37,10 +38,112 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
 
         vCollectionView.register(VideolarCollectionViewCell.self, forCellWithReuseIdentifier: "VideolarCollectionViewCell")
         vCollectionView.register(UINib.init(nibName: "VideolarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "VideolarCollectionViewCell")
-
+    
+        
+        self.vCollectionView.addPullToRefresh {
+            
+            self.vCollectionView.pullToRefreshView.startAnimating()
+            
+            
+            self.basliklar.removeAll(keepingCapacity: false)
+            
+            
+            self.catResim.removeAll(keepingCapacity: false)
+            
+            
+            self.loadList()
+            
+            
+        }
+        
+        self.vCollectionView.addInfiniteScrolling() {
+            
+            
+            self.vCollectionView.infiniteScrollingView.startAnimating()
+            
+            self.loadMore += 1
+            let urladd = "https://www.faiktribunu.com/index.php/wp-json/wp/v2/posts?categories=9&page=" + "\(self.loadMore)"
+            
+            Alamofire.request(urladd, method: .get, parameters: nil)
+                .responseString { response in
+                    
+                    switch(response.result) {
+                    case .success(_):
+                        
+                        if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                            
+                            let jsonString: String = "{\"lst\":" + utf8Text + "}"
+                            
+                            if let item = Mapper<List>().map(JSONString: jsonString){
+                                
+                                if let item = item.lst{
+                                    
+                                    self.base = item
+                                    
+                                    for title in item{
+                                        
+                                        self.basliklar.append((title.title?.rendered)!)
+                                        
+                                        self.yazinumara.append("\(title.id!)")
+                                        
+                                        self.format.append((title.format)!)
+                                        
+                                        self.videoLink.append(title.video_url!)
+                                        
+                                        let resimUrl = title.betterimage?.details?.sizes?.medium?.source
+                                        
+                                        self.resimLink.append(resimUrl!)
+                                        
+                                        self.catResim.append(StaticVariables.homeUrl + StaticVariables.catAvatar + "\(title.categories![0])" + ".png")
+                                        
+                                        
+                                        if item.last?.id == title.id{
+                                            self.vCollectionView.reloadData()
+                                            self.vCollectionView.infiniteScrollingView.stopAnimating()
+                                        }
+                                        
+                                    }
+                                    
+                                    
+                                }
+                                
+                                
+                            }
+                            else{
+                                print("hatalı json")
+                                
+                            }
+                            
+                        }
+                        
+                    case .failure(_):
+                        print("Error message:\(String(describing: response.result.error))")
+                        break
+                    }
+                    
+                    
+            }
+            
+            
+            
+        }
+        
+        self.vCollectionView.pullToRefreshView.setTitle("Yenilemek için Aşağı Kaydır", forState: 0)
+        self.vCollectionView.pullToRefreshView.setTitle("Yenilemekten Vazgeç...", forState: 1)
+        self.vCollectionView.pullToRefreshView.setTitle("Yükleniyor...", forState: 2)
+        
         self.vCollectionView.delegate = self
         
         self.activityIndicator("Yükleniyor")
+        
+        
+        self.loadList()
+        
+    }
+    
+    func loadList(){
+        
+        self.loadMore = 1
         
         let url = StaticVariables.baseUrl + "posts?categories=9"
         
@@ -70,51 +173,17 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
                                     
                                     self.videoLink.append(title.video_url!)
                                     
-                                    self.resimStr = "\(title.media!)"
+                                    let resimUrl = title.betterimage?.details?.sizes?.medium?.source
+                                    
+                                    self.resimLink.append(resimUrl!)
                                     
                                     self.catResim.append(StaticVariables.homeUrl + StaticVariables.catAvatar + "\(title.categories![0])" + ".png")
                                     
-                                    let resUrl = URL(string: StaticVariables.baseUrl + StaticVariables.resimUrl + self.resimStr)!
-                                    
-                                    
-                                    Alamofire.request(resUrl, method: .get, parameters: nil)
-                                        .responseString { mresponse in
-                                            
-                                            switch(mresponse.result) {
-                                            case .success(_):
-                                                
-                                                if let mdata = mresponse.data, let mutf8Text = String(data: mdata, encoding: .utf8) {
-                                                    
-                                                    //let mjsonString: String = "{\"rst\":" + mutf8Text + "}"
-                                                    
-                                                    if let guid = Mapper<ResList>().map(JSONString: mutf8Text){
-                                                        
-                                                        let resimUrl = guid.guid?.rendered
-                                                        
-                                                        self.resimLink.append(resimUrl!)
-                                                        
-                                                        if item.last?.id == title.id{
-                                                            self.vCollectionView.reloadData()
-                                                            self.effectView.removeFromSuperview()
-                                                        }
-                                                        
-                                                    }
-                                                    else{
-                                                        print("hatalı json")
-                                                        
-                                                    }
-                                                    
-                                                }
-                                                
-                                            case .failure(_):
-                                                print("Error message:\(String(describing: response.result.error))")
-                                                break
-                                            }
-                                            
-                                            
+                                    if item.last?.id == title.id{
+                                        self.vCollectionView.reloadData()
+                                        self.effectView.removeFromSuperview()
+                                        self.vCollectionView.pullToRefreshView.stopAnimating()
                                     }
-                                    
-                                    
                                     
                                 }
                                 
@@ -140,7 +209,6 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
         
     }
     
-    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -154,6 +222,7 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideolarCollectionViewCell", for: indexPath) as! VideolarCollectionViewCell
         
+        if indexPath.row < basliklar.count{
         cell.baslik.text = basliklar[indexPath.row].html2String
         cell.yazarAvatar.sd_setImage(with: URL(string: catResim[indexPath.row]), placeholderImage: UIImage(named: "faiklogo"))
         cell.haberGorseli.sd_setImage(with: URL(string: resimLink[indexPath.row]), placeholderImage: UIImage(named: "faiklogo"))
@@ -165,6 +234,7 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
         cell.layer.shadowOffset = CGSize(width: 0, height: 5)
         cell.layer.shadowRadius = 12
         cell.layer.masksToBounds = false
+        }
         return cell
     }
     

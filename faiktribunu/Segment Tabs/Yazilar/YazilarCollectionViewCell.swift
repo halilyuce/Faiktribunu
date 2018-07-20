@@ -19,10 +19,5 @@ class YazilarCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.haberGorseli.image = nil
-        self.haberGorseli.sd_cancelCurrentImageLoad()
-    }
 
 }

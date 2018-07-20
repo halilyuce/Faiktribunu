@@ -25,7 +25,6 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
     var catResim = [String]()
     var format = [String]()
     var base = [Base]()
-    var resBase = [ResBase]()
     var loadMore = 1
     
     let imagePicker = UIImagePickerController()
@@ -93,59 +92,23 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
                                         
                                         self.videoLink.append(title.video_url!)
                                         
-                                        self.resimStr = "\(title.media!)"
+                                        let resimUrl = title.betterimage?.details?.sizes?.medium?.source
+                                        
+                                        self.resimLink.append(resimUrl!)
                                         
                                         self.catResim.append(StaticVariables.homeUrl + StaticVariables.catAvatar + "\(title.categories![0])" + ".png")
                                         
-                                        let resUrl = URL(string: StaticVariables.baseUrl + StaticVariables.resimUrl + self.resimStr)!
-                                        
-                                        
-                                        Alamofire.request(resUrl, method: .get, parameters: nil)
-                                            .responseString { mresponse in
-                                                
-                                                switch(mresponse.result) {
-                                                case .success(_):
-                                                    
-                                                    if let mdata = mresponse.data, let mutf8Text = String(data: mdata, encoding: .utf8) {
-                                                        
-                                                        //let mjsonString: String = "{\"rst\":" + mutf8Text + "}"
-                                                        
-                                                        if let guid = Mapper<ResList>().map(JSONString: mutf8Text){
-                                                            
-                                                            let resimUrl = guid.guid?.rendered
-                                                            
-                                                            self.resimLink.append(resimUrl!)
-                                                            
-                                                            if item.last?.id == title.id{
-                                                                
-                                                                
-                                                                self.mCollectionView.reloadData()
-                                                                self.mCollectionView.infiniteScrollingView.stopAnimating()
-                                                                
-                                                            }
-                                                            
-                                                        }
-                                                        else{
-                                                            print("hatalı json")
-                                                            
-                                                        }
-                                                        
-                                                    }
-                                                    
-                                                case .failure(_):
-                                                    print("Error message:\(String(describing: response.result.error))")
-                                                    break
-                                                }
-                                                
-                                                
+                         
+                                        if item.last?.id == title.id{
+                                            self.mCollectionView.reloadData()
+                                            self.mCollectionView.infiniteScrollingView.stopAnimating()
                                         }
-                                        
-                                        
                                         
                                     }
                                     
                                     
                                 }
+                                
                                 
                             }
                             else{
@@ -213,53 +176,17 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
                                     
                                     self.videoLink.append(title.video_url!)
                                     
-                                    self.resimStr = "\(title.media!)"
+                                    let resimUrl = title.betterimage?.details?.sizes?.medium?.source
+                                    
+                                    self.resimLink.append(resimUrl!)
                                     
                                     self.catResim.append(StaticVariables.homeUrl + StaticVariables.catAvatar + "\(title.categories![0])" + ".png")
                                     
-                                    let resUrl = URL(string: StaticVariables.baseUrl + StaticVariables.resimUrl + self.resimStr)!
-                                    
-                                    
-                                    Alamofire.request(resUrl, method: .get, parameters: nil)
-                                        .responseString { mresponse in
-                                            
-                                            switch(mresponse.result) {
-                                            case .success(_):
-                                                
-                                                if let mdata = mresponse.data, let mutf8Text = String(data: mdata, encoding: .utf8) {
-                                                    
-                                                    //let mjsonString: String = "{\"rst\":" + mutf8Text + "}"
-                                                    
-                                                    if let guid = Mapper<ResList>().map(JSONString: mutf8Text){
-                                                        
-                                                        let resimUrl = guid.guid?.rendered
-                                                        
-                                                        self.resimLink.append(resimUrl!)
-                                                        
-                                                        if item.last?.id == title.id{
-                                                            
-                                                            self.mCollectionView.reloadData()
-                                                            self.mCollectionView.pullToRefreshView.stopAnimating()
-                                                            self.effectView.removeFromSuperview()
-                                                        }
-                                                        
-                                                    }
-                                                    else{
-                                                        print("hatalı json")
-                                                        
-                                                    }
-                                                    
-                                                }
-                                                
-                                            case .failure(_):
-                                                print("Error message:\(String(describing: response.result.error))")
-                                                break
-                                            }
-                                            
-                                            
+                                    if item.last?.id == title.id{
+                                        self.mCollectionView.reloadData()
+                                        self.effectView.removeFromSuperview()
+                                        self.mCollectionView.pullToRefreshView.stopAnimating()
                                     }
-                                    
-                                    
                                     
                                 }
                                 
@@ -301,7 +228,7 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
         if indexPath.row < basliklar.count{
             cell.baslik.text = basliklar[indexPath.row].html2String
             cell.yazarAvatar.sd_setImage(with: URL(string: catResim[indexPath.row]), placeholderImage: UIImage(named: "faiklogo"))
-            cell.haberGorseli.sd_setImage(with: URL(string: resimLink[indexPath.row]), placeholderImage: UIImage(named: "faiklogo"))
+            cell.haberGorseli.sd_setImage(with: URL(string: resimLink[indexPath.row]), placeholderImage: UIImage(named: "faiklogo"), options: [.continueInBackground, .progressiveDownload])
             cell.yazarAvatar.layer.cornerRadius = cell.yazarAvatar.frame.height/2
             cell.yazarAvatar.clipsToBounds = true
             
