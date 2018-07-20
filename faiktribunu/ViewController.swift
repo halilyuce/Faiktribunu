@@ -71,6 +71,16 @@ class ViewController: UIViewController {
                 }
                 mYazilarViewController.didMove(toParent: self)
             }
+        case 1:
+            if let gGundemViewController = GundemViewController(nibName:"GundemViewController", bundle: nil) as? GundemViewController {
+                addChild(gGundemViewController)
+                gGundemViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
+                if let aView = gGundemViewController.view {
+                    aView.tag = 101
+                    self.mViewMain.addSubview(aView)
+                }
+                gGundemViewController.didMove(toParent: self)
+            }
         case 2:
             if let vVideolarViewController = VideolarViewController(nibName:"VideolarViewController", bundle: nil) as? VideolarViewController {
                 addChild(vVideolarViewController)

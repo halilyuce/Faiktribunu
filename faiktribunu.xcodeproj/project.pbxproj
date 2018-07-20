@@ -11,6 +11,10 @@
 		04CC73992102705E00197E7E /* Sizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC73982102705E00197E7E /* Sizes.swift */; };
 		04CC739B210270E100197E7E /* Medium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC739A210270E100197E7E /* Medium.swift */; };
 		04CC739D2102713300197E7E /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC739C2102713300197E7E /* Source.swift */; };
+		04CC73A42102948600197E7E /* GundemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC73A22102948600197E7E /* GundemViewController.swift */; };
+		04CC73A52102948600197E7E /* GundemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CC73A32102948600197E7E /* GundemViewController.xib */; };
+		04CC73A8210294A300197E7E /* GundemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC73A6210294A300197E7E /* GundemCollectionViewCell.swift */; };
+		04CC73A9210294A300197E7E /* GundemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CC73A7210294A300197E7E /* GundemCollectionViewCell.xib */; };
 		04CD18D3210120B100CB3897 /* FiksturViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CD18D1210120B100CB3897 /* FiksturViewController.swift */; };
 		04CD18D4210120B100CB3897 /* FiksturViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CD18D2210120B100CB3897 /* FiksturViewController.xib */; };
 		04D1D58820FFBCAA00538AEF /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1D58720FFBCAA00538AEF /* CustomTabBarController.swift */; };
@@ -53,6 +57,10 @@
 		04CC73982102705E00197E7E /* Sizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sizes.swift; sourceTree = "<group>"; };
 		04CC739A210270E100197E7E /* Medium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medium.swift; sourceTree = "<group>"; };
 		04CC739C2102713300197E7E /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
+		04CC73A22102948600197E7E /* GundemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GundemViewController.swift; sourceTree = "<group>"; };
+		04CC73A32102948600197E7E /* GundemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GundemViewController.xib; sourceTree = "<group>"; };
+		04CC73A6210294A300197E7E /* GundemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GundemCollectionViewCell.swift; sourceTree = "<group>"; };
+		04CC73A7210294A300197E7E /* GundemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GundemCollectionViewCell.xib; sourceTree = "<group>"; };
 		04CD18D1210120B100CB3897 /* FiksturViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiksturViewController.swift; sourceTree = "<group>"; };
 		04CD18D2210120B100CB3897 /* FiksturViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FiksturViewController.xib; sourceTree = "<group>"; };
 		04D1D58720FFBCAA00538AEF /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
@@ -111,6 +119,38 @@
 				C4438E2063C9F38E306755B6 /* Pods_faiktribunu.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		04CC739E210293AC00197E7E /* Gundem */ = {
+			isa = PBXGroup;
+			children = (
+				04CC73A22102948600197E7E /* GundemViewController.swift */,
+				04CC73A32102948600197E7E /* GundemViewController.xib */,
+				04CC73A6210294A300197E7E /* GundemCollectionViewCell.swift */,
+				04CC73A7210294A300197E7E /* GundemCollectionViewCell.xib */,
+			);
+			path = Gundem;
+			sourceTree = "<group>";
+		};
+		04CC739F210293C000197E7E /* Tarih */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tarih;
+			sourceTree = "<group>";
+		};
+		04CC73A0210293C900197E7E /* Soyleyisi */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Soyleyisi;
+			sourceTree = "<group>";
+		};
+		04CC73A1210293D700197E7E /* Konuklar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Konuklar;
 			sourceTree = "<group>";
 		};
 		04CD18D021011FF200CB3897 /* Tab Bar */ = {
@@ -218,8 +258,12 @@
 		7DFE381020E512530003E517 /* Segment Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				7DBC506D20E629CF0046EB9F /* Videolar */,
 				7DBC506C20E625FA0046EB9F /* Yazilar */,
+				04CC739E210293AC00197E7E /* Gundem */,
+				7DBC506D20E629CF0046EB9F /* Videolar */,
+				04CC739F210293C000197E7E /* Tarih */,
+				04CC73A0210293C900197E7E /* Soyleyisi */,
+				04CC73A1210293D700197E7E /* Konuklar */,
 			);
 			path = "Segment Tabs";
 			sourceTree = "<group>";
@@ -294,12 +338,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04CC73A52102948600197E7E /* GundemViewController.xib in Resources */,
 				7DBC507920E63D8C0046EB9F /* DetayViewController.xib in Resources */,
 				7D7172DA20BBEDBF00EEA074 /* LaunchScreen.storyboard in Resources */,
 				7DFE381420E512D80003E517 /* YazilarViewController.xib in Resources */,
 				04D7B21521008DD600E5F05A /* SplashViewController.xib in Resources */,
 				7D6027A720E3741E008CC1CA /* BJKTVViewController.xib in Resources */,
 				7D6027AF20E38C90008CC1CA /* YazilarCollectionViewCell.xib in Resources */,
+				04CC73A9210294A300197E7E /* GundemCollectionViewCell.xib in Resources */,
 				7DBC507520E62A2E0046EB9F /* VideolarCollectionViewCell.xib in Resources */,
 				7D7172D720BBEDBF00EEA074 /* Assets.xcassets in Resources */,
 				04D7B2102100844800E5F05A /* ViewController.xib in Resources */,
@@ -374,6 +420,7 @@
 				04D7B21421008DD600E5F05A /* SplashViewController.swift in Sources */,
 				7D14368B20E94C33002C8D9E /* ResList.swift in Sources */,
 				7D14367F20E90F6D002C8D9E /* Base.swift in Sources */,
+				04CC73A8210294A300197E7E /* GundemCollectionViewCell.swift in Sources */,
 				7DFE381320E512D80003E517 /* YazilarViewController.swift in Sources */,
 				04CC739B210270E100197E7E /* Medium.swift in Sources */,
 				7D6027A620E3741E008CC1CA /* BJKTVViewController.swift in Sources */,
@@ -386,6 +433,7 @@
 				7D14368120E90FCD002C8D9E /* BaseItem.swift in Sources */,
 				04D1D58820FFBCAA00538AEF /* CustomTabBarController.swift in Sources */,
 				7DBECAFC20BC44E100A4253C /* Extensions.swift in Sources */,
+				04CC73A42102948600197E7E /* GundemViewController.swift in Sources */,
 				7D7172D020BBEDBD00EEA074 /* AppDelegate.swift in Sources */,
 				04CC739721026FB300197E7E /* BetterImage.swift in Sources */,
 				7DBC507820E63D8C0046EB9F /* DetayViewController.swift in Sources */,

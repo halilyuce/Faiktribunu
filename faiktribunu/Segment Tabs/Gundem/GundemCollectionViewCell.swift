@@ -1,18 +1,17 @@
 //
-//  VideolarCollectionViewCell.swift
+//  GundemCollectionViewCell.swift
 //  faiktribunu
 //
-//  Created by Halil İbrahim YÜCE on 29.06.2018.
+//  Created by Mac on 21.07.2018.
 //  Copyright © 2018 Halil İbrahim YÜCE. All rights reserved.
 //
 
 import UIKit
 
-class VideolarCollectionViewCell: UICollectionViewCell {
-
-    @IBOutlet weak var baslik: UILabel!
-    @IBOutlet weak var yazarAvatar: UIImageView!
+class GundemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var haberGorseli: UIImageView!
+    @IBOutlet weak var yazarAvatar: UIImageView!
+    @IBOutlet weak var baslik: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
