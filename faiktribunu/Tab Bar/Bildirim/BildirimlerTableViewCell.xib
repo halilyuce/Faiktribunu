@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14270.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="BildirimlerTableViewCell" customModule="faiktribunu" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="349" height="75"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="349" height="74.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KCd-kd-ZSM">
+                        <rect key="frame" x="10" y="13" width="48" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="b7H-ms-TtX"/>
+                            <constraint firstAttribute="width" constant="48" id="qeh-SP-QLB"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFx-Sc-752">
+                        <rect key="frame" x="75" y="13" width="265" height="48"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="KCd-kd-ZSM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="9Xz-m8-FNR"/>
+                    <constraint firstItem="PFx-Sc-752" firstAttribute="leading" secondItem="KCd-kd-ZSM" secondAttribute="trailing" constant="17" id="Kcs-Zk-4Eu"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="PFx-Sc-752" secondAttribute="trailing" constant="-7" id="SI1-VZ-evS"/>
+                    <constraint firstAttribute="bottom" secondItem="PFx-Sc-752" secondAttribute="bottom" constant="13.5" id="aDl-hu-zJw"/>
+                    <constraint firstItem="PFx-Sc-752" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="af7-Cu-a1S"/>
+                    <constraint firstItem="KCd-kd-ZSM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="gPj-Ce-pLH"/>
+                    <constraint firstAttribute="bottom" secondItem="KCd-kd-ZSM" secondAttribute="bottom" constant="13.5" id="jQ2-gd-kOL"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="baslik" destination="PFx-Sc-752" id="GQ5-gb-saa"/>
+                <outlet property="resim" destination="KCd-kd-ZSM" id="4sH-3G-STz"/>
+            </connections>
+            <point key="canvasLocation" x="31.5" y="101.5"/>
+        </tableViewCell>
+    </objects>
+</document>

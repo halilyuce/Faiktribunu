@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		043452A5210377B1008EEC21 /* BildirimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043452A3210377B1008EEC21 /* BildirimViewController.swift */; };
+		043452A6210377B1008EEC21 /* BildirimViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043452A4210377B1008EEC21 /* BildirimViewController.xib */; };
+		043452AB21038085008EEC21 /* BildirimlerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043452A921038085008EEC21 /* BildirimlerTableViewCell.swift */; };
+		043452AC21038085008EEC21 /* BildirimlerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043452AA21038085008EEC21 /* BildirimlerTableViewCell.xib */; };
 		04CC739721026FB300197E7E /* BetterImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC739621026FB300197E7E /* BetterImage.swift */; };
 		04CC73992102705E00197E7E /* Sizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC73982102705E00197E7E /* Sizes.swift */; };
 		04CC739B210270E100197E7E /* Medium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC739A210270E100197E7E /* Medium.swift */; };
@@ -52,6 +56,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		043452A3210377B1008EEC21 /* BildirimViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BildirimViewController.swift; sourceTree = "<group>"; };
+		043452A4210377B1008EEC21 /* BildirimViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BildirimViewController.xib; sourceTree = "<group>"; };
+		043452A921038085008EEC21 /* BildirimlerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BildirimlerTableViewCell.swift; sourceTree = "<group>"; };
+		043452AA21038085008EEC21 /* BildirimlerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BildirimlerTableViewCell.xib; sourceTree = "<group>"; };
 		04CC739521023CE700197E7E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		04CC739621026FB300197E7E /* BetterImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterImage.swift; sourceTree = "<group>"; };
 		04CC73982102705E00197E7E /* Sizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sizes.swift; sourceTree = "<group>"; };
@@ -121,6 +129,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		043452A7210377B7008EEC21 /* Puan & Fikstur */ = {
+			isa = PBXGroup;
+			children = (
+				04CD18D1210120B100CB3897 /* FiksturViewController.swift */,
+				04CD18D2210120B100CB3897 /* FiksturViewController.xib */,
+			);
+			path = "Puan & Fikstur";
+			sourceTree = "<group>";
+		};
+		043452A8210377CC008EEC21 /* Bildirim */ = {
+			isa = PBXGroup;
+			children = (
+				043452A3210377B1008EEC21 /* BildirimViewController.swift */,
+				043452A4210377B1008EEC21 /* BildirimViewController.xib */,
+				043452A921038085008EEC21 /* BildirimlerTableViewCell.swift */,
+				043452AA21038085008EEC21 /* BildirimlerTableViewCell.xib */,
+			);
+			path = Bildirim;
+			sourceTree = "<group>";
+		};
 		04CC739E210293AC00197E7E /* Gundem */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,8 +184,8 @@
 		04CD18D021011FF200CB3897 /* Tab Bar */ = {
 			isa = PBXGroup;
 			children = (
-				04CD18D1210120B100CB3897 /* FiksturViewController.swift */,
-				04CD18D2210120B100CB3897 /* FiksturViewController.xib */,
+				043452A7210377B7008EEC21 /* Puan & Fikstur */,
+				043452A8210377CC008EEC21 /* Bildirim */,
 			);
 			path = "Tab Bar";
 			sourceTree = "<group>";
@@ -342,12 +370,14 @@
 				7DBC507920E63D8C0046EB9F /* DetayViewController.xib in Resources */,
 				7D7172DA20BBEDBF00EEA074 /* LaunchScreen.storyboard in Resources */,
 				7DFE381420E512D80003E517 /* YazilarViewController.xib in Resources */,
+				043452AC21038085008EEC21 /* BildirimlerTableViewCell.xib in Resources */,
 				04D7B21521008DD600E5F05A /* SplashViewController.xib in Resources */,
 				7D6027A720E3741E008CC1CA /* BJKTVViewController.xib in Resources */,
 				7D6027AF20E38C90008CC1CA /* YazilarCollectionViewCell.xib in Resources */,
 				04CC73A9210294A300197E7E /* GundemCollectionViewCell.xib in Resources */,
 				7DBC507520E62A2E0046EB9F /* VideolarCollectionViewCell.xib in Resources */,
 				7D7172D720BBEDBF00EEA074 /* Assets.xcassets in Resources */,
+				043452A6210377B1008EEC21 /* BildirimViewController.xib in Resources */,
 				04D7B2102100844800E5F05A /* ViewController.xib in Resources */,
 				04CD18D4210120B100CB3897 /* FiksturViewController.xib in Resources */,
 				7DBC507120E62A070046EB9F /* VideolarViewController.xib in Resources */,
@@ -418,6 +448,7 @@
 				7DEE4FAD20EA3F060099839B /* Content.swift in Sources */,
 				7DBC507420E62A2E0046EB9F /* VideolarCollectionViewCell.swift in Sources */,
 				04D7B21421008DD600E5F05A /* SplashViewController.swift in Sources */,
+				043452A5210377B1008EEC21 /* BildirimViewController.swift in Sources */,
 				7D14368B20E94C33002C8D9E /* ResList.swift in Sources */,
 				7D14367F20E90F6D002C8D9E /* Base.swift in Sources */,
 				04CC73A8210294A300197E7E /* GundemCollectionViewCell.swift in Sources */,
@@ -440,6 +471,7 @@
 				04D7B20F2100844800E5F05A /* ViewController.swift in Sources */,
 				7D14368920E94A58002C8D9E /* Guid.swift in Sources */,
 				7D6027AE20E38C90008CC1CA /* YazilarCollectionViewCell.swift in Sources */,
+				043452AB21038085008EEC21 /* BildirimlerTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

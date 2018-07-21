@@ -28,7 +28,7 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         fiksturnavigationController.tabBarItem.image = UIImage(named: "puan")
         fiksturnavigationController.tabBarItem.tag = 1
         
-        let bildirimController = BJKTVViewController()
+        let bildirimController = BildirimViewController()
         let bildirimnavigationController = UINavigationController(rootViewController: bildirimController)
         bildirimnavigationController.title = "Bildirimler"
         bildirimnavigationController.tabBarItem.image = UIImage(named: "ring")
