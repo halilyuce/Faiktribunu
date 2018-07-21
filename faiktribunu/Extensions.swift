@@ -44,6 +44,12 @@ extension UIImageView {
     }
 }
 
+extension FiksturViewController: UIScrollViewDelegate {
+    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+        scrollView.pinchGestureRecognizer?.isEnabled = false
+    }
+}
+
 extension Data {
     var html2AttributedString: NSAttributedString? {
         do {

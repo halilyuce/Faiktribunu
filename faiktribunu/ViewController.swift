@@ -9,6 +9,8 @@
 import UIKit
 import ScrollableSegmentedControl
 import AVKit
+import SafariServices
+
 class ViewController: UIViewController {
     
     @IBOutlet weak var mViewMain: UIView!
@@ -20,7 +22,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Geri", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
@@ -131,12 +133,12 @@ class ViewController: UIViewController {
         self.navigationItem.setRightBarButtonItems([bjktvbtn], animated: true)
         
         let menu = UIButton(type: .custom)
-        menu.setImage(UIImage(named: "menu"), for: UIControl.State.normal)
+        menu.setImage(UIImage(named: "bjk"), for: UIControl.State.normal)
         menu.addTarget(self, action: #selector(self.menuMethod), for: UIControl.Event.touchUpInside)
         let menubtn = UIBarButtonItem(customView: menu)
         
-        menu.widthAnchor.constraint(equalToConstant: 24.0).isActive = true
-        menu.heightAnchor.constraint(equalToConstant: 24.0).isActive = true
+        menu.widthAnchor.constraint(equalToConstant: 26.0).isActive = true
+        menu.heightAnchor.constraint(equalToConstant: 32.0).isActive = true
         
         
         self.navigationItem.setLeftBarButtonItems([menubtn], animated: true)
@@ -145,13 +147,9 @@ class ViewController: UIViewController {
     
     @objc func menuMethod(){
         
-        if let videoURL = URL.init(string: "https://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"){
-            let avPlayerController = AVPlayerViewController()
-            avPlayerController.player = AVPlayer.init(url: videoURL)
-            self.present(avPlayerController, animated: true) {
-                avPlayerController.player?.play()
-            }
-        }
+        let bjkurl = URL.init(string: "http://www.bjk.com.tr")
+        let svc = SFSafariViewController(url: bjkurl!)
+        present(svc, animated: true, completion: nil)
         
     }
     

@@ -28,11 +28,11 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         fiksturnavigationController.tabBarItem.image = UIImage(named: "puan")
         fiksturnavigationController.tabBarItem.tag = 1
         
-        let puanController = BJKTVViewController()
-        let puannavigationController = UINavigationController(rootViewController: puanController)
-        puannavigationController.title = "Puan Durumu"
-        puannavigationController.tabBarItem.image = UIImage(named: "fikstur")
-        puannavigationController.tabBarItem.tag = 2
+        let bildirimController = BJKTVViewController()
+        let bildirimnavigationController = UINavigationController(rootViewController: bildirimController)
+        bildirimnavigationController.title = "Bildirimler"
+        bildirimnavigationController.tabBarItem.image = UIImage(named: "ring")
+        bildirimnavigationController.tabBarItem.tag = 2
         
         let digerController = BJKTVViewController()
         let digernavigationController = UINavigationController(rootViewController: digerController)
@@ -40,7 +40,7 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         digernavigationController.tabBarItem.image = UIImage(named: "bar")
         digernavigationController.tabBarItem.tag = 3
         
-        viewControllers = [navigationController, fiksturnavigationController, puannavigationController, digernavigationController]
+        viewControllers = [navigationController, fiksturnavigationController, bildirimnavigationController, digernavigationController]
     }
     
     var kontrol = 0

@@ -8,6 +8,7 @@
 
 import UIKit
 import AVKit
+import SafariServices
 import WebKit
 
 class FiksturViewController: UIViewController {
@@ -19,13 +20,17 @@ class FiksturViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.webView.scrollView.delegate = self as! UIScrollViewDelegate
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         mAppDelegate.mNavigationController?.setNavigationBarHidden(true, animated: false)
 
         self.webView.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><iframe src=\"http://haberciniz.biz/service/sport/league_standing_table.php?color=1&select=TUR1,TUR2,SPA1,ENG1,GER1\" width=\"100%\" height=\"550px\" frameborder=\"0\" scrolling=\"AUTO\"></iframe>", baseURL: nil)
     }
-
+    
 
     func setNavBarItems(){
         
@@ -51,12 +56,12 @@ class FiksturViewController: UIViewController {
         self.navigationItem.setRightBarButtonItems([bjktvbtn], animated: true)
         
         let menu = UIButton(type: .custom)
-        menu.setImage(UIImage(named: "menu"), for: UIControl.State.normal)
+        menu.setImage(UIImage(named: "bjk"), for: UIControl.State.normal)
         menu.addTarget(self, action: #selector(self.menuMethod), for: UIControl.Event.touchUpInside)
         let menubtn = UIBarButtonItem(customView: menu)
         
-        menu.widthAnchor.constraint(equalToConstant: 24.0).isActive = true
-        menu.heightAnchor.constraint(equalToConstant: 24.0).isActive = true
+        menu.widthAnchor.constraint(equalToConstant: 26.0).isActive = true
+        menu.heightAnchor.constraint(equalToConstant: 32.0).isActive = true
         
         
         self.navigationItem.setLeftBarButtonItems([menubtn], animated: true)
@@ -65,13 +70,9 @@ class FiksturViewController: UIViewController {
     
     @objc func menuMethod(){
         
-        if let videoURL = URL.init(string: "https://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"){
-            let avPlayerController = AVPlayerViewController()
-            avPlayerController.player = AVPlayer.init(url: videoURL)
-            self.present(avPlayerController, animated: true) {
-                avPlayerController.player?.play()
-            }
-        }
+        let bjkurl = URL.init(string: "http://www.bjk.com.tr")
+        let svc = SFSafariViewController(url: bjkurl!)
+        present(svc, animated: true, completion: nil)
         
     }
     
