@@ -8,19 +8,37 @@
 
 import UIKit
 
-class BJKTVViewController: UIViewController {
+class BJKTVViewController: UIViewController, UIWebViewDelegate {
 
     @IBOutlet weak var myWebView: UIWebView!
+    
+    let imagePicker = UIImagePickerController()
+    let messageFrame = UIView()
+    var activityIndicator = UIActivityIndicatorView()
+    var strLabel = UILabel()
+    let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
         EmbedVideo(videoId: "x31omum")
+        myWebView.delegate = self
         
+       
         
         
     self.title = "BJK TV"
  
+    }
+    
+
+    func webViewDidStartLoad(_ webView: UIWebView){
+       self.activityIndicator("Yükleniyor")
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView){
+        self.effectView.removeFromSuperview()
     }
     
     func EmbedVideo(videoId:String) {
@@ -30,14 +48,29 @@ class BJKTVViewController: UIViewController {
 
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func activityIndicator(_ title: String) {
+        
+        strLabel.removeFromSuperview()
+        activityIndicator.removeFromSuperview()
+        effectView.removeFromSuperview()
+        
+        strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 160, height: 46))
+        strLabel.text = title
+        strLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        strLabel.textColor = UIColor(white: 0.9, alpha: 0.7)
+        
+        effectView.frame = CGRect(x: view.frame.midX - strLabel.frame.width/2 , y: view.frame.midY - strLabel.frame.height/2 , width: 160, height: 46)
+        effectView.layer.cornerRadius = 15
+        effectView.layer.masksToBounds = true
+        
+        activityIndicator = UIActivityIndicatorView(style: .white)
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
+        activityIndicator.startAnimating()
+        
+        effectView.contentView.addSubview(activityIndicator)
+        effectView.contentView.addSubview(strLabel)
+        view.addSubview(effectView)
     }
-    */
+    
 
 }

@@ -11,8 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FiksturViewController" customModule="faiktribunu" customModuleProvider="target">
             <connections>
+                <outlet property="myWebView" destination="Wjq-w3-6hq" id="tcJ-gi-tx4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="webView" destination="WbA-vW-DRP" id="CSi-HM-vaT"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -20,21 +20,17 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <wkWebView contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WbA-vW-DRP">
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wjq-w3-6hq">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <wkWebViewConfiguration key="configuration">
-                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                        <wkPreferences key="preferences"/>
-                    </wkWebViewConfiguration>
-                </wkWebView>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </webView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="WbA-vW-DRP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4Tb-Pm-IE9"/>
-                <constraint firstItem="WbA-vW-DRP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="DtC-Sh-1Ev"/>
-                <constraint firstAttribute="bottom" secondItem="WbA-vW-DRP" secondAttribute="bottom" id="Oeu-8j-m2v"/>
-                <constraint firstAttribute="trailing" secondItem="WbA-vW-DRP" secondAttribute="trailing" id="sQg-ik-JhX"/>
+                <constraint firstAttribute="trailing" secondItem="Wjq-w3-6hq" secondAttribute="trailing" id="VVz-ug-Qia"/>
+                <constraint firstItem="Wjq-w3-6hq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="p6b-pF-QTt"/>
+                <constraint firstAttribute="bottom" secondItem="Wjq-w3-6hq" secondAttribute="bottom" id="qdt-tr-rAx"/>
+                <constraint firstItem="Wjq-w3-6hq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xBm-A0-0Ua"/>
             </constraints>
             <point key="canvasLocation" x="33.5" y="130.5"/>
         </view>

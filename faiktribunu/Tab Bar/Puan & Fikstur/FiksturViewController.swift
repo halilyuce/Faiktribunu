@@ -10,8 +10,15 @@ import UIKit
 import SafariServices
 import WebKit
 
-class FiksturViewController: UIViewController {
-    @IBOutlet weak var webView: WKWebView!
+class FiksturViewController: UIViewController, UIWebViewDelegate {
+    
+    @IBOutlet weak var myWebView: UIWebView!
+    
+    let imagePicker = UIImagePickerController()
+    let messageFrame = UIView()
+    var activityIndicator = UIActivityIndicatorView()
+    var strLabel = UILabel()
+    let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     
     override func viewWillAppear(_ animated: Bool) {
         self.setNavBarItems()
@@ -19,7 +26,9 @@ class FiksturViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.webView.scrollView.delegate = self as! UIScrollViewDelegate
+        self.myWebView.delegate = self
+        
+        self.myWebView.scrollView.delegate = self as UIScrollViewDelegate
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
@@ -27,10 +36,42 @@ class FiksturViewController: UIViewController {
         
         mAppDelegate.mNavigationController?.setNavigationBarHidden(true, animated: false)
 
-        self.webView.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><iframe src=\"http://haberciniz.biz/service/sport/league_standing_table.php?color=1&select=TUR1,TUR2,SPA1,ENG1,GER1\" width=\"100%\" height=\"550px\" frameborder=\"0\" scrolling=\"AUTO\"></iframe>", baseURL: nil)
+        self.myWebView.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><iframe src=\"http://haberciniz.biz/service/sport/league_standing_table.php?color=1&select=TUR1,TUR2,SPA1,ENG1,GER1\" width=\"100%\" height=\"550px\" frameborder=\"0\" scrolling=\"AUTO\"></iframe>", baseURL: nil)
     }
     
 
+    func webViewDidStartLoad(_ webView: UIWebView){
+        self.activityIndicator("Yükleniyor")
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView){
+        self.effectView.removeFromSuperview()
+    }
+    
+    func activityIndicator(_ title: String) {
+        
+        strLabel.removeFromSuperview()
+        activityIndicator.removeFromSuperview()
+        effectView.removeFromSuperview()
+        
+        strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 160, height: 46))
+        strLabel.text = title
+        strLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        strLabel.textColor = UIColor(white: 0.9, alpha: 0.7)
+        
+        effectView.frame = CGRect(x: view.frame.midX - strLabel.frame.width/2 , y: view.frame.midY - strLabel.frame.height/2 , width: 160, height: 46)
+        effectView.layer.cornerRadius = 15
+        effectView.layer.masksToBounds = true
+        
+        activityIndicator = UIActivityIndicatorView(style: .white)
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
+        activityIndicator.startAnimating()
+        
+        effectView.contentView.addSubview(activityIndicator)
+        effectView.contentView.addSubview(strLabel)
+        view.addSubview(effectView)
+    }
+    
     func setNavBarItems(){
         
         let logoContainer = UIView(frame: CGRect(x: 0, y: 0, width: 144, height: 32))

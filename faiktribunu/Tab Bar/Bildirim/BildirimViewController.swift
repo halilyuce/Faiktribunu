@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import SDWebImage
 import SafariServices
 
 struct CellData {
     let baslik: String!
-    let resim: UIImage!
+    let resim: String!
 }
 
 class BildirimViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -32,7 +33,7 @@ var Bildirimler = [CellData]()
         headerText.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 35)
         headerText.text = "BİLDİRİMLER"
         headerText.textColor = UIColor.white
-        headerText.font = UIFont.boldSystemFont(ofSize: 18.0)
+        headerText.font = UIFont.boldSystemFont(ofSize: 16.0)
         headerText.textAlignment = .center
         headerView.addSubview(headerText)
         headerView.backgroundColor = UIColor.red
@@ -42,11 +43,12 @@ var Bildirimler = [CellData]()
         
         mTableView.register(UINib.init(nibName: "BildirimlerTableViewCell", bundle: nil), forCellReuseIdentifier: "BildirimlerTableViewCell")
         
-        Bildirimler = [CellData(baslik: "Nirden tanıdım seni yavv", resim: UIImage(named: "faiklogo")),
-        CellData(baslik: "Nirden tanıdım seni yavv 2", resim: UIImage(named: "faiklogo")),
-        CellData(baslik: "Nirden tanıdım seni yavv 3", resim: UIImage(named: "faiklogo")),
-        CellData(baslik: "Nirden tanıdım seni yavv 4", resim: UIImage(named: "faiklogo")),
-        CellData(baslik: "Nirden tanıdım seni yavv 5", resim: UIImage(named: "faiklogo"))]
+        Bildirimler = [CellData(baslik: "Faiktribünü Canlı Yayın Sohbeti; \n Bu Akşam Saat 21:00`da", resim: "https://azdhs.gov/assets/images/on-air-placeholder.jpg"),
+                       CellData(baslik: "Cem Göncü yazdı; \n \"Neden Olmadı ? (2.Bölüm-Saha İçi)\"", resim: "https://www.faiktribunu.com/wp-content/uploads/2016/08/CeecHenu-1.jpg"),
+                       CellData(baslik: "Kaybettiklerimiz; \n Hakkı Yeten (1910-1989) – Baba Hakkı", resim: "https://www.faiktribunu.com/wp-content/uploads/2016/08/rHdUrY5p-1.jpg"),
+        CellData(baslik: "Beşiktaş 3-1 Krasnodar", resim: "http://cdn.shopify.com/s/files/1/1325/1409/products/48-Soccer-Ball-Solo_Single_Front_grande_9a65142b-ea92-4060-96ed-eafe3737feb7_grande.png?v=1527558493"),
+        CellData(baslik: "Hata Bildirimleri ve Öneriler İçin Twitter`dan @faiktribunu Hesabına DM Atabilirsiniz :) ", resim: "https://www.faiktribunu.com/wp-content/uploads/ultimatemember/37/profile_photo-190.jpg?1532200562"),
+        CellData(baslik: "FaikTribünü Mobil Uygulaması İlk Versiyonu İle Yayında !", resim: "https://www.faiktribunu.com/wp-content/uploads/ultimatemember/37/profile_photo-190.jpg?1532200562")]
 
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
@@ -63,7 +65,7 @@ var Bildirimler = [CellData]()
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BildirimlerTableViewCell", for: indexPath) as! BildirimlerTableViewCell
         cell.baslik.text = Bildirimler[indexPath.row].baslik
-        cell.resim.image = Bildirimler[indexPath.row].resim
+        cell.resim.sd_setImage(with: URL(string: Bildirimler[indexPath.row].resim), placeholderImage:  UIImage(named: "faiklogo"))
         
         cell.resim.layer.cornerRadius = cell.resim.frame.height/2
         cell.resim.clipsToBounds = true

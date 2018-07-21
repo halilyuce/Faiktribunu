@@ -215,8 +215,9 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize.init(width: UIScreen.main.bounds.width - 20, height: 250)
+        return CGSize.init(width: UIScreen.main.bounds.width - 40, height: 230)
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return basliklar.count
     }
@@ -236,6 +237,9 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
             cell.layer.shadowOpacity = 0.25
             cell.layer.shadowOffset = CGSize(width: 0, height: 5)
             cell.layer.shadowRadius = 12
+            cell.layer.cornerRadius = 5
+            cell.haberGorseli.layer.cornerRadius = 5
+            cell.haberGorseli.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
             cell.layer.masksToBounds = false
         }
         
