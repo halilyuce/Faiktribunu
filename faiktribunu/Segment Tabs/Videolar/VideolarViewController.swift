@@ -268,7 +268,7 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
         strLabel.font = .systemFont(ofSize: 14, weight: .medium)
         strLabel.textColor = UIColor(white: 0.9, alpha: 0.7)
         
-        effectView.frame = CGRect(x: view.frame.midX - strLabel.frame.width/2 , y: view.frame.midY - strLabel.frame.height/2 , width: 160, height: 46)
+        effectView.frame = CGRect(x: view.frame.midX - strLabel.frame.width/2 , y: view.frame.midY - strLabel.frame.height * 2 , width: 160, height: 46)
         effectView.layer.cornerRadius = 15
         effectView.layer.masksToBounds = true
         
