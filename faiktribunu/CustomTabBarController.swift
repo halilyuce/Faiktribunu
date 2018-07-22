@@ -34,7 +34,7 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         bildirimnavigationController.tabBarItem.image = UIImage(named: "ring")
         bildirimnavigationController.tabBarItem.tag = 2
         
-        let digerController = BJKTVViewController()
+        let digerController = DigerleriViewController()
         let digernavigationController = UINavigationController(rootViewController: digerController)
         digernavigationController.title = "Diğerleri"
         digernavigationController.tabBarItem.image = UIImage(named: "bar")

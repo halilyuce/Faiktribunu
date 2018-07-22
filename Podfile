@@ -12,5 +12,6 @@ target 'faiktribunu' do
   pod 'SwiftyJSON'
   pod 'SVPullToRefresh'
   pod 'SDWebImage'
+  pod 'QuickTableViewController'
 
 end

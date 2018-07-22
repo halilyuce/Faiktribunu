@@ -23,6 +23,7 @@ class FiksturViewController: UIViewController, UIWebViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         self.setNavBarItems()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

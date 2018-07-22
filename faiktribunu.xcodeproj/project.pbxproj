@@ -26,6 +26,8 @@
 		04D7B2102100844800E5F05A /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D7B20E2100844800E5F05A /* ViewController.xib */; };
 		04D7B21421008DD600E5F05A /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7B21221008DD600E5F05A /* SplashViewController.swift */; };
 		04D7B21521008DD600E5F05A /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D7B21321008DD600E5F05A /* SplashViewController.xib */; };
+		04E2CB9D2104D06E00E237AB /* DigerleriViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E2CB9B2104D06E00E237AB /* DigerleriViewController.swift */; };
+		04E2CB9E2104D06E00E237AB /* DigerleriViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E2CB9C2104D06E00E237AB /* DigerleriViewController.xib */; };
 		7D06B90720C6D07600C3C269 /* StaticVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D06B90620C6D07600C3C269 /* StaticVariables.swift */; };
 		7D14367F20E90F6D002C8D9E /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D14367E20E90F6D002C8D9E /* Base.swift */; };
 		7D14368120E90FCD002C8D9E /* BaseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D14368020E90FCD002C8D9E /* BaseItem.swift */; };
@@ -76,6 +78,8 @@
 		04D7B20E2100844800E5F05A /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		04D7B21221008DD600E5F05A /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		04D7B21321008DD600E5F05A /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
+		04E2CB9B2104D06E00E237AB /* DigerleriViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigerleriViewController.swift; sourceTree = "<group>"; };
+		04E2CB9C2104D06E00E237AB /* DigerleriViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DigerleriViewController.xib; sourceTree = "<group>"; };
 		7D06B90620C6D07600C3C269 /* StaticVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticVariables.swift; sourceTree = "<group>"; };
 		7D14367E20E90F6D002C8D9E /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		7D14368020E90FCD002C8D9E /* BaseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseItem.swift; sourceTree = "<group>"; };
@@ -184,6 +188,7 @@
 		04CD18D021011FF200CB3897 /* Tab Bar */ = {
 			isa = PBXGroup;
 			children = (
+				04E2CB9A2104CEF600E237AB /* Digerleri */,
 				043452A7210377B7008EEC21 /* Puan & Fikstur */,
 				043452A8210377CC008EEC21 /* Bildirim */,
 			);
@@ -197,6 +202,15 @@
 				04D7B21321008DD600E5F05A /* SplashViewController.xib */,
 			);
 			path = Splash;
+			sourceTree = "<group>";
+		};
+		04E2CB9A2104CEF600E237AB /* Digerleri */ = {
+			isa = PBXGroup;
+			children = (
+				04E2CB9B2104D06E00E237AB /* DigerleriViewController.swift */,
+				04E2CB9C2104D06E00E237AB /* DigerleriViewController.xib */,
+			);
+			path = Digerleri;
 			sourceTree = "<group>";
 		};
 		7D14367D20E90F5E002C8D9E /* Models */ = {
@@ -368,6 +382,7 @@
 			files = (
 				04CC73A52102948600197E7E /* GundemViewController.xib in Resources */,
 				7DBC507920E63D8C0046EB9F /* DetayViewController.xib in Resources */,
+				04E2CB9E2104D06E00E237AB /* DigerleriViewController.xib in Resources */,
 				7D7172DA20BBEDBF00EEA074 /* LaunchScreen.storyboard in Resources */,
 				7DFE381420E512D80003E517 /* YazilarViewController.xib in Resources */,
 				043452AC21038085008EEC21 /* BildirimlerTableViewCell.xib in Resources */,
@@ -415,6 +430,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/QuickTableViewController/QuickTableViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVPullToRefresh/SVPullToRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/ScrollableSegmentedControl/ScrollableSegmentedControl.framework",
@@ -425,6 +441,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QuickTableViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVPullToRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ScrollableSegmentedControl.framework",
@@ -457,6 +474,7 @@
 				7D6027A620E3741E008CC1CA /* BJKTVViewController.swift in Sources */,
 				7D14368520E91439002C8D9E /* Title.swift in Sources */,
 				04CC739D2102713300197E7E /* Source.swift in Sources */,
+				04E2CB9D2104D06E00E237AB /* DigerleriViewController.swift in Sources */,
 				7D14368320E91117002C8D9E /* List.swift in Sources */,
 				04CC73992102705E00197E7E /* Sizes.swift in Sources */,
 				7D06B90720C6D07600C3C269 /* StaticVariables.swift in Sources */,

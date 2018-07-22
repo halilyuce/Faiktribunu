@@ -28,7 +28,7 @@ var Bildirimler = [CellData]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    let headerView = UIView()
+        let headerView = UIView()
         let headerText = UILabel()
         headerText.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 35)
         headerText.text = "BİLDİRİMLER"
