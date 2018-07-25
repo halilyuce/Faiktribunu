@@ -9,12 +9,14 @@
 import UIKit
 import ScrollableSegmentedControl
 import OneSignal
+import UserNotifications
 
 let mAppDelegate = UIApplication.shared.delegate! as! AppDelegate
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSSubscriptionObserver  {
     
+    var yazinumara = String()
     var window: UIWindow?
     var mNavigationController: UINavigationController?
     var mSplashViewController: SplashViewController?
@@ -34,7 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                         settings: onesignalInitSettings)
         
         OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
-        
         
         
         UINavigationBar.appearance().barTintColor = UIColor.black
@@ -75,13 +76,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.addSplashPage()
         
+        // Add your AppDelegate as an obsserver
+        OneSignal.add(self as OSPermissionObserver)
+        
+        OneSignal.add(self as OSSubscriptionObserver)
+        
+        registerForPushNotifications()
+        
         return true
     }
     
     func initialSlideNavigationController() {
         
         mCustomTabBarController = CustomTabBarController(nibName:"CustomTabBarController",bundle:nil)
-        //mLeftMenuViewController = LeftMenuViewController(nibName:"LeftMenuViewController",bundle:nil)
         
         mNavigationController = UINavigationController(rootViewController: mCustomTabBarController!)
         
@@ -120,6 +127,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
+    func onOSPermissionChanged(_ stateChanges: OSPermissionStateChanges!) {
+        
+        // Example of detecting answering the permission prompt
+        if stateChanges.from.status == OSNotificationPermission.notDetermined {
+            if stateChanges.to.status == OSNotificationPermission.authorized {
+                print("Thanks for accepting notifications!")
+            } else if stateChanges.to.status == OSNotificationPermission.denied {
+                print("Notifications not accepted. You can turn them on later under your iOS settings.")
+            }
+        }
+        // prints out all properties
+        print("PermissionStateChanges: \n\(stateChanges)")
+    }
+    
+    func onOSSubscriptionChanged(_ stateChanges: OSSubscriptionStateChanges!) {
+        if !stateChanges.from.subscribed && stateChanges.to.subscribed {
+            print("Subscribed for OneSignal push notifications!")
+        }
+        print("SubscriptionStateChange: \n\(stateChanges)")
+    }
+    
+    func registerForPushNotifications() {
+        UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+            (granted, error) in
+            print("Permission granted: \(granted)")
+            // 1. Check if permission granted
+            guard granted else { return }
+            // 2. Attempt registration for remote notifications on the main thread
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+        }
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        // 1. Convert device token to string
+        let tokenParts = deviceToken.map { data -> String in
+            return String(format: "%02.2hhx", data)
+        }
+        let token = tokenParts.joined()
+        // 2. Print device token to use for PNs payloads
+        print("Device Token: \(token)")
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        // 1. Print out error if PNs registration not successful
+        print("Failed to register for remote notifications with error: \(error)")
+    }
+    
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -143,5 +201,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
+    
+    
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        if response.actionIdentifier == "oku" {
+            
+            self.mNavigationController?.setNavigationBarHidden(false, animated: false)
+            
+            self.yazinumara = "3983"
+            let selectedItem = yazinumara
+            
+            let mDetayViewController = DetayViewController(nibName: "DetayViewController", bundle: nil)
+            mDetayViewController.yaziNumara = selectedItem
+            self.mNavigationController?.pushViewController(mDetayViewController, animated: true)
+                   } else if response.actionIdentifier == "kapat" {
+            print("KAPAT")
+                    } else {
+            
+            self.yazinumara = "3983"
+            let selectedItem = yazinumara
+            
+            let mDetayViewController = DetayViewController(nibName: "DetayViewController", bundle: nil)
+            mDetayViewController.yaziNumara = selectedItem
+            self.mNavigationController?.pushViewController(mDetayViewController, animated: true)
+                    }
+        
+        completionHandler()
+    }
+
+    
+}

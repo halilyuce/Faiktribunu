@@ -94,6 +94,7 @@
 		04B21C1621064E29007695DC /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		04B21C1821064E29007695DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04B21C2021064F43007695DC /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
+		04C1A8A921088EAF000C05C7 /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CC739521023CE700197E7E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		04CC739621026FB300197E7E /* BetterImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterImage.swift; sourceTree = "<group>"; };
 		04CC73982102705E00197E7E /* Sizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sizes.swift; sourceTree = "<group>"; };
@@ -154,6 +155,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A38B7266D17DEE8E8158A92 /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04C1A8A621088EAF000C05C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +311,7 @@
 			children = (
 				7D7172CC20BBEDBD00EEA074 /* faiktribunu.app */,
 				04B21C1421064E29007695DC /* OneSignalNotificationServiceExtension.appex */,
+				04C1A8A921088EAF000C05C7 /* NotificationService.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -399,6 +408,23 @@
 			productReference = 04B21C1421064E29007695DC /* OneSignalNotificationServiceExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		04C1A8A821088EAF000C05C7 /* NotificationService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04C1A8B321088EAF000C05C7 /* Build configuration list for PBXNativeTarget "NotificationService" */;
+			buildPhases = (
+				04C1A8A521088EAF000C05C7 /* Sources */,
+				04C1A8A621088EAF000C05C7 /* Frameworks */,
+				04C1A8A721088EAF000C05C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationService;
+			productName = NotificationService;
+			productReference = 04C1A8A921088EAF000C05C7 /* NotificationService.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		7D7172CB20BBEDBD00EEA074 /* faiktribunu */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7D7172DE20BBEDBF00EEA074 /* Build configuration list for PBXNativeTarget "faiktribunu" */;
@@ -438,6 +464,9 @@
 							};
 						};
 					};
+					04C1A8A821088EAF000C05C7 = {
+						CreatedOnToolsVersion = 10.0;
+					};
 					7D7172CB20BBEDBD00EEA074 = {
 						CreatedOnToolsVersion = 9.3.1;
 						LastSwiftMigration = 1000;
@@ -467,12 +496,20 @@
 			targets = (
 				7D7172CB20BBEDBD00EEA074 /* faiktribunu */,
 				04B21C1321064E29007695DC /* OneSignalNotificationServiceExtension */,
+				04C1A8A821088EAF000C05C7 /* NotificationService */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		04B21C1221064E29007695DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04C1A8A721088EAF000C05C7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -584,6 +621,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		04C1A8A521088EAF000C05C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7D7172C820BBEDBD00EEA074 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -685,6 +729,49 @@
 				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.labters.faiktribunu.OneSignalNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		04C1A8B121088EAF000C05C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 24G3237JT8;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.labters.faiktribunu.NotificationService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		04C1A8B221088EAF000C05C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 24G3237JT8;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.labters.faiktribunu.NotificationService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
@@ -858,6 +945,15 @@
 			buildConfigurations = (
 				04B21C1D21064E29007695DC /* Debug */,
 				04B21C1E21064E29007695DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04C1A8B321088EAF000C05C7 /* Build configuration list for PBXNativeTarget "NotificationService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04C1A8B121088EAF000C05C7 /* Debug */,
+				04C1A8B221088EAF000C05C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
