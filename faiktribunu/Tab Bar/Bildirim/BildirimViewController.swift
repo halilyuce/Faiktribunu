@@ -9,6 +9,7 @@
 import UIKit
 import SDWebImage
 import SafariServices
+import CoreData
 
 struct CellData {
     let baslik: String!
@@ -27,7 +28,7 @@ var Bildirimler = [CellData]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let headerView = UIView()
         let headerText = UILabel()
         headerText.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 35)
@@ -42,6 +43,25 @@ var Bildirimler = [CellData]()
         mTableView.tableHeaderView = headerView
         
         mTableView.register(UINib.init(nibName: "BildirimlerTableViewCell", bundle: nil), forCellReuseIdentifier: "BildirimlerTableViewCell")
+        
+        
+        let context = mAppDelegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Bildirimler")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                if let body = data.value(forKey: "postBody") as? String {
+                    print(body)
+                }
+            }
+            
+        } catch {
+            
+            print("Failed")
+        }
+        
         
         Bildirimler = [CellData(baslik: "Faiktribünü Canlı Yayın Sohbeti; \n Bu Akşam Saat 21:00`da", resim: "https://azdhs.gov/assets/images/on-air-placeholder.jpg"),
                        CellData(baslik: "Cem Göncü yazdı; \n \"Neden Olmadı ? (2.Bölüm-Saha İçi)\"", resim: "https://www.faiktribunu.com/wp-content/uploads/2016/08/CeecHenu-1.jpg"),

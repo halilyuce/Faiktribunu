@@ -10,13 +10,19 @@ import UIKit
 import ScrollableSegmentedControl
 import OneSignal
 import UserNotifications
+import CoreData
 
 let mAppDelegate = UIApplication.shared.delegate! as! AppDelegate
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSSubscriptionObserver  {
     
     var yazinumara = String()
+    var bildirimPostID = String()
+    var bildirimPostBody = String()
+    var bildirimPostTitle = String()
+    var bildirimPostResimUrl = String()
     var window: UIWindow?
     var mNavigationController: UINavigationController?
     var mSplashViewController: SplashViewController?
@@ -127,6 +133,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
         
     }
     
+    func applicationWillTerminate(_ application: UIApplication) {
+        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        // Saves changes in the application's managed object context before the application terminates.
+        self.saveContext()
+    }
+    
+    // MARK: - Core Data stack
+    lazy var persistentContainer: NSPersistentContainer = {
+        /*
+         The persistent container for the application. This implementation
+         creates and returns a container, having loaded the store for the
+         application to it. This property is optional since there are legitimate
+         error conditions that could cause the creation of the store to fail.
+         */
+        let container = NSPersistentContainer(name: "faiktribunu")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+    
+    // MARK: - Core Data Saving support
+    func saveContext () {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
+
+    
     func onOSPermissionChanged(_ stateChanges: OSPermissionStateChanges!) {
         
         // Example of detecting answering the permission prompt
@@ -196,42 +242,119 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
     
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-    
-    
-    
     
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        bildirimPostTitle = notification.request.content.title
+        bildirimPostBody = notification.request.content.body
+        
+        var postId = "3983"
+        
+        if let custom = notification.request.content.userInfo["custom"] as? NSDictionary{
+            if let a = custom["a"] as? NSDictionary{
+                if let id = a["post"] as? String{
+                    postId = id
+                }
+            }
+        }
+        
+        var resimUrl = "https://www.faiktribunu.com/wp-content/uploads/2016/07/cenkkoray.jpg"
+        
+        if let att = notification.request.content.userInfo["att"] as? NSDictionary{
+            if let url = att["id"] as? String{
+                resimUrl = url
+            }
+        }
+        
+        bildirimPostID = postId
+        bildirimPostResimUrl = resimUrl
+        
+        /* yeniBildirim.setValue(bildirimPostID, forKey: "postID")
+        yeniBildirim.setValue(bildirimPostBody, forKey: "postBody")
+        yeniBildirim.setValue(bildirimPostTitle, forKey: "postTitle")
+        yeniBildirim.setValue(bildirimPostResimUrl, forKey: "postResimUrl") */
+        
+ let context = mAppDelegate.persistentContainer.viewContext
+ let yeniBildirim = NSEntityDescription.insertNewObject(forEntityName: "Bildirimler", into: context)
+ 
+ yeniBildirim.setValue("bildirimPostID2", forKey: "postID")
+ yeniBildirim.setValue("bildirimPostBody2", forKey: "postBody")
+ yeniBildirim.setValue("bildirimPostTitle2", forKey: "postTitle")
+ yeniBildirim.setValue("bildirimPostResimUrl2", forKey: "postResimUrl")
+ 
+ do {
+ try context.save()
+ print("kaydedildi")
+ } catch {
+ print("Failed saving")
+ }
+        
+        
+    }
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        print(response.notification.request.content.title)
+        print(response.notification.request.content.body)
+        
+        var postId = "3983"
+        
+        if let custom = response.notification.request.content.userInfo["custom"] as? NSDictionary{
+            if let a = custom["a"] as? NSDictionary{
+                if let id = a["post"] as? String{
+                    postId = id
+                }
+            }
+        }
+        
         if response.actionIdentifier == "oku" {
             
-            self.mNavigationController?.setNavigationBarHidden(false, animated: false)
-            
-            self.yazinumara = "3983"
+            //self.mNavigationController?.setNavigationBarHidden(false, animated: false)
+            var nav = UINavigationController()
+            if let vc = mAppDelegate.mNavigationController?.topViewController as? UIViewController{
+                nav = vc.navigationController!
+            }
+            self.yazinumara = postId
             let selectedItem = yazinumara
             
             let mDetayViewController = DetayViewController(nibName: "DetayViewController", bundle: nil)
             mDetayViewController.yaziNumara = selectedItem
-            self.mNavigationController?.pushViewController(mDetayViewController, animated: true)
+            mDetayViewController.showBackButton = true
+            
+            let newNavController = UINavigationController.init(rootViewController: mDetayViewController)
+            nav.present(newNavController, animated: true, completion: {
+              
+            })
+            
                    } else if response.actionIdentifier == "kapat" {
             print("KAPAT")
                     } else {
             
-            self.yazinumara = "3983"
+            self.yazinumara = postId
             let selectedItem = yazinumara
+            
+            var nav = UINavigationController()
+            if let vc = mAppDelegate.mNavigationController?.topViewController as? UIViewController{
+                nav = vc.navigationController!
+            }
+           
             
             let mDetayViewController = DetayViewController(nibName: "DetayViewController", bundle: nil)
             mDetayViewController.yaziNumara = selectedItem
-            self.mNavigationController?.pushViewController(mDetayViewController, animated: true)
-                    }
+             mDetayViewController.showBackButton = true
+            let newNavController = UINavigationController.init(rootViewController: mDetayViewController)
+            nav.present(newNavController, animated: true, completion:{
+               
+            })
+            
+            
+            }
         
         completionHandler()
     }
 
-    
 }

@@ -27,6 +27,7 @@ class DetayViewController: UIViewController {
     var yaziFormat = String()
     var videoLink = String()
     
+    var showBackButton = false
     
     let imagePicker = UIImagePickerController()
     let messageFrame = UIView()
@@ -49,6 +50,9 @@ class DetayViewController: UIViewController {
         
         self.navigationItem.setRightBarButtonItems([sharebtn], animated: true)
         
+        if showBackButton{
+            self.setBackButton()
+        }
         
         self.activityIndicator("Yükleniyor")
         
@@ -157,6 +161,30 @@ class DetayViewController: UIViewController {
         effectView.contentView.addSubview(strLabel)
         view.addSubview(effectView)
     }
+    
+    func setBackButton(){
+        
+        let buttonBack = UIButton()
+        buttonBack.setTitle("X", for: .normal)
+        buttonBack.frame = CGRect.init(x: 0, y: 0, width: 28, height: 28)
+        buttonBack.tintColor = UIColor.white
+        buttonBack.setTitleColor(UIColor.white, for: .normal)
+        
+        buttonBack.widthAnchor.constraint(equalToConstant: 28.0).isActive = true
+        buttonBack.heightAnchor.constraint(equalToConstant: 28.0).isActive = true
+        
+        buttonBack.addTarget(self, action: #selector(self.backTouch), for: UIControl.Event.touchUpInside)
+        
+        let barButton = UIBarButtonItem.init(customView: buttonBack)
+        
+        self.navigationItem.leftBarButtonItem = barButton
+        
+    }
+    
+    @objc func backTouch(){
+        self.navigationController?.dismiss(animated: true, completion: nil)
+    }
+
     
 
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04172C222109E37C004DDF6A /* faiktribunu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04172C202109E37C004DDF6A /* faiktribunu.xcdatamodeld */; };
 		043452A5210377B1008EEC21 /* BildirimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043452A3210377B1008EEC21 /* BildirimViewController.swift */; };
 		043452A6210377B1008EEC21 /* BildirimViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043452A4210377B1008EEC21 /* BildirimViewController.xib */; };
 		043452AB21038085008EEC21 /* BildirimlerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043452A921038085008EEC21 /* BildirimlerTableViewCell.swift */; };
@@ -85,6 +86,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04172C212109E37C004DDF6A /* faiktribunu.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = faiktribunu.xcdatamodel; sourceTree = "<group>"; };
 		043452A3210377B1008EEC21 /* BildirimViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BildirimViewController.swift; sourceTree = "<group>"; };
 		043452A4210377B1008EEC21 /* BildirimViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BildirimViewController.xib; sourceTree = "<group>"; };
 		043452A921038085008EEC21 /* BildirimlerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BildirimlerTableViewCell.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 		7D7172C320BBEDBD00EEA074 = {
 			isa = PBXGroup;
 			children = (
+				04172C202109E37C004DDF6A /* faiktribunu.xcdatamodeld */,
 				7D7172CE20BBEDBD00EEA074 /* faiktribunu */,
 				04B21C1521064E29007695DC /* OneSignalNotificationServiceExtension */,
 				7D7172CD20BBEDBD00EEA074 /* Products */,
@@ -652,6 +655,7 @@
 				04CC73992102705E00197E7E /* Sizes.swift in Sources */,
 				7D06B90720C6D07600C3C269 /* StaticVariables.swift in Sources */,
 				7D14368D20E989D4002C8D9E /* DetayList.swift in Sources */,
+				04172C222109E37C004DDF6A /* faiktribunu.xcdatamodeld in Sources */,
 				7D14368120E90FCD002C8D9E /* BaseItem.swift in Sources */,
 				04D1D58820FFBCAA00538AEF /* CustomTabBarController.swift in Sources */,
 				7DBECAFC20BC44E100A4253C /* Extensions.swift in Sources */,
@@ -977,6 +981,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		04172C202109E37C004DDF6A /* faiktribunu.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				04172C212109E37C004DDF6A /* faiktribunu.xcdatamodel */,
+			);
+			currentVersion = 04172C212109E37C004DDF6A /* faiktribunu.xcdatamodel */;
+			path = faiktribunu.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7D7172C420BBEDBD00EEA074 /* Project object */;
 }
