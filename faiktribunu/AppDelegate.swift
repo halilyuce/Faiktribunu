@@ -19,9 +19,13 @@ let mAppDelegate = UIApplication.shared.delegate! as! AppDelegate
 class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSSubscriptionObserver  {
     
     var yazinumara = String()
+    var videoLink = String()
+    var format = String()
     var bildirimPostID = String()
     var bildirimPostBody = String()
     var bildirimPostTitle = String()
+    var bildirimPostFormat = String()
+    var bildirimPostVideoUrl = String()
     var bildirimPostResimUrl = String()
     var window: UIWindow?
     var mNavigationController: UINavigationController?
@@ -91,6 +95,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
         
         return true
     }
+    
+    /* func deleteAllRecords() {
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let context = delegate.persistentContainer.viewContext
+        
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Bildirimler")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+        
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch {
+            print ("There was an error")
+        }
+    } */
     
     func initialSlideNavigationController() {
         
@@ -252,7 +271,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         bildirimPostTitle = notification.request.content.title
         bildirimPostBody = notification.request.content.body
         
-        var postId = "3983"
+        var postId = ""
         
         if let custom = notification.request.content.userInfo["custom"] as? NSDictionary{
             if let a = custom["a"] as? NSDictionary{
@@ -262,7 +281,17 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             }
         }
         
-        var resimUrl = "https://www.faiktribunu.com/wp-content/uploads/2016/07/cenkkoray.jpg"
+        var format = ""
+        
+        if let customformat = notification.request.content.userInfo["custom"] as? NSDictionary{
+            if let a = customformat["a"] as? NSDictionary{
+                if let type = a["format"] as? String{
+                    format = type
+                }
+            }
+        }
+        
+        var resimUrl = ""
         
         if let att = notification.request.content.userInfo["att"] as? NSDictionary{
             if let url = att["id"] as? String{
@@ -270,21 +299,34 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             }
         }
         
+        var videoUrl = ""
+        
+        if let customvideo = notification.request.content.userInfo["custom"] as? NSDictionary{
+            if let a = customvideo["a"] as? NSDictionary{
+                if let vidurl = a["video"] as? String{
+                    videoUrl = vidurl
+                }
+            }
+        }
+
+        
         bildirimPostID = postId
+        bildirimPostFormat = format
+        bildirimPostVideoUrl = videoUrl
         bildirimPostResimUrl = resimUrl
         
-        /* yeniBildirim.setValue(bildirimPostID, forKey: "postID")
-        yeniBildirim.setValue(bildirimPostBody, forKey: "postBody")
-        yeniBildirim.setValue(bildirimPostTitle, forKey: "postTitle")
-        yeniBildirim.setValue(bildirimPostResimUrl, forKey: "postResimUrl") */
+        
         
  let context = mAppDelegate.persistentContainer.viewContext
  let yeniBildirim = NSEntityDescription.insertNewObject(forEntityName: "Bildirimler", into: context)
- 
- yeniBildirim.setValue("bildirimPostID2", forKey: "postID")
- yeniBildirim.setValue("bildirimPostBody2", forKey: "postBody")
- yeniBildirim.setValue("bildirimPostTitle2", forKey: "postTitle")
- yeniBildirim.setValue("bildirimPostResimUrl2", forKey: "postResimUrl")
+
+        
+         yeniBildirim.setValue(bildirimPostID, forKey: "postID")
+         yeniBildirim.setValue(bildirimPostBody, forKey: "postBody")
+         yeniBildirim.setValue(bildirimPostTitle, forKey: "postTitle")
+         yeniBildirim.setValue(bildirimPostFormat, forKey: "postFormat")
+         yeniBildirim.setValue(bildirimPostVideoUrl, forKey: "postVideoUrl")
+         yeniBildirim.setValue(bildirimPostResimUrl, forKey: "postResimUrl")
  
  do {
  try context.save()
@@ -295,6 +337,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         
     }
+    
+    
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
@@ -311,6 +355,30 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             }
         }
         
+        var postformat = ""
+        
+        if let customformat = response.notification.request.content.userInfo["custom"] as? NSDictionary{
+            if let a = customformat["a"] as? NSDictionary{
+                if let type = a["format"] as? String{
+                    postformat = type
+                }
+            }
+        }
+        
+        var videoUrl = ""
+        
+        if let customvideo = response.notification.request.content.userInfo["custom"] as? NSDictionary{
+            if let a = customvideo["a"] as? NSDictionary{
+                if let vidurl = a["video"] as? String{
+                    videoUrl = vidurl
+                }
+            }
+        }
+        
+        print(postId)
+        print(postformat)
+        print(videoUrl)
+        
         if response.actionIdentifier == "oku" {
             
             //self.mNavigationController?.setNavigationBarHidden(false, animated: false)
@@ -319,10 +387,16 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                 nav = vc.navigationController!
             }
             self.yazinumara = postId
+            self.videoLink = videoUrl
+            self.format = postformat
             let selectedItem = yazinumara
+            let videoItem = videoLink
+            let formatItem = format
             
             let mDetayViewController = DetayViewController(nibName: "DetayViewController", bundle: nil)
             mDetayViewController.yaziNumara = selectedItem
+            mDetayViewController.yaziFormat = formatItem
+            mDetayViewController.videoLink = videoItem
             mDetayViewController.showBackButton = true
             
             let newNavController = UINavigationController.init(rootViewController: mDetayViewController)
@@ -335,7 +409,11 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                     } else {
             
             self.yazinumara = postId
+            self.videoLink = videoUrl
+            self.format = postformat
             let selectedItem = yazinumara
+            let videoItem = videoLink
+            let formatItem = format
             
             var nav = UINavigationController()
             if let vc = mAppDelegate.mNavigationController?.topViewController as? UIViewController{
@@ -345,6 +423,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             
             let mDetayViewController = DetayViewController(nibName: "DetayViewController", bundle: nil)
             mDetayViewController.yaziNumara = selectedItem
+            mDetayViewController.yaziFormat = formatItem
+            mDetayViewController.videoLink = videoItem
+            
              mDetayViewController.showBackButton = true
             let newNavController = UINavigationController.init(rootViewController: mDetayViewController)
             nav.present(newNavController, animated: true, completion:{

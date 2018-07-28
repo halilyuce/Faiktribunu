@@ -81,7 +81,7 @@ class DetayViewController: UIViewController {
                                                 
                                                 if self.yaziFormat == "video" {
                                                     
-                                                    self.detayIcerik.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <style>body{font-size:18px} .wp-caption{max-width:100%;background:#eee;padding: 5px;} .wp-caption img{max-width:100%;height:auto;width: 100%;} .entry-content img {max-width:100%;height:auto;} img{display:inline; height:auto; max-width:100%;} embed, iframe, object {max-width:100%;height:225px;}</style> <iframe width=\"100%\" height=\"225\" src=\"https://www.youtube.com/embed/\((detay.video_url)!)\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe> <br> <h3> \((detay.title?.rendered?.html2String)!) </h3>" + (detay.content?.rendered)!, baseURL: nil)
+                                                    self.detayIcerik.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <style>body{font-size:18px} .wp-caption{max-width:100%;background:#eee;padding: 5px;} .wp-caption img{max-width:100%;height:auto;width: 100%;} .entry-content img {max-width:100%;height:auto;} img{display:inline; height:auto; max-width:100%;} embed, iframe, object {max-width:100%;height:225px;}</style> <iframe width=\"100%\" height=\"225\" src=\"https://www.youtube.com/embed/\(self.videoLink)\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe> <br> <h3> \((detay.title?.rendered?.html2String)!) </h3>" + (detay.content?.rendered)!, baseURL: nil)
                                                     
                                                     
                                                     
@@ -165,13 +165,13 @@ class DetayViewController: UIViewController {
     func setBackButton(){
         
         let buttonBack = UIButton()
-        buttonBack.setTitle("X", for: .normal)
-        buttonBack.frame = CGRect.init(x: 0, y: 0, width: 28, height: 28)
+        buttonBack.setTitle("<", for: .normal)
+        buttonBack.frame = CGRect.init(x: 0, y: 0, width: 36, height: 36)
         buttonBack.tintColor = UIColor.white
         buttonBack.setTitleColor(UIColor.white, for: .normal)
         
-        buttonBack.widthAnchor.constraint(equalToConstant: 28.0).isActive = true
-        buttonBack.heightAnchor.constraint(equalToConstant: 28.0).isActive = true
+        buttonBack.widthAnchor.constraint(equalToConstant: 36.0).isActive = true
+        buttonBack.heightAnchor.constraint(equalToConstant: 36.0).isActive = true
         
         buttonBack.addTarget(self, action: #selector(self.backTouch), for: UIControl.Event.touchUpInside)
         

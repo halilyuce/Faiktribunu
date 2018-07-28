@@ -21,6 +21,12 @@ class BildirimViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var mTableView: UITableView!
     
 var Bildirimler = [CellData]()
+    var baslikStr = [String]()
+    var resimStr = [String]()
+    var yazinumara = [String]()
+    var bodyStr = [String]()
+    var videoLink = [String]()
+    var format = [String]()
     
     override func viewWillAppear(_ animated: Bool) {
         self.setNavBarItems()
@@ -52,8 +58,25 @@ var Bildirimler = [CellData]()
         do {
             let result = try context.fetch(request)
             for data in result as! [NSManagedObject] {
-                if let body = data.value(forKey: "postBody") as? String {
-                    print(body)
+                if let title = data.value(forKey: "postTitle") as? String {
+                    self.baslikStr.append(title)
+                    print(baslikStr)
+                }
+                if let resimUrl = data.value(forKey: "postResimUrl") as? String {
+                    self.resimStr.append(resimUrl)
+                    print(resimUrl)
+                }
+                if let selectedPostID = data.value(forKey: "postID") as? String {
+                    self.yazinumara.append(selectedPostID)
+                    print(selectedPostID)
+                }
+                if let videoUrl = data.value(forKey: "postVideoUrl") as? String {
+                    self.videoLink.append(videoUrl)
+                    print(videoUrl)
+                }
+                if let postFormat = data.value(forKey: "postFormat") as? String {
+                    self.format.append(postFormat)
+                    print(postFormat)
                 }
             }
             
@@ -79,13 +102,13 @@ var Bildirimler = [CellData]()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Bildirimler.count
+        return baslikStr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BildirimlerTableViewCell", for: indexPath) as! BildirimlerTableViewCell
-        cell.baslik.text = Bildirimler[indexPath.row].baslik
-        cell.resim.sd_setImage(with: URL(string: Bildirimler[indexPath.row].resim), placeholderImage:  UIImage(named: "faiklogo"))
+        cell.baslik.text = baslikStr[indexPath.row].html2String
+        cell.resim.sd_setImage(with: URL(string: resimStr[indexPath.row]), placeholderImage:  UIImage(named: "faiklogo"))
         
         cell.resim.layer.cornerRadius = cell.resim.frame.height/2
         cell.resim.clipsToBounds = true
@@ -93,6 +116,22 @@ var Bildirimler = [CellData]()
         return cell
         
     }
+    
+        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedItem = yazinumara[indexPath.row]
+        let videoItem = videoLink[indexPath.row]
+        let formatItem = format[indexPath.row]
+        
+        let mDetayViewController = DetayViewController(nibName: "DetayViewController", bundle: nil)
+        mDetayViewController.yaziNumara = selectedItem
+        mDetayViewController.yaziFormat = formatItem
+        mDetayViewController.videoLink = videoItem
+        self.navigationController?.pushViewController(mDetayViewController, animated: true)
+    }
+        
+    
+
 
     func setNavBarItems(){
         
