@@ -7,8 +7,9 @@
         <attribute name="postResimUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postVideoUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="update" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Bildirimler" positionX="-63" positionY="-18" width="128" height="135"/>
+        <element name="Bildirimler" positionX="-63" positionY="-18" width="128" height="150"/>
     </elements>
 </model>

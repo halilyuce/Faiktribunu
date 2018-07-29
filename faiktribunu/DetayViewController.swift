@@ -165,13 +165,13 @@ class DetayViewController: UIViewController {
     func setBackButton(){
         
         let buttonBack = UIButton()
-        buttonBack.setTitle("<", for: .normal)
-        buttonBack.frame = CGRect.init(x: 0, y: 0, width: 36, height: 36)
+        buttonBack.setTitle("X", for: .normal)
+        buttonBack.frame = CGRect.init(x: 0, y: 0, width: 48, height: 48)
         buttonBack.tintColor = UIColor.white
         buttonBack.setTitleColor(UIColor.white, for: .normal)
         
-        buttonBack.widthAnchor.constraint(equalToConstant: 36.0).isActive = true
-        buttonBack.heightAnchor.constraint(equalToConstant: 36.0).isActive = true
+        buttonBack.widthAnchor.constraint(equalToConstant: 48.0).isActive = true
+        buttonBack.heightAnchor.constraint(equalToConstant: 48.0).isActive = true
         
         buttonBack.addTarget(self, action: #selector(self.backTouch), for: UIControl.Event.touchUpInside)
         
