@@ -12,6 +12,8 @@
 		043452A6210377B1008EEC21 /* BildirimViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043452A4210377B1008EEC21 /* BildirimViewController.xib */; };
 		043452AB21038085008EEC21 /* BildirimlerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043452A921038085008EEC21 /* BildirimlerTableViewCell.swift */; };
 		043452AC21038085008EEC21 /* BildirimlerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043452AA21038085008EEC21 /* BildirimlerTableViewCell.xib */; };
+		044B848E211105F30085441D /* GizlilikViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B848C211105F30085441D /* GizlilikViewController.swift */; };
+		044B848F211105F30085441D /* GizlilikViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044B848D211105F30085441D /* GizlilikViewController.xib */; };
 		04B21C1721064E29007695DC /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B21C1621064E29007695DC /* NotificationService.swift */; };
 		04B21C1B21064E29007695DC /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 04B21C1421064E29007695DC /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		04CC739721026FB300197E7E /* BetterImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC739621026FB300197E7E /* BetterImage.swift */; };
@@ -91,6 +93,8 @@
 		043452A4210377B1008EEC21 /* BildirimViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BildirimViewController.xib; sourceTree = "<group>"; };
 		043452A921038085008EEC21 /* BildirimlerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BildirimlerTableViewCell.swift; sourceTree = "<group>"; };
 		043452AA21038085008EEC21 /* BildirimlerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BildirimlerTableViewCell.xib; sourceTree = "<group>"; };
+		044B848C211105F30085441D /* GizlilikViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GizlilikViewController.swift; sourceTree = "<group>"; };
+		044B848D211105F30085441D /* GizlilikViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GizlilikViewController.xib; sourceTree = "<group>"; };
 		04B21C0F21064AB3007695DC /* faiktribunu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = faiktribunu.entitlements; sourceTree = "<group>"; };
 		04B21C1421064E29007695DC /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		04B21C1621064E29007695DC /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -273,6 +277,8 @@
 			children = (
 				04E2CB9B2104D06E00E237AB /* DigerleriViewController.swift */,
 				04E2CB9C2104D06E00E237AB /* DigerleriViewController.xib */,
+				044B848C211105F30085441D /* GizlilikViewController.swift */,
+				044B848D211105F30085441D /* GizlilikViewController.xib */,
 			);
 			path = Digerleri;
 			sourceTree = "<group>";
@@ -532,6 +538,7 @@
 				04D7B21521008DD600E5F05A /* SplashViewController.xib in Resources */,
 				7D6027A720E3741E008CC1CA /* BJKTVViewController.xib in Resources */,
 				7D6027AF20E38C90008CC1CA /* YazilarCollectionViewCell.xib in Resources */,
+				044B848F211105F30085441D /* GizlilikViewController.xib in Resources */,
 				04CC73A9210294A300197E7E /* GundemCollectionViewCell.xib in Resources */,
 				7DBC507520E62A2E0046EB9F /* VideolarCollectionViewCell.xib in Resources */,
 				7D7172D720BBEDBF00EEA074 /* Assets.xcassets in Resources */,
@@ -644,6 +651,7 @@
 				043452A5210377B1008EEC21 /* BildirimViewController.swift in Sources */,
 				7D14368B20E94C33002C8D9E /* ResList.swift in Sources */,
 				7D14367F20E90F6D002C8D9E /* Base.swift in Sources */,
+				044B848E211105F30085441D /* GizlilikViewController.swift in Sources */,
 				04CC73A8210294A300197E7E /* GundemCollectionViewCell.swift in Sources */,
 				7DFE381320E512D80003E517 /* YazilarViewController.swift in Sources */,
 				04CC739B210270E100197E7E /* Medium.swift in Sources */,

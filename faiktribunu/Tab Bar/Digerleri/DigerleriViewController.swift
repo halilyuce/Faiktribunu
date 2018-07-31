@@ -9,6 +9,7 @@
 import UIKit
 import QuickTableViewController
 import SafariServices
+import OneSignal
 
 class DigerleriViewController: QuickTableViewController {
 
@@ -32,9 +33,11 @@ class DigerleriViewController: QuickTableViewController {
         let bildirimler = #imageLiteral(resourceName: "bildirimler")
         let sozlesme = #imageLiteral(resourceName: "sozlesme")
         
+        let switches = UserDefaults.standard.bool(forKey: "bildirimAyar")
+        
         tableContents = [
             Section(title: "KİŞİSEL AYARLAR", rows: [
-                SwitchRow(title: "Bildirimler", switchValue: true, icon: .image(bildirimler), action: didToggleSwitch()),
+                SwitchRow(title: "Bildirimler", switchValue: switches, icon: .image(bildirimler), action: didToggleSwitch()),
                 ]),
             
             Section(title: "HAKKINDA", rows: [
@@ -72,9 +75,23 @@ class DigerleriViewController: QuickTableViewController {
             if let row = $0 as? SwitchRowCompatible {
                 let state = "\(row.title) = \(row.switchValue)"
                 self?.showDebuggingText(state)
+                
+                if row.switchValue == true{
+                    OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification
+                    print("Thanks for accepting notifications!")
+                }else {
+                    OneSignal.inFocusDisplayType = OSNotificationDisplayType.none
+                    print("Notifications not accepted. You can turn them on later under your iOS settings.")
+                }
+                
+                UserDefaults.standard.set(row.switchValue, forKey: "bildirimAyar")
+                
             }
         }
     }
+    
+    
+   
     
     private func showAlert() -> (Row) -> Void {
         return { [weak self] _ in
@@ -87,13 +104,9 @@ class DigerleriViewController: QuickTableViewController {
     }
     
     private func showDetail() -> (Row) -> Void {
-        return { [weak self] in
-            let detail = $0.title + ($0.subtitle?.text ?? "")
-            let controller = UIViewController()
-            controller.view.backgroundColor = .white
-            controller.title = detail
-            self?.navigationController?.pushViewController(controller, animated: true)
-            self?.showDebuggingText(detail + " is selected")
+        return {_ in
+            let controller = GizlilikViewController()
+            self.navigationController?.pushViewController(controller, animated: true)
         }
     }
     

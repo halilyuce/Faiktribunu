@@ -17,24 +17,39 @@ class BildirimViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var mTableView: UITableView!
     
     var baslikStr = [String]()
-    var updatedBaslikStr = [String]()
     var resimStr = [String]()
-    var updatedResimStr = [String]()
     var datepost = [String]()
-    var updatedDatepost = [String]()
     var yazinumara = [String]()
-    var updatedYazinumara = [String]()
     var bodyStr = [String]()
-    var updatedBodyStr = [String]()
     var videoLink = [String]()
-    var updatedVideoLink = [String]()
     var format = [String]()
-    var updatedFormat = [String]()
     
     override func viewWillAppear(_ animated: Bool) {
         self.setNavBarItems()
     }
-
+    
+    @IBAction func temizle(_ sender: UIButton) {
+       
+        deleteAllRecords()
+    
+        self.baslikStr.removeAll(keepingCapacity: false)
+        
+        self.resimStr.removeAll(keepingCapacity: false)
+        
+        self.bodyStr.removeAll(keepingCapacity: false)
+        
+        self.datepost.removeAll(keepingCapacity: false)
+        
+        self.yazinumara.removeAll(keepingCapacity: false)
+        
+        self.format.removeAll(keepingCapacity: false)
+        
+        self.videoLink.removeAll(keepingCapacity: false)
+        
+        self.mTableView.reloadData()
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,20 +58,6 @@ class BildirimViewController: UIViewController, UITableViewDelegate, UITableView
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         mAppDelegate.mNavigationController?.setNavigationBarHidden(true, animated: false)
-        
-
-        let headerView = UIView()
-        let headerText = UILabel()
-        headerText.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 35)
-        headerText.text = "BİLDİRİMLER"
-        headerText.textColor = UIColor.white
-        headerText.font = UIFont.boldSystemFont(ofSize: 16.0)
-        headerText.textAlignment = .center
-        headerView.addSubview(headerText)
-        headerView.backgroundColor = UIColor.red
-        headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 35)
-        
-        mTableView.tableHeaderView = headerView
         
         mTableView.register(UINib.init(nibName: "BildirimlerTableViewCell", bundle: nil), forCellReuseIdentifier: "BildirimlerTableViewCell")
         
@@ -83,7 +84,6 @@ class BildirimViewController: UIViewController, UITableViewDelegate, UITableView
             
         }
     
-        
         self.mTableView.pullToRefreshView.setTitle("Yenilemek için Aşağı Kaydır", forState: 0)
         self.mTableView.pullToRefreshView.setTitle("Yenilemekten Vazgeç...", forState: 1)
         self.mTableView.pullToRefreshView.setTitle("Yükleniyor...", forState: 2)
@@ -131,57 +131,6 @@ class BildirimViewController: UIViewController, UITableViewDelegate, UITableView
                 
             }
             
-            print("İlk \(baslikStr)")
-            
-            if baslikStr.count > 2{
-                
-                    baslikStr.removeLast()
-                    resimStr.removeLast()
-                    datepost.removeLast()
-                    bodyStr.removeLast()
-                    yazinumara.removeLast()
-                    format.removeLast()
-                    videoLink.removeLast()
-           
-                for yazi in yazinumara{
-                    updatedYazinumara.append(yazi)
-                }
-                
-                for body in bodyStr{
-                    updatedBodyStr.append(body)
-                }
-     
-                for baslik in baslikStr{
-                    updatedBaslikStr.append(baslik)
-                }
-                
-                for form in format{
-                    updatedFormat.append(form)
-                }
-                
-                for video in videoLink{
-                    updatedVideoLink.append(video)
-                }
-                
-                for resim in resimStr{
-                    updatedResimStr.append(resim)
-                }
-                
-                for date in datepost{
-                    updatedDatepost.append(date)
-                }
-                
-                print("Before Delete \(baslikStr)")
-                print("Updated \(updatedBaslikStr)")
-                
-                deleteAllRecords()
-                
-                updateAllRecords()
-                
-                 }
-            
-            print("Last \(updatedBaslikStr)")
-            
             self.mTableView.reloadData()
             self.mTableView.pullToRefreshView.stopAnimating()
             
@@ -205,49 +154,6 @@ class BildirimViewController: UIViewController, UITableViewDelegate, UITableView
         } catch {
             print ("There was an error")
         }
-    }
-    
-    func updateAllRecords() {
-        
-        let updated = mAppDelegate.persistentContainer.viewContext
-        let yeniBildirim = NSEntityDescription.insertNewObject(forEntityName: "Bildirimler", into: updated)
-        
-        for updatedYazi in updatedYazinumara{
-            yeniBildirim.setValue(updatedYazi, forKey: "postID")
-        }
-        
-        for updatedBody in updatedBodyStr{
-            yeniBildirim.setValue(updatedBody, forKey: "postBody")
-        }
-        
-        for updatedBaslik in updatedBaslikStr{
-            yeniBildirim.setValue(updatedBaslik, forKey: "postTitle")
-        }
-        
-        for updatedForm in updatedFormat{
-            yeniBildirim.setValue(updatedForm, forKey: "postFormat")
-        }
-        
-        for updatedVideo in updatedVideoLink{
-            yeniBildirim.setValue(updatedVideo, forKey: "postVideoUrl")
-        }
-        
-        for updatedResim in updatedResimStr{
-            yeniBildirim.setValue(updatedResim, forKey: "postResimUrl")
-        }
-        
-        for updatedDate in updatedDatepost{
-            yeniBildirim.setValue(updatedDate, forKey: "update")
-        }
-        
-        do {
-            try updated.save()
-            print("güncellendi")
-        } catch {
-            print("Failed saving")
-        }
-        
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

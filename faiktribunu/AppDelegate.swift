@@ -267,6 +267,85 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
+   
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        bildirimPostTitle = notification.request.content.title
+        bildirimPostBody = notification.request.content.body
+        
+        var postId = ""
+        
+        if let custom = notification.request.content.userInfo["custom"] as? NSDictionary{
+            if let a = custom["a"] as? NSDictionary{
+                if let id = a["post"] as? String{
+                    postId = id
+                }
+            }
+        }
+        
+        var postformat = ""
+        
+        if let customformat = notification.request.content.userInfo["custom"] as? NSDictionary{
+            if let a = customformat["a"] as? NSDictionary{
+                if let type = a["format"] as? String{
+                    postformat = type
+                }
+            }
+        }
+        
+        var resimUrl = ""
+        
+        if let att = notification.request.content.userInfo["att"] as? NSDictionary{
+            if let url = att["id"] as? String{
+                resimUrl = url
+            }
+        }
+        
+        var videoUrl = ""
+        
+        if let customvideo = notification.request.content.userInfo["custom"] as? NSDictionary{
+            if let a = customvideo["a"] as? NSDictionary{
+                if let vidurl = a["video"] as? String{
+                    videoUrl = vidurl
+                }
+            }
+        }
+        
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let myString = formatter.string(from: date)
+        let yourDate: Date? = formatter.date(from: myString)
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let updatedString = formatter.string(from: yourDate!)
+        
+        bildirimPostID = postId
+        bildirimPostFormat = postformat
+        bildirimPostVideoUrl = videoUrl
+        bildirimPostResimUrl = resimUrl
+        bildirimPostDate = updatedString
+        
+        
+        let context = mAppDelegate.persistentContainer.viewContext
+        let yeniBildirim = NSEntityDescription.insertNewObject(forEntityName: "Bildirimler", into: context)
+        
+        yeniBildirim.setValue(bildirimPostID, forKey: "postID")
+        yeniBildirim.setValue(bildirimPostBody, forKey: "postBody")
+        yeniBildirim.setValue(bildirimPostTitle, forKey: "postTitle")
+        yeniBildirim.setValue(bildirimPostFormat, forKey: "postFormat")
+        yeniBildirim.setValue(bildirimPostVideoUrl, forKey: "postVideoUrl")
+        yeniBildirim.setValue(bildirimPostResimUrl, forKey: "postResimUrl")
+        yeniBildirim.setValue(bildirimPostDate, forKey: "update")
+        
+        do {
+            try context.save()
+            print("kaydedildi")
+        } catch {
+            print("Failed saving")
+        }
+        
+    }
+    
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
@@ -318,32 +397,13 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let yourDate: Date? = formatter.date(from: myString)
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let updatedString = formatter.string(from: yourDate!)
-
+        
         bildirimPostID = postId
         bildirimPostFormat = postformat
         bildirimPostVideoUrl = videoUrl
         bildirimPostResimUrl = resimUrl
         bildirimPostDate = updatedString
-        
-        
-        let context = mAppDelegate.persistentContainer.viewContext
-        let yeniBildirim = NSEntityDescription.insertNewObject(forEntityName: "Bildirimler", into: context)
-        
-        yeniBildirim.setValue(bildirimPostID, forKey: "postID")
-        yeniBildirim.setValue(bildirimPostBody, forKey: "postBody")
-        yeniBildirim.setValue(bildirimPostTitle, forKey: "postTitle")
-        yeniBildirim.setValue(bildirimPostFormat, forKey: "postFormat")
-        yeniBildirim.setValue(bildirimPostVideoUrl, forKey: "postVideoUrl")
-        yeniBildirim.setValue(bildirimPostResimUrl, forKey: "postResimUrl")
-        yeniBildirim.setValue(bildirimPostDate, forKey: "update")
-        
-        do {
-            try context.save()
-            print("kaydedildi")
-        } catch {
-            print("Failed saving")
-        }
-        
+    
         if response.actionIdentifier == "oku" {
             
             //self.mNavigationController?.setNavigationBarHidden(false, animated: false)
