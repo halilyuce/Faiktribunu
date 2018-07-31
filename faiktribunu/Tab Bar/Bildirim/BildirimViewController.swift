@@ -17,12 +17,19 @@ class BildirimViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var mTableView: UITableView!
     
     var baslikStr = [String]()
+    var updatedBaslikStr = [String]()
     var resimStr = [String]()
+    var updatedResimStr = [String]()
+    var datepost = [String]()
+    var updatedDatepost = [String]()
     var yazinumara = [String]()
+    var updatedYazinumara = [String]()
     var bodyStr = [String]()
+    var updatedBodyStr = [String]()
     var videoLink = [String]()
+    var updatedVideoLink = [String]()
     var format = [String]()
-    var loadMore = 1
+    var updatedFormat = [String]()
     
     override func viewWillAppear(_ animated: Bool) {
         self.setNavBarItems()
@@ -61,59 +68,21 @@ class BildirimViewController: UIViewController, UITableViewDelegate, UITableView
             self.baslikStr.removeAll(keepingCapacity: false)
             
             self.resimStr.removeAll(keepingCapacity: false)
+            
+            self.bodyStr.removeAll(keepingCapacity: false)
+            
+            self.datepost.removeAll(keepingCapacity: false)
+            
+            self.yazinumara.removeAll(keepingCapacity: false)
+            
+            self.format.removeAll(keepingCapacity: false)
+            
+            self.videoLink.removeAll(keepingCapacity: false)
 
             self.loadList()
             
         }
-        
-        self.mTableView.addInfiniteScrolling() {
-            
-            
-            self.mTableView.infiniteScrollingView.startAnimating()
-            
-            self.loadMore += 1
-            
-            let context = mAppDelegate.persistentContainer.viewContext
-            
-            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Bildirimler")
-            let sectionSortDescriptor = NSSortDescriptor(key: "update", ascending: true)
-            let sortDescriptors = [sectionSortDescriptor]
-            request.sortDescriptors = sortDescriptors
-            
-            request.returnsObjectsAsFaults = false
-            do {
-                let result = try context.fetch(request)
-                for data in result as! [NSManagedObject] {
-                    if let title = data.value(forKey: "postTitle") as? String {
-                        self.baslikStr.append(title)
-                    }
-                    if let resimUrl = data.value(forKey: "postResimUrl") as? String {
-                        self.resimStr.append(resimUrl)
-                    }
-                    if let selectedPostID = data.value(forKey: "postID") as? String {
-                        self.yazinumara.append(selectedPostID)
-                    }
-                    if let videoUrl = data.value(forKey: "postVideoUrl") as? String {
-                        self.videoLink.append(videoUrl)
-                    }
-                    if let postFormat = data.value(forKey: "postFormat") as? String {
-                        self.format.append(postFormat)
-                    }
-                    if let postDate = data.value(forKey: "update") as? String {
-                        print(postDate)
-                    }
-                    
-                }
-                
-                self.mTableView.reloadData()
-                self.mTableView.infiniteScrollingView.stopAnimating()
-                
-            } catch {
-                
-                print("Failed")
-            }
-            
-        }
+    
         
         self.mTableView.pullToRefreshView.setTitle("Yenilemek için Aşağı Kaydır", forState: 0)
         self.mTableView.pullToRefreshView.setTitle("Yenilemekten Vazgeç...", forState: 1)
@@ -126,8 +95,6 @@ class BildirimViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func loadList(){
-        
-        self.loadMore = 1
         
         let context = mAppDelegate.persistentContainer.viewContext
         
@@ -142,13 +109,15 @@ class BildirimViewController: UIViewController, UITableViewDelegate, UITableView
             for data in result as! [NSManagedObject] {
                 if let title = data.value(forKey: "postTitle") as? String {
                     self.baslikStr.append(title)
-                    print(title)
                 }
                 if let resimUrl = data.value(forKey: "postResimUrl") as? String {
                     self.resimStr.append(resimUrl)
                 }
                 if let selectedPostID = data.value(forKey: "postID") as? String {
                     self.yazinumara.append(selectedPostID)
+                }
+                if let bodyPost = data.value(forKey: "postBody") as? String {
+                    self.bodyStr.append(bodyPost)
                 }
                 if let videoUrl = data.value(forKey: "postVideoUrl") as? String {
                     self.videoLink.append(videoUrl)
@@ -157,13 +126,62 @@ class BildirimViewController: UIViewController, UITableViewDelegate, UITableView
                     self.format.append(postFormat)
                 }
                 if let postDate = data.value(forKey: "update") as? String {
-                    print(postDate)
+                    self.datepost.append(postDate)
                 }
-                
                 
             }
             
-        
+            print("İlk \(baslikStr)")
+            
+            if baslikStr.count > 2{
+                
+                    baslikStr.removeLast()
+                    resimStr.removeLast()
+                    datepost.removeLast()
+                    bodyStr.removeLast()
+                    yazinumara.removeLast()
+                    format.removeLast()
+                    videoLink.removeLast()
+           
+                for yazi in yazinumara{
+                    updatedYazinumara.append(yazi)
+                }
+                
+                for body in bodyStr{
+                    updatedBodyStr.append(body)
+                }
+     
+                for baslik in baslikStr{
+                    updatedBaslikStr.append(baslik)
+                }
+                
+                for form in format{
+                    updatedFormat.append(form)
+                }
+                
+                for video in videoLink{
+                    updatedVideoLink.append(video)
+                }
+                
+                for resim in resimStr{
+                    updatedResimStr.append(resim)
+                }
+                
+                for date in datepost{
+                    updatedDatepost.append(date)
+                }
+                
+                print("Before Delete \(baslikStr)")
+                print("Updated \(updatedBaslikStr)")
+                
+                deleteAllRecords()
+                
+                updateAllRecords()
+                
+                 }
+            
+            print("Last \(updatedBaslikStr)")
+            
             self.mTableView.reloadData()
             self.mTableView.pullToRefreshView.stopAnimating()
             
@@ -171,11 +189,66 @@ class BildirimViewController: UIViewController, UITableViewDelegate, UITableView
             
             print("Failed")
         }
+  
+        }
+
+    func deleteAllRecords() {
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let context = delegate.persistentContainer.viewContext
+        
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Bildirimler")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+        
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch {
+            print ("There was an error")
+        }
+    }
+    
+    func updateAllRecords() {
+        
+        let updated = mAppDelegate.persistentContainer.viewContext
+        let yeniBildirim = NSEntityDescription.insertNewObject(forEntityName: "Bildirimler", into: updated)
+        
+        for updatedYazi in updatedYazinumara{
+            yeniBildirim.setValue(updatedYazi, forKey: "postID")
+        }
+        
+        for updatedBody in updatedBodyStr{
+            yeniBildirim.setValue(updatedBody, forKey: "postBody")
+        }
+        
+        for updatedBaslik in updatedBaslikStr{
+            yeniBildirim.setValue(updatedBaslik, forKey: "postTitle")
+        }
+        
+        for updatedForm in updatedFormat{
+            yeniBildirim.setValue(updatedForm, forKey: "postFormat")
+        }
+        
+        for updatedVideo in updatedVideoLink{
+            yeniBildirim.setValue(updatedVideo, forKey: "postVideoUrl")
+        }
+        
+        for updatedResim in updatedResimStr{
+            yeniBildirim.setValue(updatedResim, forKey: "postResimUrl")
+        }
+        
+        for updatedDate in updatedDatepost{
+            yeniBildirim.setValue(updatedDate, forKey: "update")
+        }
+        
+        do {
+            try updated.save()
+            print("güncellendi")
+        } catch {
+            print("Failed saving")
+        }
         
         
     }
-    
-
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return baslikStr.count
@@ -183,11 +256,14 @@ class BildirimViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BildirimlerTableViewCell", for: indexPath) as! BildirimlerTableViewCell
+        
+        if indexPath.row < baslikStr.count{
         cell.baslik.text = baslikStr[indexPath.row].html2String
         cell.resim.sd_setImage(with: URL(string: resimStr[indexPath.row]), placeholderImage:  UIImage(named: "faiklogo"))
         
         cell.resim.layer.cornerRadius = cell.resim.frame.height/2
         cell.resim.clipsToBounds = true
+        }
         
         return cell
         
@@ -207,8 +283,6 @@ class BildirimViewController: UIViewController, UITableViewDelegate, UITableView
         self.navigationController?.pushViewController(mDetayViewController, animated: true)
         }
     }
-        
-    
 
 
     func setNavBarItems(){

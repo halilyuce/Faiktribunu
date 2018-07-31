@@ -270,9 +270,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
-        print(response.notification.request.content.title)
-        print(response.notification.request.content.body)
-        
         bildirimPostTitle = response.notification.request.content.title
         bildirimPostBody = response.notification.request.content.body
         
@@ -332,8 +329,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let context = mAppDelegate.persistentContainer.viewContext
         let yeniBildirim = NSEntityDescription.insertNewObject(forEntityName: "Bildirimler", into: context)
         
-        
-        
         yeniBildirim.setValue(bildirimPostID, forKey: "postID")
         yeniBildirim.setValue(bildirimPostBody, forKey: "postBody")
         yeniBildirim.setValue(bildirimPostTitle, forKey: "postTitle")
@@ -348,10 +343,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         } catch {
             print("Failed saving")
         }
-        
-        print(postId)
-        print(postformat)
-        print(videoUrl)
         
         if response.actionIdentifier == "oku" {
             
