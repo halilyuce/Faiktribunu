@@ -16,6 +16,7 @@
 		043452A6210377B1008EEC21 /* BildirimViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043452A4210377B1008EEC21 /* BildirimViewController.xib */; };
 		043452AB21038085008EEC21 /* BildirimlerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043452A921038085008EEC21 /* BildirimlerTableViewCell.swift */; };
 		043452AC21038085008EEC21 /* BildirimlerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043452AA21038085008EEC21 /* BildirimlerTableViewCell.xib */; };
+		0444E62E21126306007A98AC /* faiktribunu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04172C202109E37C004DDF6A /* faiktribunu.xcdatamodeld */; };
 		044B848E211105F30085441D /* GizlilikViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B848C211105F30085441D /* GizlilikViewController.swift */; };
 		044B848F211105F30085441D /* GizlilikViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044B848D211105F30085441D /* GizlilikViewController.xib */; };
 		04569C0921124ABC0021FAE6 /* SoyleyisiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04569C0721124ABC0021FAE6 /* SoyleyisiCollectionViewCell.swift */; };
@@ -480,6 +481,7 @@
 				7D7172CA20BBEDBD00EEA074 /* Resources */,
 				6D1FD235463613E7559CA7A7 /* [CP] Embed Pods Frameworks */,
 				04B21C1F21064E29007695DC /* Embed App Extensions */,
+				04569C1B211260510021FAE6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -594,6 +596,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		04569C1B211260510021FAE6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" b3f60270af34599b6840d555a687bf171a49c416 e76381507503b6d1276807e66bb3432b94376836fbbe51a7026495fc24223264\n";
+		};
 		23DF9BD1979C2519428A388D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -677,6 +696,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0444E62E21126306007A98AC /* faiktribunu.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

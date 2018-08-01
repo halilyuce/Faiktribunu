@@ -11,6 +11,9 @@ import ScrollableSegmentedControl
 import OneSignal
 import UserNotifications
 import CoreData
+import Fabric
+import Crashlytics
+import Answers
 
 let mAppDelegate = UIApplication.shared.delegate! as! AppDelegate
 
@@ -37,6 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+              Fabric.with([Crashlytics.self])
+              Fabric.with([Answers.self])
     
         let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
         
@@ -203,23 +209,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
                 print("Notifications not accepted. You can turn them on later under your iOS settings.")
             }
         }
-        // prints out all properties
-        print("PermissionStateChanges: \n\(stateChanges)")
+        
     }
     
     func onOSSubscriptionChanged(_ stateChanges: OSSubscriptionStateChanges!) {
         if !stateChanges.from.subscribed && stateChanges.to.subscribed {
             print("Subscribed for OneSignal push notifications!")
         }
-        print("SubscriptionStateChange: \n\(stateChanges)")
+        
     }
     
     func registerForPushNotifications() {
-        UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+        UNUserNotificationCenter.current().delegate = self
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
             (granted, error) in
-            print("Permission granted: \(granted)")
-            // 1. Check if permission granted
             guard granted else { return }
             // 2. Attempt registration for remote notifications on the main thread
             DispatchQueue.main.async {
@@ -239,8 +242,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        // 1. Print out error if PNs registration not successful
-        print("Failed to register for remote notifications with error: \(error)")
+
     }
     
     
@@ -408,7 +410,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             
             //self.mNavigationController?.setNavigationBarHidden(false, animated: false)
             var nav = UINavigationController()
-            if let vc = mAppDelegate.mNavigationController?.topViewController as? UIViewController{
+            if let vc = mAppDelegate.mNavigationController?.topViewController{
                 nav = vc.navigationController!
             }
             self.yazinumara = postId
@@ -442,7 +444,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             let formatItem = format
             
             var nav = UINavigationController()
-            if let vc = mAppDelegate.mNavigationController?.topViewController as? UIViewController{
+            if let vc = mAppDelegate.mNavigationController?.topViewController{
                 nav = vc.navigationController!
             }
            

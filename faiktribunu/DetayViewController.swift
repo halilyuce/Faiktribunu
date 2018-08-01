@@ -12,6 +12,8 @@ import SwiftyJSON
 import ObjectMapper
 import WebKit
 import AVKit
+import Answers
+import Crashlytics
 
 class DetayViewController: UIViewController {
     
@@ -130,12 +132,20 @@ class DetayViewController: UIViewController {
         let string: String = baslik
         let URL: String = "http://faiktribunu.com/?p=\(yaziNumara)"
         
+        Answers.logShare(withMethod: "Paylaşım",
+                                   contentName: baslik,
+                                   contentType: "share",
+                                   contentId: yaziNumara,
+                                   customAttributes: [:])
+        
         let activityViewController = UIActivityViewController(activityItems: [string, URL], applicationActivities: nil)
         navigationController?.present(activityViewController, animated: true) {
         }
         
         
     }
+    
+    
     
     
     func activityIndicator(_ title: String) {
@@ -166,12 +176,12 @@ class DetayViewController: UIViewController {
         
         let buttonBack = UIButton()
         buttonBack.setTitle("X", for: .normal)
-        buttonBack.frame = CGRect.init(x: 0, y: 0, width: 48, height: 48)
+        buttonBack.frame = CGRect.init(x: 0, y: 0, width: 48, height: 36)
         buttonBack.tintColor = UIColor.white
         buttonBack.setTitleColor(UIColor.white, for: .normal)
         
         buttonBack.widthAnchor.constraint(equalToConstant: 48.0).isActive = true
-        buttonBack.heightAnchor.constraint(equalToConstant: 48.0).isActive = true
+        buttonBack.heightAnchor.constraint(equalToConstant: 36.0).isActive = true
         
         buttonBack.addTarget(self, action: #selector(self.backTouch), for: UIControl.Event.touchUpInside)
         
