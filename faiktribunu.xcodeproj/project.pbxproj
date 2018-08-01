@@ -18,6 +18,10 @@
 		043452AC21038085008EEC21 /* BildirimlerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043452AA21038085008EEC21 /* BildirimlerTableViewCell.xib */; };
 		044B848E211105F30085441D /* GizlilikViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B848C211105F30085441D /* GizlilikViewController.swift */; };
 		044B848F211105F30085441D /* GizlilikViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044B848D211105F30085441D /* GizlilikViewController.xib */; };
+		04569C0921124ABC0021FAE6 /* SoyleyisiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04569C0721124ABC0021FAE6 /* SoyleyisiCollectionViewCell.swift */; };
+		04569C0A21124ABC0021FAE6 /* SoyleyisiCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04569C0821124ABC0021FAE6 /* SoyleyisiCollectionViewCell.xib */; };
+		04569C0D21124AD00021FAE6 /* SoyleyisiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04569C0B21124AD00021FAE6 /* SoyleyisiViewController.swift */; };
+		04569C0E21124AD00021FAE6 /* SoyleyisiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04569C0C21124AD00021FAE6 /* SoyleyisiViewController.xib */; };
 		04B21C1721064E29007695DC /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B21C1621064E29007695DC /* NotificationService.swift */; };
 		04B21C1B21064E29007695DC /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 04B21C1421064E29007695DC /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		04CC739721026FB300197E7E /* BetterImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC739621026FB300197E7E /* BetterImage.swift */; };
@@ -103,6 +107,10 @@
 		043452AA21038085008EEC21 /* BildirimlerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BildirimlerTableViewCell.xib; sourceTree = "<group>"; };
 		044B848C211105F30085441D /* GizlilikViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GizlilikViewController.swift; sourceTree = "<group>"; };
 		044B848D211105F30085441D /* GizlilikViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GizlilikViewController.xib; sourceTree = "<group>"; };
+		04569C0721124ABC0021FAE6 /* SoyleyisiCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoyleyisiCollectionViewCell.swift; sourceTree = "<group>"; };
+		04569C0821124ABC0021FAE6 /* SoyleyisiCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SoyleyisiCollectionViewCell.xib; sourceTree = "<group>"; };
+		04569C0B21124AD00021FAE6 /* SoyleyisiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoyleyisiViewController.swift; sourceTree = "<group>"; };
+		04569C0C21124AD00021FAE6 /* SoyleyisiViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SoyleyisiViewController.xib; sourceTree = "<group>"; };
 		04B21C0F21064AB3007695DC /* faiktribunu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = faiktribunu.entitlements; sourceTree = "<group>"; };
 		04B21C1421064E29007695DC /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		04B21C1621064E29007695DC /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -254,6 +262,10 @@
 		04CC73A0210293C900197E7E /* Soyleyisi */ = {
 			isa = PBXGroup;
 			children = (
+				04569C0B21124AD00021FAE6 /* SoyleyisiViewController.swift */,
+				04569C0C21124AD00021FAE6 /* SoyleyisiViewController.xib */,
+				04569C0721124ABC0021FAE6 /* SoyleyisiCollectionViewCell.swift */,
+				04569C0821124ABC0021FAE6 /* SoyleyisiCollectionViewCell.xib */,
 			);
 			path = Soyleyisi;
 			sourceTree = "<group>";
@@ -544,6 +556,7 @@
 				04CC73A52102948600197E7E /* GundemViewController.xib in Resources */,
 				040E76092111F2A40074EED6 /* TarihViewController.xib in Resources */,
 				7DBC507920E63D8C0046EB9F /* DetayViewController.xib in Resources */,
+				04569C0E21124AD00021FAE6 /* SoyleyisiViewController.xib in Resources */,
 				04E2CB9E2104D06E00E237AB /* DigerleriViewController.xib in Resources */,
 				7D7172DA20BBEDBF00EEA074 /* LaunchScreen.storyboard in Resources */,
 				7DFE381420E512D80003E517 /* YazilarViewController.xib in Resources */,
@@ -558,6 +571,7 @@
 				7D7172D720BBEDBF00EEA074 /* Assets.xcassets in Resources */,
 				043452A6210377B1008EEC21 /* BildirimViewController.xib in Resources */,
 				04D7B2102100844800E5F05A /* ViewController.xib in Resources */,
+				04569C0A21124ABC0021FAE6 /* SoyleyisiCollectionViewCell.xib in Resources */,
 				04CD18D4210120B100CB3897 /* FiksturViewController.xib in Resources */,
 				7DBC507120E62A070046EB9F /* VideolarViewController.xib in Resources */,
 			);
@@ -683,11 +697,13 @@
 				7D14368120E90FCD002C8D9E /* BaseItem.swift in Sources */,
 				04D1D58820FFBCAA00538AEF /* CustomTabBarController.swift in Sources */,
 				7DBECAFC20BC44E100A4253C /* Extensions.swift in Sources */,
+				04569C0921124ABC0021FAE6 /* SoyleyisiCollectionViewCell.swift in Sources */,
 				04CC73A42102948600197E7E /* GundemViewController.swift in Sources */,
 				7D7172D020BBEDBD00EEA074 /* AppDelegate.swift in Sources */,
 				04CC739721026FB300197E7E /* BetterImage.swift in Sources */,
 				7DBC507820E63D8C0046EB9F /* DetayViewController.swift in Sources */,
 				04D7B20F2100844800E5F05A /* ViewController.swift in Sources */,
+				04569C0D21124AD00021FAE6 /* SoyleyisiViewController.swift in Sources */,
 				7D14368920E94A58002C8D9E /* Guid.swift in Sources */,
 				7D6027AE20E38C90008CC1CA /* YazilarCollectionViewCell.swift in Sources */,
 				043452AB21038085008EEC21 /* BildirimlerTableViewCell.swift in Sources */,

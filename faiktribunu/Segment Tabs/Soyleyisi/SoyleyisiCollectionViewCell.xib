@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14270.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gTV-IL-0wX" customClass="SoyleyisiCollectionViewCell" customModule="faiktribunu" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="275" height="200"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="275" height="200"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOc-Ka-hzc">
+                        <rect key="frame" x="12" y="140" width="48" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="57Y-5l-117"/>
+                            <constraint firstAttribute="width" constant="48" id="cvY-fQ-KHW"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ngg-Xz-QPh">
+                        <rect key="frame" x="0.0" y="0.0" width="275" height="130"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="130" id="AnG-9h-oPp"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="loN-vl-1L4">
+                        <rect key="frame" x="73" y="140" width="190" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="860-pO-LR0"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Ngg-Xz-QPh" secondAttribute="trailing" id="1oo-5s-lbH"/>
+                <constraint firstAttribute="trailing" secondItem="loN-vl-1L4" secondAttribute="trailing" constant="12" id="ED3-JZ-PF5"/>
+                <constraint firstItem="loN-vl-1L4" firstAttribute="leading" secondItem="DOc-Ka-hzc" secondAttribute="trailing" constant="13" id="Fkz-J9-8P8"/>
+                <constraint firstItem="loN-vl-1L4" firstAttribute="top" secondItem="Ngg-Xz-QPh" secondAttribute="bottom" constant="10" id="KZE-DZ-ozi"/>
+                <constraint firstItem="loN-vl-1L4" firstAttribute="leading" secondItem="DOc-Ka-hzc" secondAttribute="trailing" constant="13" id="WKE-cm-UXH"/>
+                <constraint firstItem="loN-vl-1L4" firstAttribute="top" secondItem="Ngg-Xz-QPh" secondAttribute="bottom" constant="10" id="YDE-iH-7fu"/>
+                <constraint firstItem="Ngg-Xz-QPh" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="d16-aC-EE4"/>
+                <constraint firstItem="DOc-Ka-hzc" firstAttribute="top" secondItem="Ngg-Xz-QPh" secondAttribute="bottom" constant="10" id="d9v-SJ-abu"/>
+                <constraint firstAttribute="bottom" secondItem="loN-vl-1L4" secondAttribute="bottom" constant="12" id="iIP-CQ-ZrG"/>
+                <constraint firstItem="Ngg-Xz-QPh" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="kCm-sE-X7k"/>
+                <constraint firstAttribute="trailing" secondItem="loN-vl-1L4" secondAttribute="trailing" constant="12" id="mir-Sj-8fq"/>
+                <constraint firstItem="DOc-Ka-hzc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="12" id="pkt-6r-hW8"/>
+            </constraints>
+            <connections>
+                <outlet property="baslik" destination="loN-vl-1L4" id="fBS-Av-Uqt"/>
+                <outlet property="haberGorseli" destination="Ngg-Xz-QPh" id="Fh8-96-nIN"/>
+                <outlet property="yazarAvatar" destination="DOc-Ka-hzc" id="Cdd-x5-1lq"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+</document>

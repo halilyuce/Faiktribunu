@@ -104,6 +104,16 @@ class ViewController: UIViewController {
                 }
                 tTarihViewController.didMove(toParent: self)
             }
+        case 4:
+            if let sSoyleyisiViewController = SoyleyisiViewController(nibName:"SoyleyisiViewController", bundle: nil) as? SoyleyisiViewController {
+                addChild(sSoyleyisiViewController)
+                sSoyleyisiViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
+                if let aView = sSoyleyisiViewController.view {
+                    aView.tag = 101
+                    self.mViewMain.addSubview(aView)
+                }
+                sSoyleyisiViewController.didMove(toParent: self)
+            }
             
         default:
             if let mYazilarViewController = YazilarViewController(nibName:"YazilarViewController", bundle: nil) as? YazilarViewController {
