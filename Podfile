@@ -13,7 +13,6 @@ target 'faiktribunu' do
   pod 'OneSignal', '>= 2.5.2', '< 3.0'
   pod 'Fabric'
   pod 'Crashlytics'
-  pod 'Answers'
 
 end
 

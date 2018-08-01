@@ -8,6 +8,7 @@
 
 import UIKit
 import AVKit
+import Crashlytics
 
 class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
 
@@ -43,15 +44,24 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         viewControllers = [navigationController, fiksturnavigationController, bildirimnavigationController, digernavigationController]
     }
     
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        Answers.logCustomEvent(withName: "Tablar",
+                               customAttributes: [
+                                "Tıklama": "\(tabBar.selectedItem!.title!)",
+                                ])
+    
+    }
+    
     var kontrol = 0
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         
         kontrol = kontrol + 1
         
+        
         switch tabBarController.tabBar.tag {
         case 0:
-            
+      
             if kontrol%2 == 0{
                 guard let viewControllers = viewControllers else { return false }
                 if viewController == viewControllers[0] {

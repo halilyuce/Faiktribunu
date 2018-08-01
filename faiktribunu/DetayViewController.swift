@@ -12,7 +12,6 @@ import SwiftyJSON
 import ObjectMapper
 import WebKit
 import AVKit
-import Answers
 import Crashlytics
 
 class DetayViewController: UIViewController {
@@ -39,8 +38,7 @@ class DetayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+    
         let share = UIButton(type: .custom)
         share.setImage(UIImage(named: "share"), for: UIControl.State.normal)
         share.addTarget(self, action: #selector(self.shareMethod), for: UIControl.Event.touchUpInside)
@@ -70,6 +68,12 @@ class DetayViewController: UIViewController {
                                     self.resimStr = "\(detay.media!)"
                             
                             let resUrl = URL(string: StaticVariables.baseUrl + StaticVariables.resimUrl + self.resimStr)!
+                            
+                            Answers.logContentView(withName: self.baslik,
+                                                   contentType: "yazi",
+                                                   contentId: self.yaziNumara,
+                                                   customAttributes: [:])
+                            
                             
                             Alamofire.request(resUrl, method: .get, parameters: nil)
                                 .responseString { mresponse in
@@ -121,6 +125,9 @@ class DetayViewController: UIViewController {
                     break
                 }
         }
+        
+        
+        
 
     }
     
@@ -132,7 +139,7 @@ class DetayViewController: UIViewController {
         let string: String = baslik
         let URL: String = "http://faiktribunu.com/?p=\(yaziNumara)"
         
-        Answers.logShare(withMethod: "Paylaşım",
+        Answers.logShare(withMethod: "Paylasim",
                                    contentName: baslik,
                                    contentType: "share",
                                    contentId: yaziNumara,

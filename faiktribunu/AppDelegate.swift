@@ -13,7 +13,6 @@ import UserNotifications
 import CoreData
 import Fabric
 import Crashlytics
-import Answers
 
 let mAppDelegate = UIApplication.shared.delegate! as! AppDelegate
 
