@@ -11,6 +11,8 @@ target 'faiktribunu' do
   pod 'SDWebImage'
   pod 'QuickTableViewController'
   pod 'OneSignal', '>= 2.5.2', '< 3.0'
+  pod 'Fabric'
+  pod 'Crashlytics'
 
 end
 

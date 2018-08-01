@@ -3,6 +3,9 @@ PODS:
   - AlamofireObjectMapper (5.1.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 3.3)
+  - Crashlytics (3.10.5):
+    - Fabric (~> 1.7.9)
+  - Fabric (1.7.9)
   - ObjectMapper (3.3.0)
   - OneSignal (2.8.5)
   - QuickTableViewController (0.9.1)
@@ -16,6 +19,8 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - AlamofireObjectMapper
+  - Crashlytics
+  - Fabric
   - OneSignal (< 3.0, >= 2.5.2)
   - OneSignal (< 3.0, >= 2.6.2)
   - QuickTableViewController
@@ -28,6 +33,8 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - AlamofireObjectMapper
+    - Crashlytics
+    - Fabric
     - ObjectMapper
     - OneSignal
     - QuickTableViewController
@@ -39,6 +46,8 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   AlamofireObjectMapper: 3395e698901d8b0e6f48b7d0c43bd47875325102
+  Crashlytics: 7f2e38d302d9da96475b3d64d86fb29e31a542b7
+  Fabric: a2917d3895e4c1569b9c3170de7320ea1b1e6661
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   OneSignal: 42dae269c7eca517aee34963820e1eb922390031
   QuickTableViewController: 5cbe91041c00b3ef4cfc405e3fad92b1fb63d6d2
@@ -47,6 +56,6 @@ SPEC CHECKSUMS:
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: e82f6f69b3c243fe8c090a7101ebcb4227895930
+PODFILE CHECKSUM: d83ed96c97cffa110cf6908a13c3b8fd23776b1b
 
 COCOAPODS: 1.5.3

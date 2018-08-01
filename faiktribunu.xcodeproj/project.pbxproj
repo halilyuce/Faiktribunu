@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040E76082111F2A40074EED6 /* TarihViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040E76062111F2A40074EED6 /* TarihViewController.swift */; };
+		040E76092111F2A40074EED6 /* TarihViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040E76072111F2A40074EED6 /* TarihViewController.xib */; };
+		040E760C2111F2BB0074EED6 /* TarihCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040E760A2111F2BB0074EED6 /* TarihCollectionViewCell.swift */; };
+		040E760D2111F2BB0074EED6 /* TarihCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040E760B2111F2BB0074EED6 /* TarihCollectionViewCell.xib */; };
 		04172C222109E37C004DDF6A /* faiktribunu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04172C202109E37C004DDF6A /* faiktribunu.xcdatamodeld */; };
 		043452A5210377B1008EEC21 /* BildirimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043452A3210377B1008EEC21 /* BildirimViewController.swift */; };
 		043452A6210377B1008EEC21 /* BildirimViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043452A4210377B1008EEC21 /* BildirimViewController.xib */; };
@@ -88,6 +92,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		040E76062111F2A40074EED6 /* TarihViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarihViewController.swift; sourceTree = "<group>"; };
+		040E76072111F2A40074EED6 /* TarihViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TarihViewController.xib; sourceTree = "<group>"; };
+		040E760A2111F2BB0074EED6 /* TarihCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarihCollectionViewCell.swift; sourceTree = "<group>"; };
+		040E760B2111F2BB0074EED6 /* TarihCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TarihCollectionViewCell.xib; sourceTree = "<group>"; };
 		04172C212109E37C004DDF6A /* faiktribunu.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = faiktribunu.xcdatamodel; sourceTree = "<group>"; };
 		043452A3210377B1008EEC21 /* BildirimViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BildirimViewController.swift; sourceTree = "<group>"; };
 		043452A4210377B1008EEC21 /* BildirimViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BildirimViewController.xib; sourceTree = "<group>"; };
@@ -235,6 +243,10 @@
 		04CC739F210293C000197E7E /* Tarih */ = {
 			isa = PBXGroup;
 			children = (
+				040E76062111F2A40074EED6 /* TarihViewController.swift */,
+				040E76072111F2A40074EED6 /* TarihViewController.xib */,
+				040E760A2111F2BB0074EED6 /* TarihCollectionViewCell.swift */,
+				040E760B2111F2BB0074EED6 /* TarihCollectionViewCell.xib */,
 			);
 			path = Tarih;
 			sourceTree = "<group>";
@@ -530,6 +542,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04CC73A52102948600197E7E /* GundemViewController.xib in Resources */,
+				040E76092111F2A40074EED6 /* TarihViewController.xib in Resources */,
 				7DBC507920E63D8C0046EB9F /* DetayViewController.xib in Resources */,
 				04E2CB9E2104D06E00E237AB /* DigerleriViewController.xib in Resources */,
 				7D7172DA20BBEDBF00EEA074 /* LaunchScreen.storyboard in Resources */,
@@ -538,6 +551,7 @@
 				04D7B21521008DD600E5F05A /* SplashViewController.xib in Resources */,
 				7D6027A720E3741E008CC1CA /* BJKTVViewController.xib in Resources */,
 				7D6027AF20E38C90008CC1CA /* YazilarCollectionViewCell.xib in Resources */,
+				040E760D2111F2BB0074EED6 /* TarihCollectionViewCell.xib in Resources */,
 				044B848F211105F30085441D /* GizlilikViewController.xib in Resources */,
 				04CC73A9210294A300197E7E /* GundemCollectionViewCell.xib in Resources */,
 				7DBC507520E62A2E0046EB9F /* VideolarCollectionViewCell.xib in Resources */,
@@ -649,6 +663,7 @@
 				7DBC507420E62A2E0046EB9F /* VideolarCollectionViewCell.swift in Sources */,
 				04D7B21421008DD600E5F05A /* SplashViewController.swift in Sources */,
 				043452A5210377B1008EEC21 /* BildirimViewController.swift in Sources */,
+				040E76082111F2A40074EED6 /* TarihViewController.swift in Sources */,
 				7D14368B20E94C33002C8D9E /* ResList.swift in Sources */,
 				7D14367F20E90F6D002C8D9E /* Base.swift in Sources */,
 				044B848E211105F30085441D /* GizlilikViewController.swift in Sources */,
@@ -656,6 +671,7 @@
 				7DFE381320E512D80003E517 /* YazilarViewController.swift in Sources */,
 				04CC739B210270E100197E7E /* Medium.swift in Sources */,
 				7D6027A620E3741E008CC1CA /* BJKTVViewController.swift in Sources */,
+				040E760C2111F2BB0074EED6 /* TarihCollectionViewCell.swift in Sources */,
 				7D14368520E91439002C8D9E /* Title.swift in Sources */,
 				04CC739D2102713300197E7E /* Source.swift in Sources */,
 				04E2CB9D2104D06E00E237AB /* DigerleriViewController.swift in Sources */,

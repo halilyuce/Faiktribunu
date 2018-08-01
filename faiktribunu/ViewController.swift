@@ -94,6 +94,16 @@ class ViewController: UIViewController {
                 }
                 vVideolarViewController.didMove(toParent: self)
             }
+        case 3:
+            if let tTarihViewController = TarihViewController(nibName:"TarihViewController", bundle: nil) as? TarihViewController {
+                addChild(tTarihViewController)
+                tTarihViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
+                if let aView = tTarihViewController.view {
+                    aView.tag = 101
+                    self.mViewMain.addSubview(aView)
+                }
+                tTarihViewController.didMove(toParent: self)
+            }
             
         default:
             if let mYazilarViewController = YazilarViewController(nibName:"YazilarViewController", bundle: nil) as? YazilarViewController {
