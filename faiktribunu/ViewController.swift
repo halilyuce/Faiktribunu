@@ -114,6 +114,16 @@ class ViewController: UIViewController {
                 }
                 sSoyleyisiViewController.didMove(toParent: self)
             }
+        case 5:
+            if let kKonuklarViewController = KonuklarViewController(nibName:"KonuklarViewController", bundle: nil) as? KonuklarViewController {
+                addChild(kKonuklarViewController)
+                kKonuklarViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
+                if let aView = kKonuklarViewController.view {
+                    aView.tag = 101
+                    self.mViewMain.addSubview(aView)
+                }
+                kKonuklarViewController.didMove(toParent: self)
+            }
             
         default:
             if let mYazilarViewController = YazilarViewController(nibName:"YazilarViewController", bundle: nil) as? YazilarViewController {
