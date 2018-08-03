@@ -33,7 +33,8 @@ class DigerleriViewController: QuickTableViewController {
         let bildirimler = #imageLiteral(resourceName: "bildirimler")
         let sozlesme = #imageLiteral(resourceName: "sozlesme")
         
-        let switches = UserDefaults.standard.bool(forKey: "bildirimAyar")
+        UserDefaults.standard.register(defaults: ["bildirim" : true])
+        let switches = UserDefaults.standard.bool(forKey: "bildirim")
         
         tableContents = [
             Section(title: "KİŞİSEL AYARLAR", rows: [
@@ -78,30 +79,20 @@ class DigerleriViewController: QuickTableViewController {
                 
                 if row.switchValue == true{
                     OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification
+                    UIApplication.shared.registerForRemoteNotifications()
                     print("Thanks for accepting notifications!")
                 }else {
                     OneSignal.inFocusDisplayType = OSNotificationDisplayType.none
+                    UIApplication.shared.unregisterForRemoteNotifications()
                     print("Notifications not accepted. You can turn them on later under your iOS settings.")
                 }
                 
-                UserDefaults.standard.set(row.switchValue, forKey: "bildirimAyar")
+                UserDefaults.standard.set(row.switchValue, forKey: "bildirim")
                 
             }
         }
     }
     
-    
-   
-    
-    private func showAlert() -> (Row) -> Void {
-        return { [weak self] _ in
-            let alert = UIAlertController(title: "Action Triggered", message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel) { [weak self] _ in
-                self?.dismiss(animated: true, completion: nil)
-            })
-            self?.present(alert, animated: true, completion: nil)
-        }
-    }
     
     private func showDetail() -> (Row) -> Void {
         return {_ in

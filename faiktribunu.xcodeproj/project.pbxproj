@@ -12,11 +12,14 @@
 		040E760C2111F2BB0074EED6 /* TarihCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040E760A2111F2BB0074EED6 /* TarihCollectionViewCell.swift */; };
 		040E760D2111F2BB0074EED6 /* TarihCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040E760B2111F2BB0074EED6 /* TarihCollectionViewCell.xib */; };
 		04172C222109E37C004DDF6A /* faiktribunu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04172C202109E37C004DDF6A /* faiktribunu.xcdatamodeld */; };
+		04228CF12114D81E008423B6 /* OneSignalNotificationServiceExtension.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 04B21C2021064F43007695DC /* OneSignalNotificationServiceExtension.entitlements */; };
+		04228CF52114DEAE008423B6 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B21C1621064E29007695DC /* NotificationService.swift */; };
 		043452A5210377B1008EEC21 /* BildirimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043452A3210377B1008EEC21 /* BildirimViewController.swift */; };
 		043452A6210377B1008EEC21 /* BildirimViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043452A4210377B1008EEC21 /* BildirimViewController.xib */; };
 		043452AB21038085008EEC21 /* BildirimlerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043452A921038085008EEC21 /* BildirimlerTableViewCell.swift */; };
 		043452AC21038085008EEC21 /* BildirimlerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043452AA21038085008EEC21 /* BildirimlerTableViewCell.xib */; };
 		0444E62E21126306007A98AC /* faiktribunu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04172C202109E37C004DDF6A /* faiktribunu.xcdatamodeld */; };
+		0447F3CE2113ACF200B4E79F /* YazilarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE381120E512D80003E517 /* YazilarViewController.swift */; };
 		044B848E211105F30085441D /* GizlilikViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B848C211105F30085441D /* GizlilikViewController.swift */; };
 		044B848F211105F30085441D /* GizlilikViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044B848D211105F30085441D /* GizlilikViewController.xib */; };
 		04569C0921124ABC0021FAE6 /* SoyleyisiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04569C0721124ABC0021FAE6 /* SoyleyisiCollectionViewCell.swift */; };
@@ -27,7 +30,6 @@
 		04569C1221124E590021FAE6 /* KonuklarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04569C1021124E590021FAE6 /* KonuklarViewController.xib */; };
 		04569C1521124E6C0021FAE6 /* KonuklarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04569C1321124E6C0021FAE6 /* KonuklarCollectionViewCell.swift */; };
 		04569C1621124E6C0021FAE6 /* KonuklarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04569C1421124E6C0021FAE6 /* KonuklarCollectionViewCell.xib */; };
-		04B21C1721064E29007695DC /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B21C1621064E29007695DC /* NotificationService.swift */; };
 		04B21C1B21064E29007695DC /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 04B21C1421064E29007695DC /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		04CC739721026FB300197E7E /* BetterImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC739621026FB300197E7E /* BetterImage.swift */; };
 		04CC73992102705E00197E7E /* Sizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC73982102705E00197E7E /* Sizes.swift */; };
@@ -71,7 +73,6 @@
 		7DBC507920E63D8C0046EB9F /* DetayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DBC507720E63D8C0046EB9F /* DetayViewController.xib */; };
 		7DBECAFC20BC44E100A4253C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBECAFB20BC44E100A4253C /* Extensions.swift */; };
 		7DEE4FAD20EA3F060099839B /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE4FAC20EA3F060099839B /* Content.swift */; };
-		7DFE381320E512D80003E517 /* YazilarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE381120E512D80003E517 /* YazilarViewController.swift */; };
 		7DFE381420E512D80003E517 /* YazilarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DFE381220E512D80003E517 /* YazilarViewController.xib */; };
 		B17C46DBE595DDAF19284316 /* Pods_faiktribunu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4438E2063C9F38E306755B6 /* Pods_faiktribunu.framework */; };
 /* End PBXBuildFile section */
@@ -120,7 +121,6 @@
 		04569C1021124E590021FAE6 /* KonuklarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KonuklarViewController.xib; sourceTree = "<group>"; };
 		04569C1321124E6C0021FAE6 /* KonuklarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KonuklarCollectionViewCell.swift; sourceTree = "<group>"; };
 		04569C1421124E6C0021FAE6 /* KonuklarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KonuklarCollectionViewCell.xib; sourceTree = "<group>"; };
-		04B21C0F21064AB3007695DC /* faiktribunu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = faiktribunu.entitlements; sourceTree = "<group>"; };
 		04B21C1421064E29007695DC /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		04B21C1621064E29007695DC /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		04B21C1821064E29007695DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -365,7 +365,6 @@
 		7D7172CE20BBEDBD00EEA074 /* faiktribunu */ = {
 			isa = PBXGroup;
 			children = (
-				04B21C0F21064AB3007695DC /* faiktribunu.entitlements */,
 				04CD18D021011FF200CB3897 /* Tab Bar */,
 				04D7B21121008DC200E5F05A /* Splash */,
 				7D14367D20E90F5E002C8D9E /* Models */,
@@ -524,6 +523,9 @@
 							com.apple.Push = {
 								enabled = 1;
 							};
+							com.apple.SafariKeychain = {
+								enabled = 0;
+							};
 						};
 					};
 				};
@@ -578,6 +580,7 @@
 				043452AC21038085008EEC21 /* BildirimlerTableViewCell.xib in Resources */,
 				04D7B21521008DD600E5F05A /* SplashViewController.xib in Resources */,
 				7D6027A720E3741E008CC1CA /* BJKTVViewController.xib in Resources */,
+				04228CF12114D81E008423B6 /* OneSignalNotificationServiceExtension.entitlements in Resources */,
 				04569C1621124E6C0021FAE6 /* KonuklarCollectionViewCell.xib in Resources */,
 				7D6027AF20E38C90008CC1CA /* YazilarCollectionViewCell.xib in Resources */,
 				040E760D2111F2BB0074EED6 /* TarihCollectionViewCell.xib in Resources */,
@@ -601,11 +604,7 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-			);
-			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
@@ -688,7 +687,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04B21C1721064E29007695DC /* NotificationService.swift in Sources */,
+				04228CF52114DEAE008423B6 /* NotificationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,9 +715,9 @@
 				7D14367F20E90F6D002C8D9E /* Base.swift in Sources */,
 				044B848E211105F30085441D /* GizlilikViewController.swift in Sources */,
 				04CC73A8210294A300197E7E /* GundemCollectionViewCell.swift in Sources */,
-				7DFE381320E512D80003E517 /* YazilarViewController.swift in Sources */,
 				04CC739B210270E100197E7E /* Medium.swift in Sources */,
 				7D6027A620E3741E008CC1CA /* BJKTVViewController.swift in Sources */,
+				0447F3CE2113ACF200B4E79F /* YazilarViewController.swift in Sources */,
 				040E760C2111F2BB0074EED6 /* TarihCollectionViewCell.swift in Sources */,
 				7D14368520E91439002C8D9E /* Title.swift in Sources */,
 				04CC739D2102713300197E7E /* Source.swift in Sources */,

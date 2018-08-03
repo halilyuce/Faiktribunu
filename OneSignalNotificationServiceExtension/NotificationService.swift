@@ -7,7 +7,6 @@
 //
 
 import UserNotifications
-
 import OneSignal
 
 class NotificationService: UNNotificationServiceExtension {
@@ -25,16 +24,8 @@ class NotificationService: UNNotificationServiceExtension {
             OneSignal.didReceiveNotificationExtensionRequest(self.receivedRequest, with: self.bestAttemptContent)
             contentHandler(bestAttemptContent)
         }
-        
-        // Add action.
-        let stopAction = UNNotificationAction(identifier: "oku", title: "Yazıyı Oku", options: [.foreground])
-        let snoozeAction = UNNotificationAction(identifier: "kapat", title: "Kapat", options: [])
-        
-        // Create category.
-        let category = UNNotificationCategory(identifier: "etkilesim", actions: [stopAction, snoozeAction], intentIdentifiers: [], options: [])
-        
-        
     }
+    
     
     override func serviceExtensionTimeWillExpire() {
         // Called just before the extension will be terminated by the system.
@@ -46,3 +37,4 @@ class NotificationService: UNNotificationServiceExtension {
     }
     
 }
+        

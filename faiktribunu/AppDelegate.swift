@@ -52,6 +52,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
                                         settings: onesignalInitSettings)
         
         OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
+
+        
+        // Add action.
+        let stopAction = UNNotificationAction(identifier: "oku", title: "Yazıyı Oku", options: [.foreground])
+        let snoozeAction = UNNotificationAction(identifier: "kapat", title: "Kapat", options: [])
+        
+        // Create category.
+        let category = UNNotificationCategory(identifier: "etkilesim", actions: [stopAction, snoozeAction], intentIdentifiers: [], options: [])
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.setNotificationCategories([category])
         
         
         UINavigationBar.appearance().barTintColor = UIColor.black
@@ -116,7 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
             print ("There was an error")
         }
     } */
-    
+ 
     func initialSlideNavigationController() {
         
         mCustomTabBarController = CustomTabBarController(nibName:"CustomTabBarController",bundle:nil)
@@ -124,6 +135,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
         mNavigationController = UINavigationController(rootViewController: mCustomTabBarController!)
         
     }
+    
+    
     
     func addSplashPage() {
         
@@ -154,7 +167,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
                 self.mSplashViewController!.view.removeFromSuperview()
             })
         })
-       
+        
         
     }
     
@@ -196,7 +209,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
             }
         }
     }
-
+    
     
     func onOSPermissionChanged(_ stateChanges: OSPermissionStateChanges!) {
         
@@ -208,20 +221,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
                 print("Notifications not accepted. You can turn them on later under your iOS settings.")
             }
         }
-        
+        // prints out all properties
+        print("PermissionStateChanges: \n\(String(describing: stateChanges))")
     }
     
     func onOSSubscriptionChanged(_ stateChanges: OSSubscriptionStateChanges!) {
         if !stateChanges.from.subscribed && stateChanges.to.subscribed {
             print("Subscribed for OneSignal push notifications!")
         }
-        
+        print("SubscriptionStateChange: \n\(String(describing: stateChanges))")
     }
+
+    
     
     func registerForPushNotifications() {
         UNUserNotificationCenter.current().delegate = self
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
             (granted, error) in
+            print("Permission granted: \(granted)")
+            // 1. Check if permission granted
             guard granted else { return }
             // 2. Attempt registration for remote notifications on the main thread
             DispatchQueue.main.async {
@@ -241,7 +259,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-
+        // 1. Print out error if PNs registration not successful
+        print("Failed to register for remote notifications with error: \(error)")
     }
     
     
@@ -265,89 +284,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
     
     
 }
+    
+    
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
-   
+
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
-        bildirimPostTitle = notification.request.content.title
-        bildirimPostBody = notification.request.content.body
-        
-        var postId = ""
-        
-        if let custom = notification.request.content.userInfo["custom"] as? NSDictionary{
-            if let a = custom["a"] as? NSDictionary{
-                if let id = a["post"] as? String{
-                    postId = id
-                }
-            }
-        }
-        
-        var postformat = ""
-        
-        if let customformat = notification.request.content.userInfo["custom"] as? NSDictionary{
-            if let a = customformat["a"] as? NSDictionary{
-                if let type = a["format"] as? String{
-                    postformat = type
-                }
-            }
-        }
-        
-        var resimUrl = ""
-        
-        if let att = notification.request.content.userInfo["att"] as? NSDictionary{
-            if let url = att["id"] as? String{
-                resimUrl = url
-            }
-        }
-        
-        var videoUrl = ""
-        
-        if let customvideo = notification.request.content.userInfo["custom"] as? NSDictionary{
-            if let a = customvideo["a"] as? NSDictionary{
-                if let vidurl = a["video"] as? String{
-                    videoUrl = vidurl
-                }
-            }
-        }
-        
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let myString = formatter.string(from: date)
-        let yourDate: Date? = formatter.date(from: myString)
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let updatedString = formatter.string(from: yourDate!)
-        
-        bildirimPostID = postId
-        bildirimPostFormat = postformat
-        bildirimPostVideoUrl = videoUrl
-        bildirimPostResimUrl = resimUrl
-        bildirimPostDate = updatedString
-        
-        
-        let context = mAppDelegate.persistentContainer.viewContext
-        let yeniBildirim = NSEntityDescription.insertNewObject(forEntityName: "Bildirimler", into: context)
-        
-        yeniBildirim.setValue(bildirimPostID, forKey: "postID")
-        yeniBildirim.setValue(bildirimPostBody, forKey: "postBody")
-        yeniBildirim.setValue(bildirimPostTitle, forKey: "postTitle")
-        yeniBildirim.setValue(bildirimPostFormat, forKey: "postFormat")
-        yeniBildirim.setValue(bildirimPostVideoUrl, forKey: "postVideoUrl")
-        yeniBildirim.setValue(bildirimPostResimUrl, forKey: "postResimUrl")
-        yeniBildirim.setValue(bildirimPostDate, forKey: "update")
-        
-        do {
-            try context.save()
-            print("kaydedildi")
-        } catch {
-            print("Failed saving")
-        }
-        
+        completionHandler([.alert, .sound])
     }
     
-
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
         bildirimPostTitle = response.notification.request.content.title
@@ -404,6 +351,24 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         bildirimPostVideoUrl = videoUrl
         bildirimPostResimUrl = resimUrl
         bildirimPostDate = updatedString
+        
+        let context = mAppDelegate.persistentContainer.viewContext
+        let yeniBildirim = NSEntityDescription.insertNewObject(forEntityName: "Bildirimler", into: context)
+        
+        yeniBildirim.setValue(bildirimPostID, forKey: "postID")
+        yeniBildirim.setValue(bildirimPostBody, forKey: "postBody")
+        yeniBildirim.setValue(bildirimPostTitle, forKey: "postTitle")
+        yeniBildirim.setValue(bildirimPostFormat, forKey: "postFormat")
+        yeniBildirim.setValue(bildirimPostVideoUrl, forKey: "postVideoUrl")
+        yeniBildirim.setValue(bildirimPostResimUrl, forKey: "postResimUrl")
+        yeniBildirim.setValue(bildirimPostDate, forKey: "update")
+        
+        do {
+            try context.save()
+            print("kaydedildi")
+        } catch {
+            print("Failed saving")
+        }
     
         if response.actionIdentifier == "oku" {
             
@@ -453,16 +418,16 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             mDetayViewController.yaziFormat = formatItem
             mDetayViewController.videoLink = videoItem
             
-             mDetayViewController.showBackButton = true
+            mDetayViewController.showBackButton = true
             let newNavController = UINavigationController.init(rootViewController: mDetayViewController)
-            if Int(postId) != nil{
-                nav.present(newNavController, animated: true, completion: {})
-            }
+            nav.present(newNavController, animated: true, completion:{
+                
+            })
             
             
-            }
+        }
         
         completionHandler()
     }
-
+    
 }
