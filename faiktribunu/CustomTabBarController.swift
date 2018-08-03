@@ -67,7 +67,7 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
                 if viewController == viewControllers[0] {
                     if let nav = viewController as? UINavigationController {
                         if let vc = nav.viewControllers.last as? ViewController{
-                            let childs = vc.children
+                            let childs = vc.childViewControllers
                             
                             for child in childs{
                                 if let yazilar = child as? YazilarViewController{

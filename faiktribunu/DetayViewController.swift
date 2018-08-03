@@ -40,8 +40,8 @@ class DetayViewController: UIViewController {
         super.viewDidLoad()
     
         let share = UIButton(type: .custom)
-        share.setImage(UIImage(named: "share"), for: UIControl.State.normal)
-        share.addTarget(self, action: #selector(self.shareMethod), for: UIControl.Event.touchUpInside)
+        share.setImage(UIImage(named: "share"), for: UIControlState.normal)
+        share.addTarget(self, action: #selector(self.shareMethod), for: UIControlEvents.touchUpInside)
         let sharebtn = UIBarButtonItem(customView: share)
         
         share.widthAnchor.constraint(equalToConstant: 28.0).isActive = true
@@ -170,7 +170,7 @@ class DetayViewController: UIViewController {
         effectView.layer.cornerRadius = 15
         effectView.layer.masksToBounds = true
         
-        activityIndicator = UIActivityIndicatorView(style: .white)
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
         activityIndicator.startAnimating()
         
@@ -190,7 +190,7 @@ class DetayViewController: UIViewController {
         buttonBack.widthAnchor.constraint(equalToConstant: 48.0).isActive = true
         buttonBack.heightAnchor.constraint(equalToConstant: 36.0).isActive = true
         
-        buttonBack.addTarget(self, action: #selector(self.backTouch), for: UIControl.Event.touchUpInside)
+        buttonBack.addTarget(self, action: #selector(self.backTouch), for: UIControlEvents.touchUpInside)
         
         let barButton = UIBarButtonItem.init(customView: buttonBack)
         

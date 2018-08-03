@@ -38,17 +38,17 @@ class ViewController: UIViewController {
         
         segmentedControl.selectedSegmentIndex = 0
         
-        segmentedControl.addTarget(self, action: #selector(ViewController.segmentSelected(sender:)), for: UIControl.Event.valueChanged)
+        segmentedControl.addTarget(self, action: #selector(ViewController.segmentSelected(sender:)), for: UIControlEvents.valueChanged)
         
         
         if let mYazilarViewController = YazilarViewController(nibName:"YazilarViewController", bundle: nil) as? YazilarViewController {
-            addChild(mYazilarViewController)
+            addChildViewController(mYazilarViewController)
             mYazilarViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
             if let aView = mYazilarViewController.view {
                 aView.tag = 101
                 self.mViewMain.addSubview(aView)
             }
-            mYazilarViewController.didMove(toParent: self)
+            mYazilarViewController.didMove(toParentViewController: self)
         }
         
     }
@@ -63,74 +63,74 @@ class ViewController: UIViewController {
         switch sender.selectedSegmentIndex {
         case 0:
             if let mYazilarViewController = YazilarViewController(nibName:"YazilarViewController", bundle: nil) as? YazilarViewController {
-                addChild(mYazilarViewController)
+                addChildViewController(mYazilarViewController)
                 mYazilarViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
                 if let aView = mYazilarViewController.view {
                     aView.tag = 101
                     self.mViewMain.addSubview(aView)
                 }
-                mYazilarViewController.didMove(toParent: self)
+                mYazilarViewController.didMove(toParentViewController: self)
             }
         case 1:
             if let gGundemViewController = GundemViewController(nibName:"GundemViewController", bundle: nil) as? GundemViewController {
-                addChild(gGundemViewController)
+                addChildViewController(gGundemViewController)
                 gGundemViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
                 if let aView = gGundemViewController.view {
                     aView.tag = 101
                     self.mViewMain.addSubview(aView)
                 }
-                gGundemViewController.didMove(toParent: self)
+                gGundemViewController.didMove(toParentViewController: self)
             }
         case 2:
             if let vVideolarViewController = VideolarViewController(nibName:"VideolarViewController", bundle: nil) as? VideolarViewController {
-                addChild(vVideolarViewController)
+                addChildViewController(vVideolarViewController)
                 vVideolarViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
                 if let aView = vVideolarViewController.view {
                     aView.tag = 101
                     self.mViewMain.addSubview(aView)
                 }
-                vVideolarViewController.didMove(toParent: self)
+                vVideolarViewController.didMove(toParentViewController: self)
             }
         case 3:
             if let tTarihViewController = TarihViewController(nibName:"TarihViewController", bundle: nil) as? TarihViewController {
-                addChild(tTarihViewController)
+                addChildViewController(tTarihViewController)
                 tTarihViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
                 if let aView = tTarihViewController.view {
                     aView.tag = 101
                     self.mViewMain.addSubview(aView)
                 }
-                tTarihViewController.didMove(toParent: self)
+                tTarihViewController.didMove(toParentViewController: self)
             }
         case 4:
             if let sSoyleyisiViewController = SoyleyisiViewController(nibName:"SoyleyisiViewController", bundle: nil) as? SoyleyisiViewController {
-                addChild(sSoyleyisiViewController)
+                addChildViewController(sSoyleyisiViewController)
                 sSoyleyisiViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
                 if let aView = sSoyleyisiViewController.view {
                     aView.tag = 101
                     self.mViewMain.addSubview(aView)
                 }
-                sSoyleyisiViewController.didMove(toParent: self)
+                sSoyleyisiViewController.didMove(toParentViewController: self)
             }
         case 5:
             if let kKonuklarViewController = KonuklarViewController(nibName:"KonuklarViewController", bundle: nil) as? KonuklarViewController {
-                addChild(kKonuklarViewController)
+                addChildViewController(kKonuklarViewController)
                 kKonuklarViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
                 if let aView = kKonuklarViewController.view {
                     aView.tag = 101
                     self.mViewMain.addSubview(aView)
                 }
-                kKonuklarViewController.didMove(toParent: self)
+                kKonuklarViewController.didMove(toParentViewController: self)
             }
             
         default:
             if let mYazilarViewController = YazilarViewController(nibName:"YazilarViewController", bundle: nil) as? YazilarViewController {
-                addChild(mYazilarViewController)
+                addChildViewController(mYazilarViewController)
                 mYazilarViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
                 if let aView = mYazilarViewController.view {
                     aView.tag = 101
                     self.mViewMain.addSubview(aView)
                 }
-                mYazilarViewController.didMove(toParent: self)
+                mYazilarViewController.didMove(toParentViewController: self)
             }
             
         }
@@ -150,8 +150,8 @@ class ViewController: UIViewController {
        
         
         let bjktv = UIButton(type: .custom)
-        bjktv.setImage(UIImage(named: "television"), for: UIControl.State.normal)
-        bjktv.addTarget(self, action: #selector(self.bjkMethod), for: UIControl.Event.touchUpInside)
+        bjktv.setImage(UIImage(named: "television"), for: UIControlState.normal)
+        bjktv.addTarget(self, action: #selector(self.bjkMethod), for: UIControlEvents.touchUpInside)
         let bjktvbtn = UIBarButtonItem(customView: bjktv)
         
         bjktv.widthAnchor.constraint(equalToConstant: 28.0).isActive = true
@@ -161,8 +161,8 @@ class ViewController: UIViewController {
         self.navigationItem.setRightBarButtonItems([bjktvbtn], animated: true)
         
         let menu = UIButton(type: .custom)
-        menu.setImage(UIImage(named: "bjk"), for: UIControl.State.normal)
-        menu.addTarget(self, action: #selector(self.menuMethod), for: UIControl.Event.touchUpInside)
+        menu.setImage(UIImage(named: "bjk"), for: UIControlState.normal)
+        menu.addTarget(self, action: #selector(self.menuMethod), for: UIControlEvents.touchUpInside)
         let menubtn = UIBarButtonItem(customView: menu)
         
         menu.widthAnchor.constraint(equalToConstant: 26.0).isActive = true

@@ -27,25 +27,25 @@ class DigerleriViewController: QuickTableViewController {
         
         mAppDelegate.mNavigationController?.setNavigationBarHidden(true, animated: false)
 
-        let paylas = #imageLiteral(resourceName: "paylas")
-        let labters = #imageLiteral(resourceName: "labters")
-        let faik = #imageLiteral(resourceName: "faikdiger")
-        let bildirimler = #imageLiteral(resourceName: "bildirimler")
-        let sozlesme = #imageLiteral(resourceName: "sozlesme")
+        let paylas = Icon.init(image: UIImage(named: "paylas")!)
+        let labters = Icon.init(image: UIImage(named: "labters")!)
+        let faik = Icon.init(image: UIImage(named: "faikdiger")!)
+        let bildirimler = Icon.init(image: UIImage(named: "bildirimler")!)
+        let sozlesme = Icon.init(image: UIImage(named: "sozlesme")!)
         
         UserDefaults.standard.register(defaults: ["bildirim" : true])
         let switches = UserDefaults.standard.bool(forKey: "bildirim")
         
         tableContents = [
             Section(title: "KİŞİSEL AYARLAR", rows: [
-                SwitchRow(title: "Bildirimler", switchValue: switches, icon: .image(bildirimler), action: didToggleSwitch()),
+                SwitchRow(title: "Bildirimler", switchValue: switches, icon: bildirimler, action: didToggleSwitch()),
                 ]),
             
             Section(title: "HAKKINDA", rows: [
-                NavigationRow(title: "Uygulamayı Paylaş", subtitle: .none, icon: .image(paylas), action: showShare()),
-                NavigationRow(title: "Gizlilik Sözleşmesi", subtitle: .rightAligned("Oku"), icon: .image(sozlesme), action: showDetail()),
-                NavigationRow(title: "Yapım : Labters.com", subtitle: .none, icon: .image(labters), action: showLabters()),
-                NavigationRow(title: "Uygulama Hakkında", subtitle: .none, icon: .image(faik)),
+                NavigationRow(title: "Uygulamayı Paylaş", subtitle: .none, icon: paylas, action: showShare()),
+                NavigationRow(title: "Gizlilik Sözleşmesi", subtitle: .rightAligned("Oku"), icon: sozlesme, action: showDetail()),
+                NavigationRow(title: "Yapım : Labters.com", subtitle: .none, icon: labters, action: showLabters()),
+                NavigationRow(title: "Uygulama Hakkında", subtitle: .none, icon: faik),
                 NavigationRow(title: "v 1.0", subtitle: .leftAligned("sürümünü kullanıyorsunuz."))
                 ], footer: "Uygulamamızı daha iyi hale getirmek için güncellemeler yayınlayacağız, lütfen güncellemeleri yapmaktan çekinmeyiniz 🤗"),
  
@@ -61,19 +61,11 @@ class DigerleriViewController: QuickTableViewController {
         return cell
     }
     
-    // MARK: - Private Methods
-    private func didToggleSelection() -> (Row) -> Void {
-        return { [weak self] in
-            if let option = $0 as? OptionRowCompatible {
-                let state = "\(option.title) is " + (option.isSelected ? "selected" : "deselected")
-                self?.showDebuggingText(state)
-            }
-        }
-    }
+
     
     private func didToggleSwitch() -> (Row) -> Void {
         return { [weak self] in
-            if let row = $0 as? SwitchRowCompatible {
+            if let row = $0 as? SwitchRow {
                 let state = "\(row.title) = \(row.switchValue)"
                 self?.showDebuggingText(state)
                 
@@ -140,8 +132,8 @@ class DigerleriViewController: QuickTableViewController {
         
         
         let bjktv = UIButton(type: .custom)
-        bjktv.setImage(UIImage(named: "television"), for: UIControl.State.normal)
-        bjktv.addTarget(self, action: #selector(self.bjkMethod), for: UIControl.Event.touchUpInside)
+        bjktv.setImage(UIImage(named: "television"), for: UIControlState.normal)
+        bjktv.addTarget(self, action: #selector(self.bjkMethod), for: UIControlEvents.touchUpInside)
         let bjktvbtn = UIBarButtonItem(customView: bjktv)
         
         bjktv.widthAnchor.constraint(equalToConstant: 28.0).isActive = true
@@ -151,8 +143,8 @@ class DigerleriViewController: QuickTableViewController {
         self.navigationItem.setRightBarButtonItems([bjktvbtn], animated: true)
         
         let menu = UIButton(type: .custom)
-        menu.setImage(UIImage(named: "bjk"), for: UIControl.State.normal)
-        menu.addTarget(self, action: #selector(self.menuMethod), for: UIControl.Event.touchUpInside)
+        menu.setImage(UIImage(named: "bjk"), for: UIControlState.normal)
+        menu.addTarget(self, action: #selector(self.menuMethod), for: UIControlEvents.touchUpInside)
         let menubtn = UIBarButtonItem(customView: menu)
         
         menu.widthAnchor.constraint(equalToConstant: 26.0).isActive = true

@@ -8,7 +8,7 @@ PODS:
   - Fabric (1.7.9)
   - ObjectMapper (3.3.0)
   - OneSignal (2.8.5)
-  - QuickTableViewController (0.9.1)
+  - QuickTableViewController (0.8.4)
   - ScrollableSegmentedControl (1.3.0)
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
@@ -23,7 +23,7 @@ DEPENDENCIES:
   - Fabric
   - OneSignal (< 3.0, >= 2.5.2)
   - OneSignal (< 3.0, >= 2.6.2)
-  - QuickTableViewController
+  - QuickTableViewController (~> 0.8.0)
   - ScrollableSegmentedControl (~> 1.3.0)
   - SDWebImage
   - SVPullToRefresh
@@ -50,12 +50,12 @@ SPEC CHECKSUMS:
   Fabric: a2917d3895e4c1569b9c3170de7320ea1b1e6661
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   OneSignal: 42dae269c7eca517aee34963820e1eb922390031
-  QuickTableViewController: 5cbe91041c00b3ef4cfc405e3fad92b1fb63d6d2
+  QuickTableViewController: 5daf26dac53985353f8765cae1258087f9bcc74b
   ScrollableSegmentedControl: a90ae91537fd670a46b177301d035223e3bd149e
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: d83ed96c97cffa110cf6908a13c3b8fd23776b1b
+PODFILE CHECKSUM: 4a053e0a90457df4e6d53375fce07fe50d360a1c
 
 COCOAPODS: 1.5.3

@@ -270,7 +270,7 @@ class GundemViewController: UIViewController,UICollectionViewDelegate,UICollecti
             effectView.layer.cornerRadius = 15
             effectView.layer.masksToBounds = true
             
-            activityIndicator = UIActivityIndicatorView(style: .white)
+            activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
             activityIndicator.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
             activityIndicator.startAnimating()
             

@@ -9,7 +9,7 @@ target 'faiktribunu' do
   pod 'SwiftyJSON'
   pod 'SVPullToRefresh'
   pod 'SDWebImage'
-  pod 'QuickTableViewController'
+  pod 'QuickTableViewController', '~> 0.8.0'
   pod 'OneSignal', '>= 2.5.2', '< 3.0'
   pod 'Fabric'
   pod 'Crashlytics'
