@@ -138,7 +138,29 @@ class BildirimViewController: UIViewController, UITableViewDelegate, UITableView
             
             print("Failed")
         }
-  
+        
+        if baslikStr.count < 1{
+            mTableView.isHidden = true
+            
+            let headerView = UIView()
+            let headerText = UILabel()
+            headerText.frame = CGRect(x: 0, y: view.frame.height/2 - 100, width: view.frame.width, height: 35)
+            headerText.text = "Henüz bildiriminiz bulunmamaktadır."
+            headerText.textColor = UIColor.gray
+            headerText.font = UIFont.boldSystemFont(ofSize: 18.0)
+            headerText.textAlignment = .center
+            headerView.addSubview(headerText)
+            headerView.backgroundColor = UIColor.groupTableViewBackground
+            headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+            
+            view.addSubview(headerView)
+ 
+            
+        }else {
+           mTableView.isHidden = false
+        }
+            
+            
         }
 
     func deleteAllRecords() {
@@ -156,9 +178,12 @@ class BildirimViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return baslikStr.count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BildirimlerTableViewCell", for: indexPath) as! BildirimlerTableViewCell
@@ -190,7 +215,7 @@ class BildirimViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
 
-
+    
     func setNavBarItems(){
         
         let logoContainer = UIView(frame: CGRect(x: 0, y: 0, width: 144, height: 32))
