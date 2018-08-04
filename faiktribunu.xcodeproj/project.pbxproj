@@ -31,6 +31,7 @@
 		04569C1521124E6C0021FAE6 /* KonuklarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04569C1321124E6C0021FAE6 /* KonuklarCollectionViewCell.swift */; };
 		04569C1621124E6C0021FAE6 /* KonuklarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04569C1421124E6C0021FAE6 /* KonuklarCollectionViewCell.xib */; };
 		04B21C1B21064E29007695DC /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 04B21C1421064E29007695DC /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		04C74DA221165FF0004854BB /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75C6A6BD19E3F402B24B2A5 /* Pods_OneSignalNotificationServiceExtension.framework */; };
 		04CC739721026FB300197E7E /* BetterImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC739621026FB300197E7E /* BetterImage.swift */; };
 		04CC73992102705E00197E7E /* Sizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC73982102705E00197E7E /* Sizes.swift */; };
 		04CC739B210270E100197E7E /* Medium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC739A210270E100197E7E /* Medium.swift */; };
@@ -200,6 +201,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04C74DA221165FF0004854BB /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */,
 				B17C46DBE595DDAF19284316 /* Pods_faiktribunu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
