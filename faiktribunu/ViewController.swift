@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         
         if let mYazilarViewController = YazilarViewController(nibName:"YazilarViewController", bundle: nil) as? YazilarViewController {
             addChildViewController(mYazilarViewController)
-            mYazilarViewController.view.frame = CGRect.init(x: 0, y: 0, width: StaticVariables.screenWidth, height: self.mViewMain.bounds.height)
+            mYazilarViewController.view.frame = CGRect.init(x: 0, y: 0, width: self.mViewMain.bounds.width, height: self.mViewMain.bounds.height)
             if let aView = mYazilarViewController.view {
                 aView.tag = 101
                 self.mViewMain.addSubview(aView)

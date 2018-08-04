@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,7 +16,7 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="i5M-Pr-FkT">
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -35,6 +36,7 @@
                 <constraint firstItem="jZ0-zy-7IR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="emc-TW-HDd"/>
                 <constraint firstItem="jZ0-zy-7IR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fZK-Mz-5hq"/>
             </constraints>
+            <viewLayoutGuide key="safeArea" id="HWo-i2-pcS"/>
             <point key="canvasLocation" x="33.5" y="102.5"/>
         </view>
     </objects>
