@@ -1,25 +1,23 @@
 //
-//  Medium.swift
+//  cList.swift
 //  faiktribunu
 //
-//  Created by Mac on 20.07.2018.
-//  Copyright © 2018 Halil İbrahim YÜCE. All rights reserved.
+//  Created by Mac on 21.02.2019.
+//  Copyright © 2019 Halil İbrahim YÜCE. All rights reserved.
 //
 
 import Foundation
 import ObjectMapper
 
-public class Medium: BaseItem {
+public class cList: BaseItem {
     
     // MARK: Declaration for string constants to be used to decode and also serialize.
     private struct SerializationKeys {
-        static let medium = "medium"
-        static let large = "large"
+        static let lst = "lst"
     }
     
     // MARK: Properties
-    public var medium: Source?
-    public var large: Source?
+    public var lst: [Categories]?
     
     // MARK: ObjectMapper Initializers
     /// Map a JSON object to this class using ObjectMapper.
@@ -30,8 +28,7 @@ public class Medium: BaseItem {
     /// - parameter map: A mapping from ObjectMapper.
     public override func mapping(map: Map) {
         super.mapping(map: map)
-        medium <- map[SerializationKeys.medium]
-        large <- map[SerializationKeys.large]
+        lst <- map[SerializationKeys.lst]
     }
     
     /// Generates description of the object in the form of a NSDictionary.
@@ -39,11 +36,9 @@ public class Medium: BaseItem {
     /// - returns: A Key value pair containing all valid values in the object.
     public override func dictionaryRepresentation() -> [String: AnyObject] {
         var dictionary: [String: Any] = [:]
-        if let value = medium { dictionary[SerializationKeys.medium] = value }
-        if let value = large { dictionary[SerializationKeys.large] = value }
+        if let value = lst { dictionary[SerializationKeys.lst] = value }
         return dictionary as [String : AnyObject] as [String : AnyObject]
     }
     
 }
-
 

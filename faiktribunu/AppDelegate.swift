@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
     var mCustomTabBarController: CustomTabBarController?
     
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
               Fabric.with([Crashlytics.self])
@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
         
         UINavigationBar.appearance().barTintColor = UIColor.black
         UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         // Sets shadow (line below the bar) to a blank image
         UINavigationBar.appearance().shadowImage = UIImage()
@@ -145,11 +145,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
         self.window!.rootViewController!.view.addSubview(mSplashViewController!.view)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-            let options: UIViewAnimationOptions = [.allowUserInteraction, .curveEaseInOut]
+            let options: UIView.AnimationOptions = [.allowUserInteraction, .curveEaseInOut]
             UIView.transition(with: self.window!, duration: 0.50, options: options, animations: {() in
                 
                 UIView.animate(withDuration: 0.75, animations: { () -> Void in
-                    UIView.setAnimationCurve(UIViewAnimationCurve.easeInOut)
+                    UIView.setAnimationCurve(UIView.AnimationCurve.easeInOut)
                     
                     self.mCustomTabBarController = CustomTabBarController(nibName: "CustomTabBarController",bundle:nil)
                     

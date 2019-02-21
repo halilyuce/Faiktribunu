@@ -13,14 +13,18 @@ import ObjectMapper
 import WebKit
 import AVKit
 import Crashlytics
+import ParallaxHeader
+import SnapKit
 
-class DetayViewController: UIViewController {
-    
-    @IBOutlet weak var detayIcerik: WKWebView!
+class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+    @IBOutlet weak var tableView: UITableView!
     
     var resimStr = String()
+    var resimUrl = String()
     var resimShare = String()
     var baslik = String()
+    var content = String()
     var base = [Base]()
     var detayBase = [Title]()
     var resBase = [ResBase]()
@@ -36,38 +40,106 @@ class DetayViewController: UIViewController {
     var strLabel = UILabel()
     let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+        UIApplication.shared.keyWindow?.windowLevel = UIWindow.Level.statusBar
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+        UIApplication.shared.keyWindow?.windowLevel = UIWindow.Level.normal
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        self.tableView.register(ContentCell.self, forCellReuseIdentifier: "ContentCell")
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         let share = UIButton(type: .custom)
-        share.setImage(UIImage(named: "share"), for: UIControlState.normal)
-        share.addTarget(self, action: #selector(self.shareMethod), for: UIControlEvents.touchUpInside)
-        let sharebtn = UIBarButtonItem(customView: share)
+        share.setImage(UIImage(named: "share"), for: UIControl.State.normal)
+        share.addTarget(self, action: #selector(self.shareMethod), for: UIControl.Event.touchUpInside)
         
         share.widthAnchor.constraint(equalToConstant: 28.0).isActive = true
         share.heightAnchor.constraint(equalToConstant: 28.0).isActive = true
         
-        
-        self.navigationItem.setRightBarButtonItems([sharebtn], animated: true)
-        
-        if showBackButton{
-            self.setBackButton()
+        loadPost{ () -> () in
+            
+            
+            let imageView = UIImageView()
+            imageView.sd_setImage(with: URL(string: self.resimStr), completed: nil)
+            imageView.contentMode = .scaleAspectFill
+            
+            imageView.blurView.setup(style: UIBlurEffect.Style.dark, alpha: 0).enable()
+            
+            let buttonBack = UIButton()
+            buttonBack.setTitle("< Geri", for: .normal)
+            buttonBack.tintColor = UIColor.white
+            buttonBack.isUserInteractionEnabled = true
+            buttonBack.isEnabled = true
+            buttonBack.setTitleColor(UIColor.white, for: .normal)
+            buttonBack.translatesAutoresizingMaskIntoConstraints = false
+            
+            imageView.addSubview(buttonBack)
+            
+            buttonBack.leftAnchor.constraint(equalTo: imageView.leftAnchor, constant: 15).isActive = true
+            buttonBack.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 15).isActive = true
+            buttonBack.widthAnchor.constraint(equalToConstant: 128)
+            buttonBack.heightAnchor.constraint(equalToConstant: 36)
+            
+            self.tableView.parallaxHeader.view = imageView
+            self.tableView.parallaxHeader.height = 240
+            self.tableView.parallaxHeader.minimumHeight = 70
+            self.tableView.parallaxHeader.mode = .centerFill
+            self.tableView.parallaxHeader.parallaxHeaderDidScrollHandler = { parallaxHeader in
+                //update alpha of blur view on top of image view
+                parallaxHeader.view.blurView.alpha = 1 - parallaxHeader.progress
+            }
+            
+            // Label for vibrant text
+            let vibrantLabel = UILabel()
+            vibrantLabel.text = self.baslik
+            vibrantLabel.font = UIFont.systemFont(ofSize: 16.0)
+            vibrantLabel.numberOfLines = 2
+            vibrantLabel.sizeToFit()
+            vibrantLabel.textAlignment = .center
+            imageView.blurView.vibrancyContentView?.addSubview(vibrantLabel)
+            //add constraints using SnapKit library
+            vibrantLabel.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+            
+            
+            buttonBack.addTarget(self, action: #selector(self.backTouch), for: UIControl.Event.touchUpInside)
+            
         }
+        
+        
         
         self.activityIndicator("Yükleniyor")
         
+    }
+    
+    func loadPost(handleComplete:@escaping (()->())){
+        
         let detayUrl = StaticVariables.baseUrl + "posts/\(yaziNumara)"
-        Alamofire.request(detayUrl, method: .get, parameters: nil)
+        AF.request(detayUrl, method: .get, parameters: nil)
             .responseString { response in
                 switch(response.result) {
                 case .success(_):
                     if let ddata = response.data, let dutf8Text = String(data: ddata, encoding: .utf8) {
                         if let detay = Mapper<DetayList>().map(JSONString: dutf8Text){
-                                    self.title = detay.title?.rendered?.html2String
-                            self.baslik.append((detay.title?.rendered)!)
-                                    self.resimStr = "\(detay.media!)"
                             
-                            let resUrl = URL(string: StaticVariables.baseUrl + StaticVariables.resimUrl + self.resimStr)!
+                            self.baslik.append((detay.title?.rendered?.html2String)!)
+                            
+                            self.resimStr = (detay.betterimage?.details?.sizes?.large?.source)!
                             
                             Answers.logContentView(withName: self.baslik,
                                                    contentType: "yazi",
@@ -75,65 +147,58 @@ class DetayViewController: UIViewController {
                                                    customAttributes: [:])
                             
                             
-                            Alamofire.request(resUrl, method: .get, parameters: nil)
-                                .responseString { mresponse in
-                                    
-                                    switch(mresponse.result) {
-                                    case .success(_):
-                                        
-                                        if let mdata = mresponse.data, let mutf8Text = String(data: mdata, encoding: .utf8) {
-                                            
-                                            if let guid = Mapper<ResList>().map(JSONString: mutf8Text){
-                                                
-                                                if self.yaziFormat == "video" {
-                                                    
-                                                    self.detayIcerik.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <style>body{font-size:18px} .wp-caption{max-width:100%;background:#eee;padding: 5px;} .wp-caption img{max-width:100%;height:auto;width: 100%;} .entry-content img {max-width:100%;height:auto;} img{display:inline; height:auto; max-width:100%;} embed, iframe, object {max-width:100%;height:225px;}</style> <iframe width=\"100%\" height=\"225\" src=\"https://www.youtube.com/embed/\(self.videoLink)\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe> <br> <h3> \((detay.title?.rendered?.html2String)!) </h3>" + (detay.content?.rendered)!, baseURL: nil)
-                                                    
-                                                    
-                                                    
-                                                } else{
-                                                   
-                                                    self.detayIcerik.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <style>body{font-size:18px} .wp-caption{max-width:100%;background:#eee;padding: 5px;} .wp-caption img{max-width:100%;height:auto;width: 100%;} .entry-content img {max-width:100%;height:auto;} img{display:inline; height:auto; max-width:100%;} embed, iframe, object {max-width:100%;height:225px;}</style> <img src=\"\((guid.guid?.rendered)!)\"> <br> <h3> \((detay.title?.rendered?.html2String)!) </h3>" + (detay.content?.rendered)!, baseURL: nil)
-                                                    
-                                                }
-                                                
-                                                self.effectView.removeFromSuperview()
-                                                
-                                            }
-                                            else{
-                                                print("hatalı json")
-                                                
-                                            }
-                                            
-                                        }
-                                        
-                                    case .failure(_):
-                                        print("Error message:\(String(describing: response.result.error))")
-                                        break
-                                    }
-                                    
+                            if self.yaziFormat == "video" {
+                                
+                                self.content = (detay.content?.rendered)!
+                                //self.videoLink
+                                
+                                
+                            } else{
+                                
+                                self.content = (detay.content?.rendered)!
+                                
                             }
                             
+                            self.effectView.removeFromSuperview()
+                            self.tableView.reloadData()
                             
-                            }
+                            
                         }
-                        else{
-                            print("hatalı json")
-                        }
+                    }
+                    else{
+                        print("hatalı json")
+                    }
                 case .failure(_):
                     print("Error message:\(String(describing: response.result.error))")
                     break
                 }
+                handleComplete()
         }
         
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ContentCell", for: indexPath) as! ContentCell
+        cell.body.text = content
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let approximateWidthOfBodyTextView = UIScreen.main.bounds.width - 30
         
+        let bodySize = CGSize(width: approximateWidthOfBodyTextView, height:1000)
+        let bodyAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]
         
-
+        let estimatedBodyFrame = NSString(string: content).boundingRect(with: bodySize, options: . usesLineFragmentOrigin, attributes: bodyAttributes, context: nil)
+        
+        return estimatedBodyFrame.height + 32
     }
     
     
-    
-
     @objc func shareMethod(){
 
         let string: String = baslik
@@ -154,6 +219,11 @@ class DetayViewController: UIViewController {
     
     
     
+    @objc func backTouch(){
+        print("back")
+        self.navigationController?.dismiss(animated: true, completion: nil)
+    }
+    
     
     func activityIndicator(_ title: String) {
         
@@ -170,7 +240,7 @@ class DetayViewController: UIViewController {
         effectView.layer.cornerRadius = 15
         effectView.layer.masksToBounds = true
         
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        activityIndicator = UIActivityIndicatorView(style: .white)
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
         activityIndicator.startAnimating()
         
@@ -179,29 +249,48 @@ class DetayViewController: UIViewController {
         view.addSubview(effectView)
     }
     
-    func setBackButton(){
-        
-        let buttonBack = UIButton()
-        buttonBack.setTitle("X", for: .normal)
-        buttonBack.frame = CGRect.init(x: 0, y: 0, width: 48, height: 36)
-        buttonBack.tintColor = UIColor.white
-        buttonBack.setTitleColor(UIColor.white, for: .normal)
-        
-        buttonBack.widthAnchor.constraint(equalToConstant: 48.0).isActive = true
-        buttonBack.heightAnchor.constraint(equalToConstant: 36.0).isActive = true
-        
-        buttonBack.addTarget(self, action: #selector(self.backTouch), for: UIControlEvents.touchUpInside)
-        
-        let barButton = UIBarButtonItem.init(customView: buttonBack)
-        
-        self.navigationItem.leftBarButtonItem = barButton
-        
-    }
-    
-    @objc func backTouch(){
-        self.navigationController?.dismiss(animated: true, completion: nil)
-    }
 
     
 
+}
+
+
+class ContentCell: UITableViewCell {
+    
+    let body: UILabel = {
+        let name = UILabel()
+        name.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        name.numberOfLines = 0
+        name.textColor = UIColor.black
+        name.translatesAutoresizingMaskIntoConstraints = false
+        return name
+    }()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        addViews()
+        setupViews()
+    }
+    
+    
+    func setupViews(){
+        
+    }
+    
+    func addViews(){
+        backgroundColor = UIColor.white
+        
+        addSubview(body)
+        
+        body.leftAnchor.constraint(equalTo: leftAnchor, constant: 15).isActive = true
+        body.rightAnchor.constraint(equalTo: rightAnchor, constant: -15).isActive = true
+        body.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+        body.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 10).isActive = true
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }

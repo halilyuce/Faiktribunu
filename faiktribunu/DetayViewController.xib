@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetayViewController" customModule="faiktribunu" customModuleProvider="target">
             <connections>
-                <outlet property="detayIcerik" destination="jZ0-zy-7IR" id="aiZ-tU-ypy"/>
+                <outlet property="tableView" destination="dbu-lG-3hs" id="ulC-Ff-M9I"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,24 +21,24 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <wkWebView contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZ0-zy-7IR">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dbu-lG-3hs">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <wkWebViewConfiguration key="configuration">
-                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                        <wkPreferences key="preferences"/>
-                    </wkWebViewConfiguration>
-                </wkWebView>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="TUN-aA-clP"/>
+                        <outlet property="delegate" destination="-1" id="7PL-wB-alN"/>
+                    </connections>
+                </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="jZ0-zy-7IR" secondAttribute="trailing" id="9pA-Ak-XmS"/>
-                <constraint firstAttribute="bottom" secondItem="jZ0-zy-7IR" secondAttribute="bottom" id="RV4-fk-xM1"/>
-                <constraint firstItem="jZ0-zy-7IR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="emc-TW-HDd"/>
-                <constraint firstItem="jZ0-zy-7IR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fZK-Mz-5hq"/>
+                <constraint firstItem="dbu-lG-3hs" firstAttribute="leading" secondItem="HWo-i2-pcS" secondAttribute="leading" id="FRS-0a-cAi"/>
+                <constraint firstItem="dbu-lG-3hs" firstAttribute="trailing" secondItem="HWo-i2-pcS" secondAttribute="trailing" id="KT4-Aj-Zby"/>
+                <constraint firstItem="dbu-lG-3hs" firstAttribute="bottom" secondItem="HWo-i2-pcS" secondAttribute="bottom" id="ZBV-FJ-0zq"/>
+                <constraint firstItem="dbu-lG-3hs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="jca-j6-hJN"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="HWo-i2-pcS"/>
-            <point key="canvasLocation" x="33.5" y="102.5"/>
+            <point key="canvasLocation" x="32.799999999999997" y="102.09895052473765"/>
         </view>
     </objects>
 </document>

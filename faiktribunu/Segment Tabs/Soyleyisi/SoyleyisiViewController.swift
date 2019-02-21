@@ -66,7 +66,7 @@ class SoyleyisiViewController: UIViewController,UICollectionViewDelegate,UIColle
             self.loadMore += 1
             let urladd = "https://www.faiktribunu.com/index.php/wp-json/wp/v2/posts?categories=6&page=" + "\(self.loadMore)"
             
-            Alamofire.request(urladd, method: .get, parameters: nil)
+            AF.request(urladd, method: .get, parameters: nil)
                 .responseString { response in
                     
                     switch(response.result) {
@@ -149,7 +149,7 @@ class SoyleyisiViewController: UIViewController,UICollectionViewDelegate,UIColle
         
         let url = StaticVariables.baseUrl + "posts?categories=6"
         
-        Alamofire.request(url, method: .get, parameters: nil)
+        AF.request(url, method: .get, parameters: nil)
             .responseString { response in
                 
                 switch(response.result) {
@@ -237,7 +237,6 @@ class SoyleyisiViewController: UIViewController,UICollectionViewDelegate,UIColle
             cell.layer.shadowRadius = 12
             cell.layer.cornerRadius = 5
             cell.haberGorseli.layer.cornerRadius = 5
-            cell.haberGorseli.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
             cell.layer.masksToBounds = false
         }
         return cell
@@ -272,7 +271,7 @@ class SoyleyisiViewController: UIViewController,UICollectionViewDelegate,UIColle
         effectView.layer.cornerRadius = 15
         effectView.layer.masksToBounds = true
         
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        activityIndicator = UIActivityIndicatorView(style: .white)
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
         activityIndicator.startAnimating()
         

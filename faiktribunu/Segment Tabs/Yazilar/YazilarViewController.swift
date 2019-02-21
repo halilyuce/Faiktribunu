@@ -66,7 +66,7 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
             
             let urladd = "https://www.faiktribunu.com/index.php/wp-json/wp/v2/posts?page=" + "\(self.loadMore)"
             
-            Alamofire.request(urladd, method: .get, parameters: nil)
+            AF.request(urladd, method: .get, parameters: nil)
                 .responseString { response in
                     
                     switch(response.result) {
@@ -150,7 +150,7 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
         
         let url = "https://www.faiktribunu.com/index.php/wp-json/wp/v2/posts/"
         
-        Alamofire.request(url, method: .get, parameters: nil)
+        AF.request(url, method: .get, parameters: nil)
             .responseString { response in
                 
                 switch(response.result) {
@@ -239,7 +239,6 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
             cell.layer.shadowRadius = 12
             cell.layer.cornerRadius = 5
             cell.haberGorseli.layer.cornerRadius = 5
-            cell.haberGorseli.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
             cell.layer.masksToBounds = false
         }
         
@@ -290,7 +289,7 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
         effectView.layer.cornerRadius = 15
         effectView.layer.masksToBounds = true
         
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        activityIndicator = UIActivityIndicatorView(style: .white)
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
         activityIndicator.startAnimating()
         

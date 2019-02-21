@@ -18,6 +18,8 @@
 		043452A6210377B1008EEC21 /* BildirimViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043452A4210377B1008EEC21 /* BildirimViewController.xib */; };
 		043452AB21038085008EEC21 /* BildirimlerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043452A921038085008EEC21 /* BildirimlerTableViewCell.swift */; };
 		043452AC21038085008EEC21 /* BildirimlerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043452AA21038085008EEC21 /* BildirimlerTableViewCell.xib */; };
+		0438D92D221E1EA800C437D6 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438D92C221E1EA800C437D6 /* Categories.swift */; };
+		0438D92F221E22F700C437D6 /* cList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438D92E221E22F700C437D6 /* cList.swift */; };
 		0444E62E21126306007A98AC /* faiktribunu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04172C202109E37C004DDF6A /* faiktribunu.xcdatamodeld */; };
 		0447F3CE2113ACF200B4E79F /* YazilarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE381120E512D80003E517 /* YazilarViewController.swift */; };
 		044B848E211105F30085441D /* GizlilikViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B848C211105F30085441D /* GizlilikViewController.swift */; };
@@ -30,8 +32,8 @@
 		04569C1221124E590021FAE6 /* KonuklarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04569C1021124E590021FAE6 /* KonuklarViewController.xib */; };
 		04569C1521124E6C0021FAE6 /* KonuklarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04569C1321124E6C0021FAE6 /* KonuklarCollectionViewCell.swift */; };
 		04569C1621124E6C0021FAE6 /* KonuklarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04569C1421124E6C0021FAE6 /* KonuklarCollectionViewCell.xib */; };
+		04680006211675160090DB68 /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75C6A6BD19E3F402B24B2A5 /* Pods_OneSignalNotificationServiceExtension.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		04B21C1B21064E29007695DC /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 04B21C1421064E29007695DC /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		04C74DA221165FF0004854BB /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75C6A6BD19E3F402B24B2A5 /* Pods_OneSignalNotificationServiceExtension.framework */; };
 		04CC739721026FB300197E7E /* BetterImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC739621026FB300197E7E /* BetterImage.swift */; };
 		04CC73992102705E00197E7E /* Sizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC73982102705E00197E7E /* Sizes.swift */; };
 		04CC739B210270E100197E7E /* Medium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC739A210270E100197E7E /* Medium.swift */; };
@@ -112,6 +114,8 @@
 		043452A4210377B1008EEC21 /* BildirimViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BildirimViewController.xib; sourceTree = "<group>"; };
 		043452A921038085008EEC21 /* BildirimlerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BildirimlerTableViewCell.swift; sourceTree = "<group>"; };
 		043452AA21038085008EEC21 /* BildirimlerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BildirimlerTableViewCell.xib; sourceTree = "<group>"; };
+		0438D92C221E1EA800C437D6 /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		0438D92E221E22F700C437D6 /* cList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cList.swift; sourceTree = "<group>"; };
 		044B848C211105F30085441D /* GizlilikViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GizlilikViewController.swift; sourceTree = "<group>"; };
 		044B848D211105F30085441D /* GizlilikViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GizlilikViewController.xib; sourceTree = "<group>"; };
 		04569C0721124ABC0021FAE6 /* SoyleyisiCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoyleyisiCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -201,7 +205,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04C74DA221165FF0004854BB /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */,
+				04680006211675160090DB68 /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */,
 				B17C46DBE595DDAF19284316 /* Pods_faiktribunu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,6 +334,7 @@
 				7D14368220E91117002C8D9E /* List.swift */,
 				7D14368420E91439002C8D9E /* Title.swift */,
 				7D14368620E949EF002C8D9E /* ResBase.swift */,
+				0438D92C221E1EA800C437D6 /* Categories.swift */,
 				7D14368820E94A58002C8D9E /* Guid.swift */,
 				7D14368A20E94C33002C8D9E /* ResList.swift */,
 				7D14368C20E989D4002C8D9E /* DetayList.swift */,
@@ -338,6 +343,7 @@
 				04CC73982102705E00197E7E /* Sizes.swift */,
 				04CC739A210270E100197E7E /* Medium.swift */,
 				04CC739C2102713300197E7E /* Source.swift */,
+				0438D92E221E22F700C437D6 /* cList.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -517,7 +523,7 @@
 					};
 					7D7172CB20BBEDBD00EEA074 = {
 						CreatedOnToolsVersion = 9.3.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1010;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -642,10 +648,12 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/ParallaxHeader/ParallaxHeader.framework",
 				"${BUILT_PRODUCTS_DIR}/QuickTableViewController/QuickTableViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVPullToRefresh/SVPullToRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/ScrollableSegmentedControl/ScrollableSegmentedControl.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -653,10 +661,12 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ParallaxHeader.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QuickTableViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVPullToRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ScrollableSegmentedControl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -722,6 +732,7 @@
 				0447F3CE2113ACF200B4E79F /* YazilarViewController.swift in Sources */,
 				040E760C2111F2BB0074EED6 /* TarihCollectionViewCell.swift in Sources */,
 				7D14368520E91439002C8D9E /* Title.swift in Sources */,
+				0438D92D221E1EA800C437D6 /* Categories.swift in Sources */,
 				04CC739D2102713300197E7E /* Source.swift in Sources */,
 				04E2CB9D2104D06E00E237AB /* DigerleriViewController.swift in Sources */,
 				7D14368320E91117002C8D9E /* List.swift in Sources */,
@@ -742,6 +753,7 @@
 				04569C0D21124AD00021FAE6 /* SoyleyisiViewController.swift in Sources */,
 				7D14368920E94A58002C8D9E /* Guid.swift in Sources */,
 				7D6027AE20E38C90008CC1CA /* YazilarCollectionViewCell.swift in Sources */,
+				0438D92F221E22F700C437D6 /* cList.swift in Sources */,
 				04569C1521124E6C0021FAE6 /* KonuklarCollectionViewCell.swift in Sources */,
 				043452AB21038085008EEC21 /* BildirimlerTableViewCell.swift in Sources */,
 			);
@@ -777,6 +789,7 @@
 				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 24G3237JT8;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -801,6 +814,7 @@
 				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 24G3237JT8;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -822,6 +836,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 24G3237JT8;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = NotificationService/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -844,6 +859,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 24G3237JT8;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = NotificationService/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -984,18 +1000,20 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 24G3237JT8;
+				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = faiktribunu/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.labters.faiktribunu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -1009,18 +1027,20 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 24G3237JT8;
+				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = faiktribunu/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.labters.faiktribunu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};

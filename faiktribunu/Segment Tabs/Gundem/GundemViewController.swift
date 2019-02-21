@@ -13,6 +13,8 @@ import ObjectMapper
 import SVPullToRefresh
 import SDWebImage
 
+var page = Int()
+
 class GundemViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
 
         @IBOutlet weak var gCollectionView: UICollectionView!
@@ -62,9 +64,9 @@ class GundemViewController: UIViewController,UICollectionViewDelegate,UICollecti
                 self.gCollectionView.infiniteScrollingView.startAnimating()
                 
                 self.loadMore += 1
-                let urladd = "https://www.faiktribunu.com/index.php/wp-json/wp/v2/posts?categories=3&page=" + "\(self.loadMore)"
+                let urladd = "https://www.faiktribunu.com/index.php/wp-json/wp/v2/posts?categories=" + "\(page)" + "&page=" + "\(self.loadMore)"
                 
-                Alamofire.request(urladd, method: .get, parameters: nil)
+                AF.request(urladd, method: .get, parameters: nil)
                     .responseString { response in
                         
                         switch(response.result) {
@@ -145,9 +147,9 @@ class GundemViewController: UIViewController,UICollectionViewDelegate,UICollecti
             
             self.loadMore = 1
             
-            let url = StaticVariables.baseUrl + "posts?categories=3"
+            let url = StaticVariables.baseUrl + "posts?categories=" + "\(page)"
             
-            Alamofire.request(url, method: .get, parameters: nil)
+            AF.request(url, method: .get, parameters: nil)
                 .responseString { response in
                     
                     switch(response.result) {
@@ -235,7 +237,6 @@ class GundemViewController: UIViewController,UICollectionViewDelegate,UICollecti
                 cell.layer.shadowRadius = 12
                 cell.layer.cornerRadius = 5
                 cell.haberGorseli.layer.cornerRadius = 5
-                cell.haberGorseli.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
                 cell.layer.masksToBounds = false
             }
             return cell
@@ -270,7 +271,7 @@ class GundemViewController: UIViewController,UICollectionViewDelegate,UICollecti
             effectView.layer.cornerRadius = 15
             effectView.layer.masksToBounds = true
             
-            activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+            activityIndicator = UIActivityIndicatorView(style: .white)
             activityIndicator.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
             activityIndicator.startAnimating()
             

@@ -132,8 +132,8 @@ class DigerleriViewController: QuickTableViewController {
         
         
         let bjktv = UIButton(type: .custom)
-        bjktv.setImage(UIImage(named: "television"), for: UIControlState.normal)
-        bjktv.addTarget(self, action: #selector(self.bjkMethod), for: UIControlEvents.touchUpInside)
+        bjktv.setImage(UIImage(named: "television"), for: UIControl.State.normal)
+        bjktv.addTarget(self, action: #selector(self.bjkMethod), for: UIControl.Event.touchUpInside)
         let bjktvbtn = UIBarButtonItem(customView: bjktv)
         
         bjktv.widthAnchor.constraint(equalToConstant: 28.0).isActive = true
@@ -143,8 +143,8 @@ class DigerleriViewController: QuickTableViewController {
         self.navigationItem.setRightBarButtonItems([bjktvbtn], animated: true)
         
         let menu = UIButton(type: .custom)
-        menu.setImage(UIImage(named: "bjk"), for: UIControlState.normal)
-        menu.addTarget(self, action: #selector(self.menuMethod), for: UIControlEvents.touchUpInside)
+        menu.setImage(UIImage(named: "bjk"), for: UIControl.State.normal)
+        menu.addTarget(self, action: #selector(self.menuMethod), for: UIControl.Event.touchUpInside)
         let menubtn = UIBarButtonItem(customView: menu)
         
         menu.widthAnchor.constraint(equalToConstant: 26.0).isActive = true

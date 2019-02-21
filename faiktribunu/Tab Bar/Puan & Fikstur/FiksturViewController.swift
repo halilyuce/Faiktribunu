@@ -64,7 +64,7 @@ class FiksturViewController: UIViewController, UIWebViewDelegate {
         effectView.layer.cornerRadius = 15
         effectView.layer.masksToBounds = true
         
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        activityIndicator = UIActivityIndicatorView(style: .white)
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
         activityIndicator.startAnimating()
         
@@ -86,8 +86,8 @@ class FiksturViewController: UIViewController, UIWebViewDelegate {
         
         
         let bjktv = UIButton(type: .custom)
-        bjktv.setImage(UIImage(named: "television"), for: UIControlState.normal)
-        bjktv.addTarget(self, action: #selector(self.bjkMethod), for: UIControlEvents.touchUpInside)
+        bjktv.setImage(UIImage(named: "television"), for: UIControl.State.normal)
+        bjktv.addTarget(self, action: #selector(self.bjkMethod), for: UIControl.Event.touchUpInside)
         let bjktvbtn = UIBarButtonItem(customView: bjktv)
         
         bjktv.widthAnchor.constraint(equalToConstant: 28.0).isActive = true
@@ -97,8 +97,8 @@ class FiksturViewController: UIViewController, UIWebViewDelegate {
         self.navigationItem.setRightBarButtonItems([bjktvbtn], animated: true)
         
         let menu = UIButton(type: .custom)
-        menu.setImage(UIImage(named: "bjk"), for: UIControlState.normal)
-        menu.addTarget(self, action: #selector(self.menuMethod), for: UIControlEvents.touchUpInside)
+        menu.setImage(UIImage(named: "bjk"), for: UIControl.State.normal)
+        menu.addTarget(self, action: #selector(self.menuMethod), for: UIControl.Event.touchUpInside)
         let menubtn = UIBarButtonItem(customView: menu)
         
         menu.widthAnchor.constraint(equalToConstant: 26.0).isActive = true
