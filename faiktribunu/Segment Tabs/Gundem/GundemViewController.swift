@@ -247,11 +247,13 @@ class GundemViewController: UIViewController,UICollectionViewDelegate,UICollecti
             let selectedItem = yazinumara[indexPath.row]
             let videoItem = videoLink[indexPath.row]
             let formatItem = format[indexPath.row]
+            let avatar = catResim[indexPath.row]
             
             let mDetayViewController = DetayViewController(nibName: "DetayViewController", bundle: nil)
             mDetayViewController.yaziNumara = selectedItem
             mDetayViewController.yaziFormat = formatItem
             mDetayViewController.videoLink = videoItem
+            mDetayViewController.yazarAvatar = avatar
             self.navigationController?.pushViewController(mDetayViewController, animated: true)
             
         }

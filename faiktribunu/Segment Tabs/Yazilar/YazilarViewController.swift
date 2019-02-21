@@ -12,6 +12,7 @@ import SwiftyJSON
 import ObjectMapper
 import SVPullToRefresh
 import SDWebImage
+import NightNight
 
 class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
 
@@ -37,6 +38,8 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mCollectionView.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#282828"))
         
         mCollectionView.register(YazilarCollectionViewCell.self, forCellWithReuseIdentifier: "YazilarCollectionViewCell")
         mCollectionView.register(UINib.init(nibName: "YazilarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "YazilarCollectionViewCell")
@@ -226,6 +229,9 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "YazilarCollectionViewCell", for: indexPath) as! YazilarCollectionViewCell
         
+        cell.mixedBackgroundColor = MixedColor(normal: UIColor.white, night: UIColor(hexString: "#171717"))
+        cell.baslik.mixedTextColor = MixedColor(normal: UIColor.black, night: UIColor.white)
+        
         if indexPath.row < basliklar.count{
             cell.baslik.text = basliklar[indexPath.row].html2String
             cell.yazarAvatar.sd_setImage(with: URL(string: catResim[indexPath.row]), placeholderImage: UIImage(named: "faiklogo"))
@@ -250,11 +256,13 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
         let selectedItem = yazinumara[indexPath.row]
         let videoItem = videoLink[indexPath.row]
         let formatItem = format[indexPath.row]
+        let avatar = catResim[indexPath.row]
         
         let mDetayViewController = DetayViewController(nibName: "DetayViewController", bundle: nil)
         mDetayViewController.yaziNumara = selectedItem
         mDetayViewController.yaziFormat = formatItem
         mDetayViewController.videoLink = videoItem
+        mDetayViewController.yazarAvatar = avatar
         self.navigationController?.pushViewController(mDetayViewController, animated: true)
         
     }

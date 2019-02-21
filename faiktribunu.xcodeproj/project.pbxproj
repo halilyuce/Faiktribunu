@@ -24,6 +24,7 @@
 		0447F3CE2113ACF200B4E79F /* YazilarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE381120E512D80003E517 /* YazilarViewController.swift */; };
 		044B848E211105F30085441D /* GizlilikViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B848C211105F30085441D /* GizlilikViewController.swift */; };
 		044B848F211105F30085441D /* GizlilikViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044B848D211105F30085441D /* GizlilikViewController.xib */; };
+		045184AE221F5EF700C21E5E /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045184AD221F5EF700C21E5E /* Author.swift */; };
 		04569C0921124ABC0021FAE6 /* SoyleyisiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04569C0721124ABC0021FAE6 /* SoyleyisiCollectionViewCell.swift */; };
 		04569C0A21124ABC0021FAE6 /* SoyleyisiCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04569C0821124ABC0021FAE6 /* SoyleyisiCollectionViewCell.xib */; };
 		04569C0D21124AD00021FAE6 /* SoyleyisiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04569C0B21124AD00021FAE6 /* SoyleyisiViewController.swift */; };
@@ -118,6 +119,7 @@
 		0438D92E221E22F700C437D6 /* cList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cList.swift; sourceTree = "<group>"; };
 		044B848C211105F30085441D /* GizlilikViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GizlilikViewController.swift; sourceTree = "<group>"; };
 		044B848D211105F30085441D /* GizlilikViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GizlilikViewController.xib; sourceTree = "<group>"; };
+		045184AD221F5EF700C21E5E /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		04569C0721124ABC0021FAE6 /* SoyleyisiCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoyleyisiCollectionViewCell.swift; sourceTree = "<group>"; };
 		04569C0821124ABC0021FAE6 /* SoyleyisiCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SoyleyisiCollectionViewCell.xib; sourceTree = "<group>"; };
 		04569C0B21124AD00021FAE6 /* SoyleyisiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoyleyisiViewController.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				04CC739A210270E100197E7E /* Medium.swift */,
 				04CC739C2102713300197E7E /* Source.swift */,
 				0438D92E221E22F700C437D6 /* cList.swift */,
+				045184AD221F5EF700C21E5E /* Author.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -647,6 +650,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-faiktribunu/Pods-faiktribunu-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/NightNight/NightNight.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/ParallaxHeader/ParallaxHeader.framework",
 				"${BUILT_PRODUCTS_DIR}/QuickTableViewController/QuickTableViewController.framework",
@@ -660,6 +664,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NightNight.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ParallaxHeader.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QuickTableViewController.framework",
@@ -727,6 +732,7 @@
 				7D14367F20E90F6D002C8D9E /* Base.swift in Sources */,
 				044B848E211105F30085441D /* GizlilikViewController.swift in Sources */,
 				04CC73A8210294A300197E7E /* GundemCollectionViewCell.swift in Sources */,
+				045184AE221F5EF700C21E5E /* Author.swift in Sources */,
 				04CC739B210270E100197E7E /* Medium.swift in Sources */,
 				7D6027A620E3741E008CC1CA /* BJKTVViewController.swift in Sources */,
 				0447F3CE2113ACF200B4E79F /* YazilarViewController.swift in Sources */,

@@ -15,6 +15,7 @@ target 'faiktribunu' do
   pod 'Crashlytics'
   pod 'ParallaxHeader', '~> 2.0.0'
   pod 'SnapKit', '~> 4.0.0'
+  pod 'NightNight'
 
 end
 

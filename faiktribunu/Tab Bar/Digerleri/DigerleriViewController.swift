@@ -10,6 +10,7 @@ import UIKit
 import QuickTableViewController
 import SafariServices
 import OneSignal
+import NightNight
 
 class DigerleriViewController: QuickTableViewController {
 
@@ -26,6 +27,9 @@ class DigerleriViewController: QuickTableViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         mAppDelegate.mNavigationController?.setNavigationBarHidden(true, animated: false)
+        
+        tableView.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#282828"))
+        tableView.mixedSeparatorColor = MixedColor(normal: UIColor.lightGray, night: UIColor(hexString: "#3f4447"))
 
         let paylas = Icon.init(image: UIImage(named: "paylas")!)
         let labters = Icon.init(image: UIImage(named: "labters")!)
@@ -36,9 +40,13 @@ class DigerleriViewController: QuickTableViewController {
         UserDefaults.standard.register(defaults: ["bildirim" : true])
         let switches = UserDefaults.standard.bool(forKey: "bildirim")
         
+        UserDefaults.standard.register(defaults: ["colormode" : false])
+        let colorSwitches = UserDefaults.standard.bool(forKey: "colormode")
+        
         tableContents = [
             Section(title: "KİŞİSEL AYARLAR", rows: [
                 SwitchRow(title: "Bildirimler", switchValue: switches, icon: bildirimler, action: didToggleSwitch()),
+                SwitchRow(title: "Karanlık Mod", switchValue: colorSwitches, icon: bildirimler, action: didColorSwitch())
                 ]),
             
             Section(title: "HAKKINDA", rows: [
@@ -46,7 +54,7 @@ class DigerleriViewController: QuickTableViewController {
                 NavigationRow(title: "Gizlilik Sözleşmesi", subtitle: .rightAligned("Oku"), icon: sozlesme, action: showDetail()),
                 NavigationRow(title: "Yapım : Labters.com", subtitle: .none, icon: labters, action: showLabters()),
                 NavigationRow(title: "Uygulama Hakkında", subtitle: .none, icon: faik),
-                NavigationRow(title: "v 1.0", subtitle: .leftAligned("sürümünü kullanıyorsunuz."))
+                NavigationRow(title: "v 2.0", subtitle: .leftAligned("sürümünü kullanıyorsunuz."))
                 ], footer: "Uygulamamızı daha iyi hale getirmek için güncellemeler yayınlayacağız, lütfen güncellemeleri yapmaktan çekinmeyiniz 🤗"),
  
         ]
@@ -58,6 +66,9 @@ class DigerleriViewController: QuickTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         // Alter the cells created by QuickTableViewController
+        cell.mixedBackgroundColor = MixedColor(normal: UIColor.white, night: UIColor(hexString: "#171717"))
+        cell.detailTextLabel?.mixedTextColor = MixedColor(normal: UIColor.black, night: UIColor.white)
+        cell.textLabel?.mixedTextColor = MixedColor(normal: UIColor.black, night: UIColor.white)
         return cell
     }
     
@@ -82,6 +93,26 @@ class DigerleriViewController: QuickTableViewController {
                 UserDefaults.standard.set(row.switchValue, forKey: "bildirim")
                 
             }
+            
+        }
+    }
+    
+    private func didColorSwitch() -> (Row) -> Void {
+        return { [weak self] in
+            if let row = $0 as? SwitchRow {
+                let state = "\(row.title) = \(row.switchValue)"
+                self?.showDebuggingText(state)
+                
+                if row.switchValue == true{
+                    NightNight.theme = .night
+                }else {
+                    NightNight.theme = .normal
+                }
+                
+                UserDefaults.standard.set(row.switchValue, forKey: "colormode")
+                
+            }
+            
         }
     }
     
@@ -96,7 +127,7 @@ class DigerleriViewController: QuickTableViewController {
     private func showShare() -> (Row) -> Void {
         return {_ in
         let string: String = "Faiktribünü mobil uygulamasını çok beğendim, haydi sen de yükle! :)"
-        let URL: String = "http://www.faiktribunu.com"
+        let URL: String = "https://itunes.apple.com/tr/app/faik-trib%C3%BCn%C3%BC/id1420791069?l=tr&mt=8"
         
         let activityViewController = UIActivityViewController(activityItems: [string, URL], applicationActivities: nil)
             self.navigationController?.present(activityViewController, animated: true) {

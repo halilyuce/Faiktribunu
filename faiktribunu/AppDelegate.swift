@@ -13,6 +13,7 @@ import UserNotifications
 import CoreData
 import Fabric
 import Crashlytics
+import NightNight
 
 let mAppDelegate = UIApplication.shared.delegate! as! AppDelegate
 
@@ -82,10 +83,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
         //UITabBar.appearance().backgroundColor = UIColor.black
         
         let tabBar = UITabBar.appearance()
-        tabBar.tintColor =  UIColor(red: 255.0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)
+        tabBar.mixedTintColor = MixedColor(normal: UIColor.black, night: UIColor.white)
         tabBar.isTranslucent = true
-        tabBar.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.1)
-        tabBar.unselectedItemTintColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.4)
+        tabBar.mixedBarTintColor = MixedColor(normal: UIColor.white.withAlphaComponent(0.2), night: UIColor.black.withAlphaComponent(0.2))
         
         let segmentedControlAppearance = ScrollableSegmentedControl.appearance()
         segmentedControlAppearance.segmentContentColor = UIColor.gray

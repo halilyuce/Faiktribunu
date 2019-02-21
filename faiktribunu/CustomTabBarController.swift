@@ -42,6 +42,11 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         digernavigationController.tabBarItem.tag = 3
         
         viewControllers = [navigationController, fiksturnavigationController, bildirimnavigationController, digernavigationController]
+        
+        let array = viewControllers
+        for controller in array! {
+            controller.tabBarItem.imageInsets = UIEdgeInsets(top: 1, left: 0, bottom: 1, right: 0)
+        }
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

@@ -233,3 +233,147 @@ extension UIView {
         )
     }
 }
+
+extension UIButton {
+    
+    func centerVertically(padding: CGFloat = 6.0) {
+        guard
+            let imageViewSize = self.imageView?.frame.size,
+            let titleLabelSize = self.titleLabel?.frame.size else {
+                return
+        }
+        
+        let totalHeight = imageViewSize.height + titleLabelSize.height + padding
+        
+        self.imageEdgeInsets = UIEdgeInsets(
+            top: -(totalHeight - imageViewSize.height),
+            left: 0.0,
+            bottom: 0.0,
+            right: -titleLabelSize.width
+        )
+        
+        self.titleEdgeInsets = UIEdgeInsets(
+            top: 0.0,
+            left: -imageViewSize.width,
+            bottom: -(totalHeight - titleLabelSize.height),
+            right: 0.0
+        )
+        
+        self.contentEdgeInsets = UIEdgeInsets(
+            top: 0.0,
+            left: 0.0,
+            bottom: titleLabelSize.height,
+            right: 0.0
+        )
+    }
+    
+}
+
+extension UIButton {
+    // MARK: - UIButton+Aligment
+    
+    func alignContentVerticallyByCenter(offset:CGFloat = 10) {
+        let buttonSize = frame.size
+        
+        if let titleLabel = titleLabel,
+            let imageView = imageView {
+            
+            if let buttonTitle = titleLabel.text,
+                let image = imageView.image {
+                let titleString:NSString = NSString(string: buttonTitle)
+                let titleSize = titleString.size(withAttributes: [
+                    NSAttributedString.Key.font : titleLabel.font
+                    ])
+                let buttonImageSize = image.size
+                
+                let topImageOffset = (buttonSize.height - (titleSize.height + buttonImageSize.height + offset)) / 2
+                let leftImageOffset = (buttonSize.width - buttonImageSize.width) / 2
+                imageEdgeInsets = UIEdgeInsets(top: topImageOffset,
+                                               left: leftImageOffset,
+                                               bottom: 0,right: 0)
+                
+                let titleTopOffset = topImageOffset + offset + buttonImageSize.height
+                let leftTitleOffset = (buttonSize.width - titleSize.width) / 2 - image.size.width
+                
+                titleEdgeInsets = UIEdgeInsets(top: titleTopOffset,
+                                               left: leftTitleOffset,
+                                               bottom: 0,right: 0)
+            }
+        }
+    }
+}
+
+extension UIApplication {
+    class func topViewController(viewController: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let nav = viewController as? UINavigationController {
+            return topViewController(viewController: nav.visibleViewController)
+        }
+        if let tab = viewController as? UITabBarController {
+            if let selected = tab.selectedViewController {
+                return topViewController(viewController: selected)
+            }
+        }
+        if let presented = viewController?.presentedViewController {
+            return topViewController(viewController: presented)
+        }
+        return viewController
+    }
+}
+
+extension UIButton {
+    func alignVertical(spacing: CGFloat = 2.0) {
+        guard let imageSize = self.imageView?.image?.size,
+            let text = self.titleLabel?.text,
+            let font = self.titleLabel?.font
+            else { return }
+        self.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: -imageSize.width, bottom: -(imageSize.height + spacing), right: 0.0)
+        let labelString = NSString(string: text)
+        let titleSize = labelString.size(withAttributes: [NSAttributedString.Key.font: font])
+        self.imageEdgeInsets = UIEdgeInsets(top: -(titleSize.height + spacing), left: 0.0, bottom: 0.0, right: -titleSize.width)
+        let edgeOffset = abs(titleSize.height - imageSize.height) / 2.0;
+        self.contentEdgeInsets = UIEdgeInsets(top: edgeOffset, left: 0.0, bottom: edgeOffset, right: 0.0)
+    }
+}
+
+extension UIButton
+{
+    func centerImageAndTextVerticaAlignment(spacing: CGFloat)
+    {
+        var titlePoint : CGPoint = convert(center, from:superview)
+        var imageViewPoint : CGPoint = convert(center, from:superview)
+        titlePoint.y += ((titleLabel?.frame.size.height)! + spacing)/2
+        imageViewPoint.y -= ((imageView?.frame.size.height)! + spacing)/2
+        titleLabel?.center = titlePoint
+        imageView?.center = imageViewPoint
+        
+    }
+}
+
+extension UIColor {
+    convenience init(hexString: String, alpha: CGFloat = 1.0) {
+        let hexString: String = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let scanner = Scanner(string: hexString)
+        if (hexString.hasPrefix("#")) {
+            scanner.scanLocation = 1
+        }
+        var color: UInt32 = 0
+        scanner.scanHexInt32(&color)
+        let mask = 0x000000FF
+        let r = Int(color >> 16) & mask
+        let g = Int(color >> 8) & mask
+        let b = Int(color) & mask
+        let red   = CGFloat(r) / 255.0
+        let green = CGFloat(g) / 255.0
+        let blue  = CGFloat(b) / 255.0
+        self.init(red:red, green:green, blue:blue, alpha:alpha)
+    }
+    func toHexString() -> String {
+        var r:CGFloat = 0
+        var g:CGFloat = 0
+        var b:CGFloat = 0
+        var a:CGFloat = 0
+        getRed(&r, green: &g, blue: &b, alpha: &a)
+        let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
+        return String(format:"#%06x", rgb)
+    }
+}
