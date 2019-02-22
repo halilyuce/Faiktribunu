@@ -82,11 +82,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
         //UITabBar.appearance().tintColor = UIColor.white
         //UITabBar.appearance().backgroundColor = UIColor.black
         
-        let tabBar = UITabBar.appearance()
-        tabBar.mixedTintColor = MixedColor(normal: UIColor.black, night: UIColor.white)
-        tabBar.isTranslucent = true
-        tabBar.mixedBarTintColor = MixedColor(normal: UIColor.white.withAlphaComponent(0.2), night: UIColor.black.withAlphaComponent(0.2))
-        
         let segmentedControlAppearance = ScrollableSegmentedControl.appearance()
         segmentedControlAppearance.segmentContentColor = UIColor.gray
         segmentedControlAppearance.selectedSegmentContentColor = UIColor.white

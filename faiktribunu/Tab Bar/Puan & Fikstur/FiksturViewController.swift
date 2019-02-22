@@ -9,6 +9,7 @@
 import UIKit
 import SafariServices
 import WebKit
+import NightNight
 
 class FiksturViewController: UIViewController, UIWebViewDelegate {
     
@@ -29,6 +30,8 @@ class FiksturViewController: UIViewController, UIWebViewDelegate {
         
         self.myWebView.delegate = self
         
+        self.myWebView.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#282828"))
+        
         self.myWebView.scrollView.delegate = self as UIScrollViewDelegate
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -36,11 +39,21 @@ class FiksturViewController: UIViewController, UIWebViewDelegate {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         mAppDelegate.mNavigationController?.setNavigationBarHidden(true, animated: false)
+        
+        let colorSwitches = UserDefaults.standard.bool(forKey: "colormode")
+        
+        if colorSwitches == true{
+            
+            
+            self.myWebView.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><iframe src=\"http://haberciniz.biz/service/sport/league_standing_table.php?color=6&select=TUR1,TUR2,SPA1,ENG1,GER1\" width=\"100%\" height=\"550px\" frameborder=\"0\" scrolling=\"AUTO\"></iframe>", baseURL: nil)
+            
+        }else{
+            
+            self.myWebView.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><iframe src=\"http://haberciniz.biz/service/sport/league_standing_table.php?color=1&select=TUR1,TUR2,SPA1,ENG1,GER1\" width=\"100%\" height=\"550px\" frameborder=\"0\" scrolling=\"AUTO\"></iframe>", baseURL: nil)
+        }
 
-        self.myWebView.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><iframe src=\"http://haberciniz.biz/service/sport/league_standing_table.php?color=1&select=TUR1,TUR2,SPA1,ENG1,GER1\" width=\"100%\" height=\"550px\" frameborder=\"0\" scrolling=\"AUTO\"></iframe>", baseURL: nil)
     }
     
-
     func webViewDidStartLoad(_ webView: UIWebView){
         self.activityIndicator("Yükleniyor")
     }

@@ -11,6 +11,7 @@ import SDWebImage
 import SafariServices
 import CoreData
 import SVPullToRefresh
+import NightNight
 
 class BildirimViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -26,6 +27,9 @@ class BildirimViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewWillAppear(_ animated: Bool) {
         self.setNavBarItems()
+        if let index = self.mTableView.indexPathForSelectedRow{
+            self.mTableView.deselectRow(at: index, animated: true)
+        }
     }
     
     @IBAction func temizle(_ sender: UIButton) {
@@ -56,6 +60,9 @@ class BildirimViewController: UIViewController, UITableViewDelegate, UITableView
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        
+        mTableView.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#282828"))
+        mTableView.mixedSeparatorColor = MixedColor(normal: UIColor.lightGray, night: UIColor(hexString: "#3f4447"))
         
         mAppDelegate.mNavigationController?.setNavigationBarHidden(true, animated: false)
         
@@ -150,7 +157,7 @@ class BildirimViewController: UIViewController, UITableViewDelegate, UITableView
             headerText.font = UIFont.boldSystemFont(ofSize: 18.0)
             headerText.textAlignment = .center
             headerView.addSubview(headerText)
-            headerView.backgroundColor = UIColor.groupTableViewBackground
+            headerView.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#282828"))
             headerView.frame = CGRect(x: 0, y: 0, width: StaticVariables.screenWidth, height: StaticVariables.screenHeight)
             
             view.addSubview(headerView)
@@ -187,6 +194,13 @@ class BildirimViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BildirimlerTableViewCell", for: indexPath) as! BildirimlerTableViewCell
+        
+        cell.mixedBackgroundColor = MixedColor(normal: UIColor.white, night: UIColor(hexString: "#171717"))
+        cell.baslik.mixedTextColor = MixedColor(normal: UIColor.black, night: UIColor.white)
+        
+        let backgroundView = UIView()
+        backgroundView.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#282828"))
+        cell.selectedBackgroundView = backgroundView
         
         if indexPath.row < baslikStr.count{
         cell.baslik.text = baslikStr[indexPath.row].html2String

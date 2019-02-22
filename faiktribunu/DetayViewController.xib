@@ -24,6 +24,9 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dbu-lG-3hs">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="TUN-aA-clP"/>
                         <outlet property="delegate" destination="-1" id="7PL-wB-alN"/>
@@ -38,6 +41,9 @@
                 <constraint firstItem="dbu-lG-3hs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="jca-j6-hJN"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="HWo-i2-pcS"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="32.799999999999997" y="102.09895052473765"/>
         </view>
     </objects>

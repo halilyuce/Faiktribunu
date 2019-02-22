@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import NightNight
 
 class BJKTVViewController: UIViewController, UIWebViewDelegate {
 
     @IBOutlet weak var myWebView: UIWebView!
+    @IBOutlet weak var yazi: UILabel!
     
     let imagePicker = UIImagePickerController()
     let messageFrame = UIView()
@@ -20,6 +22,9 @@ class BJKTVViewController: UIViewController, UIWebViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#282828"))
+        yazi.mixedTextColor = MixedColor(normal: UIColor.black, night: UIColor.white)
         
 
         EmbedVideo(videoId: "x31omum")

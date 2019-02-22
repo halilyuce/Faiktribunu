@@ -16,6 +16,9 @@ class DigerleriViewController: QuickTableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         self.setNavBarItems()
+        if let index = self.tableView.indexPathForSelectedRow{
+            self.tableView.deselectRow(at: index, animated: true)
+        }
     }
     @IBOutlet var mainView: UIView!
     
@@ -30,8 +33,10 @@ class DigerleriViewController: QuickTableViewController {
         
         tableView.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#282828"))
         tableView.mixedSeparatorColor = MixedColor(normal: UIColor.lightGray, night: UIColor(hexString: "#3f4447"))
-
+        
+        
         let paylas = Icon.init(image: UIImage(named: "paylas")!)
+        let color = Icon.init(image: UIImage(named: "color")!)
         let labters = Icon.init(image: UIImage(named: "labters")!)
         let faik = Icon.init(image: UIImage(named: "faikdiger")!)
         let bildirimler = Icon.init(image: UIImage(named: "bildirimler")!)
@@ -46,7 +51,7 @@ class DigerleriViewController: QuickTableViewController {
         tableContents = [
             Section(title: "KİŞİSEL AYARLAR", rows: [
                 SwitchRow(title: "Bildirimler", switchValue: switches, icon: bildirimler, action: didToggleSwitch()),
-                SwitchRow(title: "Karanlık Mod", switchValue: colorSwitches, icon: bildirimler, action: didColorSwitch())
+                SwitchRow(title: "Karanlık Mod", switchValue: colorSwitches, icon: color, action: didColorSwitch())
                 ]),
             
             Section(title: "HAKKINDA", rows: [
@@ -69,6 +74,11 @@ class DigerleriViewController: QuickTableViewController {
         cell.mixedBackgroundColor = MixedColor(normal: UIColor.white, night: UIColor(hexString: "#171717"))
         cell.detailTextLabel?.mixedTextColor = MixedColor(normal: UIColor.black, night: UIColor.white)
         cell.textLabel?.mixedTextColor = MixedColor(normal: UIColor.black, night: UIColor.white)
+        
+        let backgroundView = UIView()
+        backgroundView.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor.black)
+        cell.selectedBackgroundView = backgroundView
+        
         return cell
     }
     
@@ -105,8 +115,14 @@ class DigerleriViewController: QuickTableViewController {
                 
                 if row.switchValue == true{
                     NightNight.theme = .night
+                    
+                    self?.tabBarController?.tabBar.barTintColor = UIColor.black.withAlphaComponent(0.2)
+                    self?.tabBarController?.tabBar.tintColor = UIColor.red
+                    
                 }else {
                     NightNight.theme = .normal
+                    self?.tabBarController?.tabBar.barTintColor = UIColor.white.withAlphaComponent(0.2)
+                    self?.tabBarController?.tabBar.tintColor = UIColor.red
                 }
                 
                 UserDefaults.standard.set(row.switchValue, forKey: "colormode")

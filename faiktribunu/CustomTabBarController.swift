@@ -9,6 +9,7 @@
 import UIKit
 import AVKit
 import Crashlytics
+import NightNight
 
 class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
 
@@ -29,24 +30,32 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         fiksturnavigationController.tabBarItem.image = UIImage(named: "puan")
         fiksturnavigationController.tabBarItem.tag = 1
         
+        let favoriteController = FiksturViewController()
+        let favoritenavigationController = UINavigationController(rootViewController: favoriteController)
+        favoritenavigationController.title = "Favoriler"
+        favoritenavigationController.tabBarItem.image = UIImage(named: "fav")
+        favoritenavigationController.tabBarItem.tag = 2
+        
         let bildirimController = BildirimViewController()
         let bildirimnavigationController = UINavigationController(rootViewController: bildirimController)
         bildirimnavigationController.title = "Bildirimler"
         bildirimnavigationController.tabBarItem.image = UIImage(named: "ring")
-        bildirimnavigationController.tabBarItem.tag = 2
+        bildirimnavigationController.tabBarItem.tag = 3
         
         let digerController = DigerleriViewController()
         let digernavigationController = UINavigationController(rootViewController: digerController)
-        digernavigationController.title = "Diğerleri"
-        digernavigationController.tabBarItem.image = UIImage(named: "bar")
-        digernavigationController.tabBarItem.tag = 3
+        digernavigationController.title = "Ayarlar"
+        digernavigationController.tabBarItem.image = UIImage(named: "settings")
+        digernavigationController.tabBarItem.tag = 4
         
-        viewControllers = [navigationController, fiksturnavigationController, bildirimnavigationController, digernavigationController]
+        viewControllers = [navigationController, favoritenavigationController, fiksturnavigationController, bildirimnavigationController, digernavigationController]
         
-        let array = viewControllers
-        for controller in array! {
-            controller.tabBarItem.imageInsets = UIEdgeInsets(top: 1, left: 0, bottom: 1, right: 0)
-        }
+        
+        let tabBar = UITabBar.appearance()
+        tabBar.mixedTintColor = MixedColor(normal: UIColor.red, night: UIColor.red)
+        tabBar.isTranslucent = true
+        tabBar.mixedBarTintColor = MixedColor(normal: UIColor.white.withAlphaComponent(0.2), night: UIColor.black.withAlphaComponent(0.2))
+        
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -56,6 +65,7 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
                                 ])
     
     }
+    
     
     var kontrol = 0
     

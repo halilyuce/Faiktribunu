@@ -15,6 +15,8 @@ import AVKit
 import Crashlytics
 import ParallaxHeader
 import SnapKit
+import NightNight
+
 
 class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIWebViewDelegate {
 
@@ -35,6 +37,8 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var contentHeight = CGFloat()
     var isWebViewLoaded = Bool()
     var yazarAvatar = String()
+    var ilkResim = UIImage()
+    var itemSize = Bool()
     
     var showBackButton = false
     
@@ -49,6 +53,8 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         navigationController?.setNavigationBarHidden(true, animated: animated)
         UIApplication.shared.keyWindow?.windowLevel = UIWindow.Level.statusBar
         
+        let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! infoCell
+        cell.isHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -62,9 +68,16 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        itemSize = false
+        
         self.tableView.register(infoCell.self, forCellReuseIdentifier: "infoCell")
         self.tableView.register(ContentCell.self, forCellReuseIdentifier: "ContentCell")
         self.tableView.register(CommentsCell.self, forCellReuseIdentifier: "CommentsCell")
+        
+        view.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#282828"))
+        tableView.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#282828"))
+        
+        tableView.mixedSeparatorColor = MixedColor(normal: UIColor.lightGray, night: UIColor(hexString: "#3f4447"))
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -79,41 +92,49 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         share.widthAnchor.constraint(equalToConstant: 28.0).isActive = true
         share.heightAnchor.constraint(equalToConstant: 28.0).isActive = true
         
+        
+        let imageView = UIImageView()
+        imageView.image = ilkResim
+        imageView.contentMode = .scaleAspectFill
+        imageView.isUserInteractionEnabled = true
+        imageView.blurView.setup(style: UIBlurEffect.Style.dark, alpha: 0).enable()
+        
+        let buttonBack = UIButton()
+        buttonBack.setTitle("< Geri", for: UIControl.State.normal)
+        buttonBack.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        buttonBack.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: UIControl.State.normal)
+        buttonBack.isUserInteractionEnabled = true
+        buttonBack.isEnabled = true
+        buttonBack.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        buttonBack.translatesAutoresizingMaskIntoConstraints = false
+        
+        imageView.addSubview(buttonBack)
+        
+        buttonBack.leftAnchor.constraint(equalTo: imageView.leftAnchor, constant: 15).isActive = true
+        buttonBack.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 15).isActive = true
+        buttonBack.widthAnchor.constraint(equalToConstant: 72).isActive = true
+        buttonBack.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        
+        buttonBack.clipsToBounds = true
+        buttonBack.layer.cornerRadius = 16
+        
+        self.tableView.parallaxHeader.view = imageView
+        self.tableView.parallaxHeader.height = 240
+        self.tableView.parallaxHeader.minimumHeight = 70
+        self.tableView.parallaxHeader.mode = .centerFill
+        self.tableView.parallaxHeader.parallaxHeaderDidScrollHandler = { parallaxHeader in
+            //update alpha of blur view on top of image view
+            parallaxHeader.view.blurView.alpha = 1 - parallaxHeader.progress
+        }
+        
+        
+        buttonBack.addTarget(self, action: #selector(self.backTouch), for: UIControl.Event.touchUpInside)
+        
         loadPost{ () -> () in
             
-            let imageView = UIImageView()
+            self.itemSize = true
+            
             imageView.sd_setImage(with: URL(string: self.resimStr), completed: nil)
-            imageView.contentMode = .scaleAspectFill
-            imageView.isUserInteractionEnabled = true
-            
-            imageView.blurView.setup(style: UIBlurEffect.Style.dark, alpha: 0).enable()
-            
-            let buttonBack = UIButton()
-            buttonBack.setAttributedTitle(NSAttributedString.init(string: "< Geri", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .bold), NSAttributedString.Key.foregroundColor : UIColor.black]), for: UIControl.State.normal)
-            buttonBack.isUserInteractionEnabled = true
-            buttonBack.isEnabled = true
-            buttonBack.backgroundColor = .white
-            buttonBack.setTitleColor(UIColor.black, for: .normal)
-            buttonBack.translatesAutoresizingMaskIntoConstraints = false
-            
-            imageView.addSubview(buttonBack)
-            
-            buttonBack.leftAnchor.constraint(equalTo: imageView.leftAnchor, constant: 15).isActive = true
-            buttonBack.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 15).isActive = true
-            buttonBack.widthAnchor.constraint(equalToConstant: 72).isActive = true
-            buttonBack.heightAnchor.constraint(equalToConstant: 32).isActive = true
-            
-            buttonBack.clipsToBounds = true
-            buttonBack.layer.cornerRadius = 16
-            
-            self.tableView.parallaxHeader.view = imageView
-            self.tableView.parallaxHeader.height = 240
-            self.tableView.parallaxHeader.minimumHeight = 70
-            self.tableView.parallaxHeader.mode = .centerFill
-            self.tableView.parallaxHeader.parallaxHeaderDidScrollHandler = { parallaxHeader in
-                //update alpha of blur view on top of image view
-                parallaxHeader.view.blurView.alpha = 1 - parallaxHeader.progress
-            }
             
             // Label for vibrant text
             let vibrantLabel = UILabel()
@@ -127,10 +148,6 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
             vibrantLabel.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }
-            
-            
-            buttonBack.addTarget(self, action: #selector(self.backTouch), for: UIControl.Event.touchUpInside)
-            
             
             self.effectView.removeFromSuperview()
             self.tableView.reloadData()
@@ -201,36 +218,83 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        
         if indexPath.row == 0{
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as! infoCell
+            cell.selectionStyle = .none
+            
+            
+            if self.itemSize == true{
+            cell.isHidden = false
             cell.title.text = baslik.uppercased()
+            cell.title.mixedTextColor = MixedColor(normal: UIColor.black, night: UIColor.white.withAlphaComponent(0.8))
             cell.avatarName.text = authorName
+            cell.avatarName.mixedTextColor = MixedColor(normal: UIColor.black, night: UIColor.white.withAlphaComponent(0.8))
             cell.avatar.sd_setImage(with: URL(string: yazarAvatar), completed: nil)
+            }else{
+                cell.isHidden = true
+            }
             return cell
             
         }else if indexPath.row == 1{
            
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContentCell", for: indexPath) as! ContentCell
+            cell.selectionStyle = .none
             
+            if self.itemSize == true{
+                cell.isHidden = false
             let htmlHeight = contentHeight
             
             cell.body.delegate = self
-            cell.body.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, maximum-scale=1, user-scalable=no, initial-scale=1\"> <style>body{font-size:18px} .wp-caption{max-width:100%;background:#eee;padding: 5px;} .wp-caption img{max-width:100%;height:auto;width: 100%;} .entry-content img {max-width:100%;height:auto;} img{display:inline; height:auto; max-width:100%;} embed, iframe, object {max-width:100%;height:225px;}</style>" + content, baseURL: nil)
+            
+            let colorSwitches = UserDefaults.standard.bool(forKey: "colormode")
+            
+            if colorSwitches == true{
+                
+                cell.body.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, maximum-scale=1, user-scalable=no, initial-scale=1\"> <style>body{font-family:Arial,Helvetica,sans-serif;font-size:18px;background-color:#282828;color:#d8d8d8} .wp-caption{max-width:100%;background:#eee;padding: 5px;} .wp-caption img{max-width:100%;height:auto;width: 100%;} .entry-content img {max-width:100%;height:auto;} img{display:inline; height:auto; max-width:100%;} embed, iframe, object {max-width:100%;height:225px;}</style>" + content, baseURL: nil)
+                
+            }else{
+                cell.body.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, maximum-scale=1, user-scalable=no, initial-scale=1\"> <style>body{font-family:Arial,Helvetica,sans-serif;font-size:18px} .wp-caption{max-width:100%;background:#eee;padding: 5px;} .wp-caption img{max-width:100%;height:auto;width: 100%;} .entry-content img {max-width:100%;height:auto;} img{display:inline; height:auto; max-width:100%;} embed, iframe, object {max-width:100%;height:225px;}</style>" + content, baseURL: nil)
+            }
+            
+            
             cell.body.frame = CGRect(x:0, y:0, width:cell.frame.size.width - 30, height:htmlHeight)
             cell.body.scrollView.isScrollEnabled = false
-
+            
+            }else{
+                cell.isHidden = true
+            }
             
             return cell
             
         }else if indexPath.row == 2{
            
             let cell = tableView.dequeueReusableCell(withIdentifier: "CommentsCell", for: indexPath) as! CommentsCell
-            cell.backgroundColor = .green
+            cell.selectionStyle = .none
+            
+            if self.itemSize == true{
+                cell.isHidden = false
+                
+                
+            }else{
+                cell.isHidden = true
+            }
+            
             return cell
             
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContentCell", for: indexPath) as! ContentCell
+            cell.selectionStyle = .none
+            
+            if self.itemSize == true{
+                cell.isHidden = false
+                
+                
+            }else{
+                cell.isHidden = true
+            }
+            
             return cell
         }
         
@@ -239,6 +303,8 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if self.itemSize == true{
         
         if indexPath.row == 0{
             return 220
@@ -260,6 +326,12 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         else{
+            return 0
+        }
+            
+            
+            
+        }else{
             return 0
         }
         
@@ -357,15 +429,19 @@ class infoCell: UITableViewCell {
     
     let claps: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "claps"), for: UIControl.State.normal)
-        button.setAttributedTitle(NSAttributedString.init(string: "17", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular), NSAttributedString.Key.foregroundColor : UIColor.black]), for: UIControl.State.normal)
+        let image = UIImage(named: "claps")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        button.setImage(image, for: UIControl.State.normal)
+        button.mixedTintColor = MixedColor(normal: UIColor.black, night: UIColor.white.withAlphaComponent(0.5))
+        button.setTitle("17", for: UIControl.State.normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        button.setMixedTitleColor(MixedColor(normal: UIColor.black, night: UIColor.white.withAlphaComponent(0.5)), forState: UIControl.State.normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     let seperator: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.groupTableViewBackground
+        view.mixedBackgroundColor = MixedColor(normal: UIColor.lightGray, night: UIColor(hexString: "#3f4447"))
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -393,8 +469,12 @@ class infoCell: UITableViewCell {
     
     let favorite: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "bookmarks"), for: UIControl.State.normal)
-        button.setAttributedTitle(NSAttributedString.init(string: "Favorilere Al", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13, weight: .regular), NSAttributedString.Key.foregroundColor : UIColor.black]), for: UIControl.State.normal)
+        let image = UIImage(named: "bookmarks")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        button.setImage(image, for: UIControl.State.normal)
+        button.mixedTintColor = MixedColor(normal: UIColor.black, night: UIColor.white.withAlphaComponent(0.5))
+        button.setTitle("Favorilere Ekle", for: UIControl.State.normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        button.setMixedTitleColor(MixedColor(normal: UIColor.black, night: UIColor.white.withAlphaComponent(0.5)), forState: UIControl.State.normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -407,8 +487,12 @@ class infoCell: UITableViewCell {
     
     let comments: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "comments"), for: UIControl.State.normal)
-        button.setAttributedTitle(NSAttributedString.init(string: "Yorumlar", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13, weight: .regular), NSAttributedString.Key.foregroundColor : UIColor.black]), for: UIControl.State.normal)
+        let image = UIImage(named: "comments")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        button.setImage(image, for: UIControl.State.normal)
+        button.mixedTintColor = MixedColor(normal: UIColor.black, night: UIColor.white.withAlphaComponent(0.5))
+        button.setTitle("Yorumlar", for: UIControl.State.normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        button.setMixedTitleColor(MixedColor(normal: UIColor.black, night: UIColor.white.withAlphaComponent(0.5)), forState: UIControl.State.normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -421,8 +505,12 @@ class infoCell: UITableViewCell {
     
     let share: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "shareit"), for: UIControl.State.normal)
-        button.setAttributedTitle(NSAttributedString.init(string: "Paylaş", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13, weight: .regular), NSAttributedString.Key.foregroundColor : UIColor.black]), for: UIControl.State.normal)
+        let image = UIImage(named: "shareit")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        button.setImage(image, for: UIControl.State.normal)
+        button.mixedTintColor = MixedColor(normal: UIColor.black, night: UIColor.white.withAlphaComponent(0.5))
+        button.setTitle("Paylaş", for: UIControl.State.normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        button.setMixedTitleColor(MixedColor(normal: UIColor.black, night: UIColor.white.withAlphaComponent(0.5)), forState: UIControl.State.normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -439,7 +527,7 @@ class infoCell: UITableViewCell {
     }
     
     func addViews(){
-        backgroundColor = UIColor.white
+        mixedBackgroundColor = MixedColor(normal: UIColor.white, night: UIColor(hexString: "#282828"))
         
         addSubview(title)
         
@@ -526,7 +614,7 @@ class infoCell: UITableViewCell {
         seperator.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         seperator.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         seperator.topAnchor.constraint(equalTo: share.bottomAnchor, constant: 20).isActive = true
-        seperator.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        seperator.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
         
         addSubview(avatar)
         
@@ -575,7 +663,7 @@ class ContentCell: UITableViewCell {
     }
     
     func addViews(){
-        backgroundColor = UIColor.white
+        mixedBackgroundColor = MixedColor(normal: UIColor.white, night: UIColor(hexString: "#282828"))
         
         addSubview(body)
         
@@ -615,7 +703,7 @@ class CommentsCell: UITableViewCell {
     }
     
     func addViews(){
-        backgroundColor = UIColor.white
+        mixedBackgroundColor = MixedColor(normal: UIColor.white, night: UIColor(hexString: "#282828"))
         
         addSubview(body)
         

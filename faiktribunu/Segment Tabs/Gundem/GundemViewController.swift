@@ -12,6 +12,7 @@ import SwiftyJSON
 import ObjectMapper
 import SVPullToRefresh
 import SDWebImage
+import NightNight
 
 var page = Int()
 
@@ -37,6 +38,8 @@ class GundemViewController: UIViewController,UICollectionViewDelegate,UICollecti
         
         override func viewDidLoad() {
             super.viewDidLoad()
+            
+            gCollectionView.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#282828"))
             
             gCollectionView.register(GundemCollectionViewCell.self, forCellWithReuseIdentifier: "GundemCollectionViewCell")
             gCollectionView.register(UINib.init(nibName: "GundemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "GundemCollectionViewCell")
@@ -223,6 +226,9 @@ class GundemViewController: UIViewController,UICollectionViewDelegate,UICollecti
         
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GundemCollectionViewCell", for: indexPath) as! GundemCollectionViewCell
+            
+            cell.mixedBackgroundColor = MixedColor(normal: UIColor.white, night: UIColor(hexString: "#171717"))
+            cell.baslik.mixedTextColor = MixedColor(normal: UIColor.black, night: UIColor.white)
             
             if indexPath.row < basliklar.count{
                 cell.baslik.text = basliklar[indexPath.row].html2String

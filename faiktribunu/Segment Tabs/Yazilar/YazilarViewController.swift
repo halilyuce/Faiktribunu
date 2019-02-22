@@ -39,6 +39,9 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        self.tabBarController?.cleanTitles()
+        
         mCollectionView.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#282828"))
         
         mCollectionView.register(YazilarCollectionViewCell.self, forCellWithReuseIdentifier: "YazilarCollectionViewCell")
@@ -253,16 +256,20 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        let cell = collectionView.cellForItem(at: indexPath) as! YazilarCollectionViewCell
+        
         let selectedItem = yazinumara[indexPath.row]
         let videoItem = videoLink[indexPath.row]
         let formatItem = format[indexPath.row]
         let avatar = catResim[indexPath.row]
+        let gorsel = cell.haberGorseli.image
         
         let mDetayViewController = DetayViewController(nibName: "DetayViewController", bundle: nil)
         mDetayViewController.yaziNumara = selectedItem
         mDetayViewController.yaziFormat = formatItem
         mDetayViewController.videoLink = videoItem
         mDetayViewController.yazarAvatar = avatar
+        mDetayViewController.ilkResim = gorsel!
         self.navigationController?.pushViewController(mDetayViewController, animated: true)
         
     }
