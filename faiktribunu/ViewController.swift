@@ -51,8 +51,6 @@ class ViewController: UIViewController {
         }
         
         
-        
-        
         if let mYazilarViewController = YazilarViewController(nibName:"YazilarViewController", bundle: nil) as? YazilarViewController {
             addChild(mYazilarViewController)
             mYazilarViewController.view.frame = CGRect.init(x: 0, y: 0, width: self.mViewMain.bounds.width, height: self.mViewMain.bounds.height)
@@ -110,7 +108,6 @@ class ViewController: UIViewController {
         logoContainer.addSubview(imageView)
         self.navigationItem.titleView = logoContainer
        
-        
         let bjktv = UIButton(type: .custom)
         bjktv.setImage(UIImage(named: "television"), for: UIControl.State.normal)
         bjktv.addTarget(self, action: #selector(self.bjkMethod), for: UIControl.Event.touchUpInside)

@@ -12,6 +12,8 @@ import SwiftyJSON
 import ObjectMapper
 import SVPullToRefresh
 import SDWebImage
+import NightNight
+import SafariServices
 
 class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
@@ -32,10 +34,18 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
     var activityIndicator = UIActivityIndicatorView()
     var strLabel = UILabel()
     let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+    var favoriler = [Int]()
+    let defaults = UserDefaults.standard
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.setNavBarItems()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        vCollectionView.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#282828"))
+        
         vCollectionView.register(VideolarCollectionViewCell.self, forCellWithReuseIdentifier: "VideolarCollectionViewCell")
         vCollectionView.register(UINib.init(nibName: "VideolarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "VideolarCollectionViewCell")
     
@@ -62,7 +72,11 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
             self.vCollectionView.infiniteScrollingView.startAnimating()
             
             self.loadMore += 1
-            let urladd = "https://www.faiktribunu.com/index.php/wp-json/wp/v2/posts?categories=9&page=" + "\(self.loadMore)"
+            
+            let favoriler = self.defaults.array(forKey: "Favoriler")  as? [Int] ?? [Int]()
+            let converted = (favoriler.map{String($0)}).joined(separator: ",")
+            
+            let urladd = StaticVariables.baseUrl + "posts?include=" + "\(converted)" + "&page=" + "\(self.loadMore)"
             
             AF.request(urladd, method: .get, parameters: nil)
                 .responseString { response in
@@ -79,6 +93,8 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
                                 if let item = item.lst{
                                     
                                     self.base = item
+                                    
+                                    if item.count != 0{
                                     
                                     for title in item{
                                         
@@ -98,12 +114,17 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
                                         
                                         
                                         if item.last?.id == title.id{
-                                            self.vCollectionView.reloadData()
                                             self.vCollectionView.infiniteScrollingView.stopAnimating()
+                                            self.vCollectionView.reloadData()
+                                            self.vCollectionView.layoutIfNeeded()
                                         }
                                         
                                     }
                                     
+                                    }else{
+                                        self.vCollectionView.infiniteScrollingView.stopAnimating()
+                                        
+                                    }
                                     
                                 }
                                 
@@ -145,7 +166,10 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
         
         self.loadMore = 1
         
-        let url = StaticVariables.baseUrl + "posts?categories=9"
+        let favoriler = defaults.array(forKey: "Favoriler")  as? [Int] ?? [Int]()
+        let converted = (favoriler.map{String($0)}).joined(separator: ",")
+        
+        let url = StaticVariables.baseUrl + "posts?include=" + "\(converted)"
         
         AF.request(url, method: .get, parameters: nil)
             .responseString { response in
@@ -180,9 +204,9 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
                                     self.catResim.append(StaticVariables.homeUrl + StaticVariables.catAvatar + "\(title.categories![0])" + ".png")
                                     
                                     if item.last?.id == title.id{
+                                        self.vCollectionView.pullToRefreshView.stopAnimating()
                                         self.vCollectionView.reloadData()
                                         self.effectView.removeFromSuperview()
-                                        self.vCollectionView.pullToRefreshView.stopAnimating()
                                     }
                                     
                                 }
@@ -224,6 +248,9 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideolarCollectionViewCell", for: indexPath) as! VideolarCollectionViewCell
         
+        cell.mixedBackgroundColor = MixedColor(normal: UIColor.white, night: UIColor(hexString: "#171717"))
+        cell.baslik.mixedTextColor = MixedColor(normal: UIColor.black, night: UIColor.white)
+        
         if indexPath.row < basliklar.count{
         cell.baslik.text = basliklar[indexPath.row].html2String
         cell.yazarAvatar.sd_setImage(with: URL(string: catResim[indexPath.row]), placeholderImage: UIImage(named: "faiklogo"))
@@ -243,15 +270,20 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! VideolarCollectionViewCell
         
         let selectedItem = yazinumara[indexPath.row]
         let videoItem = videoLink[indexPath.row]
         let formatItem = format[indexPath.row]
-        
+        let avatar = catResim[indexPath.row]
+        let gorsel = cell.haberGorseli.image
+        contentID = selectedItem
         let mDetayViewController = DetayViewController(nibName: "DetayViewController", bundle: nil)
         mDetayViewController.yaziNumara = selectedItem
         mDetayViewController.yaziFormat = formatItem
         mDetayViewController.videoLink = videoItem
+        mDetayViewController.yazarAvatar = avatar
+        mDetayViewController.ilkResim = gorsel!
         self.navigationController?.pushViewController(mDetayViewController, animated: true)
         
     }
@@ -278,6 +310,65 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
         effectView.contentView.addSubview(activityIndicator)
         effectView.contentView.addSubview(strLabel)
         view.addSubview(effectView)
+    }
+    
+    func setNavBarItems(){
+        
+        let logoContainer = UIView(frame: CGRect(x: 0, y: 0, width: 144, height: 32))
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 144, height: 32))
+        imageView.contentMode = .scaleAspectFit
+        let image = UIImage(named: "faiknav")
+        imageView.image = image
+        logoContainer.addSubview(imageView)
+        self.navigationItem.titleView = logoContainer
+        
+        
+        let bjktv = UIButton(type: .custom)
+        bjktv.setImage(UIImage(named: "television"), for: UIControl.State.normal)
+        bjktv.addTarget(self, action: #selector(self.bjkMethod), for: UIControl.Event.touchUpInside)
+        let bjktvbtn = UIBarButtonItem(customView: bjktv)
+        
+        bjktv.widthAnchor.constraint(equalToConstant: 28.0).isActive = true
+        bjktv.heightAnchor.constraint(equalToConstant: 28.0).isActive = true
+        
+        
+        self.navigationItem.setRightBarButtonItems([bjktvbtn], animated: true)
+        
+        let menu = UIButton(type: .custom)
+        menu.setImage(UIImage(named: "bjk"), for: UIControl.State.normal)
+        menu.addTarget(self, action: #selector(self.menuMethod), for: UIControl.Event.touchUpInside)
+        let menubtn = UIBarButtonItem(customView: menu)
+        
+        menu.widthAnchor.constraint(equalToConstant: 26.0).isActive = true
+        menu.heightAnchor.constraint(equalToConstant: 32.0).isActive = true
+        
+        
+        self.navigationItem.setLeftBarButtonItems([menubtn], animated: true)
+        
+    }
+    
+    @objc func menuMethod(){
+        
+        let bjkurl = URL.init(string: "http://www.bjk.com.tr")
+        let svc = SFSafariViewController(url: bjkurl!)
+        present(svc, animated: true, completion: nil)
+        
+    }
+    
+    @objc func bjkMethod(){
+        
+        let mBJKTVViewController = BJKTVViewController(nibName: "BJKTVViewController", bundle: nil)
+        self.navigationController?.pushViewController(mBJKTVViewController, animated: true)
+        
+        /*if let videoURL = URL.init(string: "https://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"){
+         let avPlayerController = AVPlayerViewController()
+         avPlayerController.player = AVPlayer.init(url: videoURL)
+         self.present(avPlayerController, animated: true) {
+         avPlayerController.player?.play()
+         }
+         }*/
+        
     }
 
 }

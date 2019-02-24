@@ -4,7 +4,7 @@ platform :ios, '11.0'
 target 'faiktribunu' do
 
   pod 'ScrollableSegmentedControl', '~> 1.3.0'
-  pod 'Alamofire', '= 5.0.0-beta.2'
+  pod 'Alamofire', '~> 5.0.0-beta.2'
   pod 'AlamofireObjectMapper'
   pod 'SwiftyJSON'
   pod 'SVPullToRefresh'

@@ -254,7 +254,7 @@ class GundemViewController: UIViewController,UICollectionViewDelegate,UICollecti
             let videoItem = videoLink[indexPath.row]
             let formatItem = format[indexPath.row]
             let avatar = catResim[indexPath.row]
-            
+            contentID = selectedItem
             let mDetayViewController = DetayViewController(nibName: "DetayViewController", bundle: nil)
             mDetayViewController.yaziNumara = selectedItem
             mDetayViewController.yaziFormat = formatItem

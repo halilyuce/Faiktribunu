@@ -30,7 +30,7 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         fiksturnavigationController.tabBarItem.image = UIImage(named: "puan")
         fiksturnavigationController.tabBarItem.tag = 1
         
-        let favoriteController = FiksturViewController()
+        let favoriteController = VideolarViewController()
         let favoritenavigationController = UINavigationController(rootViewController: favoriteController)
         favoritenavigationController.title = "Favoriler"
         favoritenavigationController.tabBarItem.image = UIImage(named: "fav")

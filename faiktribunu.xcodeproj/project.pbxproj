@@ -20,6 +20,7 @@
 		043452AC21038085008EEC21 /* BildirimlerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043452AA21038085008EEC21 /* BildirimlerTableViewCell.xib */; };
 		0438D92D221E1EA800C437D6 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438D92C221E1EA800C437D6 /* Categories.swift */; };
 		0438D92F221E22F700C437D6 /* cList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438D92E221E22F700C437D6 /* cList.swift */; };
+		043E393A2222FA78005A06F7 /* CommentsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E39392222FA78005A06F7 /* CommentsList.swift */; };
 		0444E62E21126306007A98AC /* faiktribunu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04172C202109E37C004DDF6A /* faiktribunu.xcdatamodeld */; };
 		0447F3CE2113ACF200B4E79F /* YazilarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE381120E512D80003E517 /* YazilarViewController.swift */; };
 		044B848E211105F30085441D /* GizlilikViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B848C211105F30085441D /* GizlilikViewController.swift */; };
@@ -45,6 +46,9 @@
 		04CC73A9210294A300197E7E /* GundemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CC73A7210294A300197E7E /* GundemCollectionViewCell.xib */; };
 		04CD18D3210120B100CB3897 /* FiksturViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CD18D1210120B100CB3897 /* FiksturViewController.swift */; };
 		04CD18D4210120B100CB3897 /* FiksturViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CD18D2210120B100CB3897 /* FiksturViewController.xib */; };
+		04CF4CA62222E7140092F761 /* AuthorAvatarUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CF4C9F2222E7130092F761 /* AuthorAvatarUrls.swift */; };
+		04CF4CA82222E7140092F761 /* BaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CF4CA12222E7130092F761 /* BaseClass.swift */; };
+		04CF4CAB2222E7140092F761 /* CommentsContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CF4CA42222E7140092F761 /* CommentsContent.swift */; };
 		04D1D58820FFBCAA00538AEF /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1D58720FFBCAA00538AEF /* CustomTabBarController.swift */; };
 		04D7B20F2100844800E5F05A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7B20D2100844800E5F05A /* ViewController.swift */; };
 		04D7B2102100844800E5F05A /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D7B20E2100844800E5F05A /* ViewController.xib */; };
@@ -117,6 +121,7 @@
 		043452AA21038085008EEC21 /* BildirimlerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BildirimlerTableViewCell.xib; sourceTree = "<group>"; };
 		0438D92C221E1EA800C437D6 /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		0438D92E221E22F700C437D6 /* cList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cList.swift; sourceTree = "<group>"; };
+		043E39392222FA78005A06F7 /* CommentsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsList.swift; sourceTree = "<group>"; };
 		044B848C211105F30085441D /* GizlilikViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GizlilikViewController.swift; sourceTree = "<group>"; };
 		044B848D211105F30085441D /* GizlilikViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GizlilikViewController.xib; sourceTree = "<group>"; };
 		045184AD221F5EF700C21E5E /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
@@ -144,6 +149,9 @@
 		04CC73A7210294A300197E7E /* GundemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GundemCollectionViewCell.xib; sourceTree = "<group>"; };
 		04CD18D1210120B100CB3897 /* FiksturViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiksturViewController.swift; sourceTree = "<group>"; };
 		04CD18D2210120B100CB3897 /* FiksturViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FiksturViewController.xib; sourceTree = "<group>"; };
+		04CF4C9F2222E7130092F761 /* AuthorAvatarUrls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorAvatarUrls.swift; sourceTree = "<group>"; };
+		04CF4CA12222E7130092F761 /* BaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseClass.swift; sourceTree = "<group>"; };
+		04CF4CA42222E7140092F761 /* CommentsContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsContent.swift; sourceTree = "<group>"; };
 		04D1D58720FFBCAA00538AEF /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		04D7B20D2100844800E5F05A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		04D7B20E2100844800E5F05A /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
@@ -308,6 +316,17 @@
 			path = "Tab Bar";
 			sourceTree = "<group>";
 		};
+		04CF4C9D2222E6D40092F761 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				04CF4C9F2222E7130092F761 /* AuthorAvatarUrls.swift */,
+				04CF4CA12222E7130092F761 /* BaseClass.swift */,
+				04CF4CA42222E7140092F761 /* CommentsContent.swift */,
+				043E39392222FA78005A06F7 /* CommentsList.swift */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
 		04D7B21121008DC200E5F05A /* Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,6 +350,7 @@
 		7D14367D20E90F5E002C8D9E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				04CF4C9D2222E6D40092F761 /* Comments */,
 				7D14367E20E90F6D002C8D9E /* Base.swift */,
 				7D14368020E90FCD002C8D9E /* BaseItem.swift */,
 				7D14368220E91117002C8D9E /* List.swift */,
@@ -738,14 +758,18 @@
 				0447F3CE2113ACF200B4E79F /* YazilarViewController.swift in Sources */,
 				040E760C2111F2BB0074EED6 /* TarihCollectionViewCell.swift in Sources */,
 				7D14368520E91439002C8D9E /* Title.swift in Sources */,
+				04CF4CA82222E7140092F761 /* BaseClass.swift in Sources */,
 				0438D92D221E1EA800C437D6 /* Categories.swift in Sources */,
 				04CC739D2102713300197E7E /* Source.swift in Sources */,
+				04CF4CAB2222E7140092F761 /* CommentsContent.swift in Sources */,
 				04E2CB9D2104D06E00E237AB /* DigerleriViewController.swift in Sources */,
 				7D14368320E91117002C8D9E /* List.swift in Sources */,
 				04CC73992102705E00197E7E /* Sizes.swift in Sources */,
 				7D06B90720C6D07600C3C269 /* StaticVariables.swift in Sources */,
+				04CF4CA62222E7140092F761 /* AuthorAvatarUrls.swift in Sources */,
 				7D14368D20E989D4002C8D9E /* DetayList.swift in Sources */,
 				04172C222109E37C004DDF6A /* faiktribunu.xcdatamodeld in Sources */,
+				043E393A2222FA78005A06F7 /* CommentsList.swift in Sources */,
 				7D14368120E90FCD002C8D9E /* BaseItem.swift in Sources */,
 				04569C1121124E590021FAE6 /* KonuklarViewController.swift in Sources */,
 				04D1D58820FFBCAA00538AEF /* CustomTabBarController.swift in Sources */,
@@ -1017,6 +1041,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.labters.faiktribunu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s arm64";

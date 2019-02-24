@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14296.2" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18E194d" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Bildirimler" representedClassName="Bildirimler" syncable="YES" codeGenerationType="class">
         <attribute name="postBody" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postFormat" optional="YES" attributeType="String" syncable="YES"/>
@@ -9,7 +9,11 @@
         <attribute name="postVideoUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="update" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Favoriler" representedClassName="Favoriler" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Bildirimler" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="Favoriler" positionX="-63" positionY="36" width="128" height="60"/>
     </elements>
 </model>

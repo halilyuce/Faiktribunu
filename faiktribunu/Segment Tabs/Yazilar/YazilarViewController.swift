@@ -266,6 +266,7 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
         
         let mDetayViewController = DetayViewController(nibName: "DetayViewController", bundle: nil)
         mDetayViewController.yaziNumara = selectedItem
+        contentID = selectedItem
         mDetayViewController.yaziFormat = formatItem
         mDetayViewController.videoLink = videoItem
         mDetayViewController.yazarAvatar = avatar
