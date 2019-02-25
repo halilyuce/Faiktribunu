@@ -31,7 +31,7 @@ public final class BaseClass: Mappable, NSCoding {
 
   // MARK: Properties
   public var meta: [Any]?
-  public var authorAvatarUrls: AuthorAvatarUrls?
+  public var authorAvatarUrls: String?
   public var authorUrl: String?
   public var date: String?
   public var author: Int?
@@ -79,7 +79,7 @@ public final class BaseClass: Mappable, NSCoding {
   public func dictionaryRepresentation() -> [String: Any] {
     var dictionary: [String: Any] = [:]
     if let value = meta { dictionary[SerializationKeys.meta] = value }
-    if let value = authorAvatarUrls { dictionary[SerializationKeys.authorAvatarUrls] = value.dictionaryRepresentation() }
+    if let value = authorAvatarUrls { dictionary[SerializationKeys.authorAvatarUrls] = value }
     if let value = authorUrl { dictionary[SerializationKeys.authorUrl] = value }
     if let value = date { dictionary[SerializationKeys.date] = value }
     if let value = author { dictionary[SerializationKeys.author] = value }
@@ -98,7 +98,7 @@ public final class BaseClass: Mappable, NSCoding {
   // MARK: NSCoding Protocol
   required public init(coder aDecoder: NSCoder) {
     self.meta = aDecoder.decodeObject(forKey: SerializationKeys.meta) as? [Any]
-    self.authorAvatarUrls = aDecoder.decodeObject(forKey: SerializationKeys.authorAvatarUrls) as? AuthorAvatarUrls
+    self.authorAvatarUrls = aDecoder.decodeObject(forKey: SerializationKeys.authorAvatarUrls) as? String
     self.authorUrl = aDecoder.decodeObject(forKey: SerializationKeys.authorUrl) as? String
     self.date = aDecoder.decodeObject(forKey: SerializationKeys.date) as? String
     self.author = aDecoder.decodeObject(forKey: SerializationKeys.author) as? Int

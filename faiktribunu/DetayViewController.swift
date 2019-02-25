@@ -36,7 +36,7 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var yaziNumara = String()
     var yaziFormat = String()
     var videoLink = String()
-    var contentHeight = CGFloat()
+    var contentHeight = 1
     var isWebViewLoaded = Bool()
     var yazarAvatar = String()
     var ilkResim = UIImage()
@@ -244,12 +244,16 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 if favoriler.contains(Int(yaziNumara)!){
                     cell.favorite.isSelected = true
                     cell.favorite.mixedTintColor = MixedColor(normal: UIColor.orange.withAlphaComponent(1.0), night: UIColor.orange.withAlphaComponent(1.0))
+                    cell.favorite.setTitle("Favorilerenizde", for: UIControl.State.normal)
                 }else{
                      cell.favorite.isSelected = false
                     cell.favorite.mixedTintColor = MixedColor(normal: UIColor.black, night: UIColor.white.withAlphaComponent(0.5))
+                    cell.favorite.setTitle("Favorilere Ekle", for: UIControl.State.normal)
                 }
                 
                 cell.share.addTarget(self, action: #selector(self.shareMethod), for: UIControl.Event.touchUpInside)
+                
+                cell.comments.addTarget(self, action: #selector(self.goComments), for: UIControl.Event.touchUpInside)
                 
                 
             }else{
@@ -280,7 +284,7 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
             
-            cell.body.frame = CGRect(x:0, y:0, width:cell.frame.size.width - 30, height:htmlHeight)
+            cell.body.frame = CGRect(x:0, y:0, width:Int(cell.frame.size.width - 20), height:htmlHeight + 20)
             cell.body.scrollView.isScrollEnabled = false
             
             }else{
@@ -333,26 +337,16 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if indexPath.row == 1{
             
-            if contentHeight != 60.0{
-                
-                return contentHeight + 30
-            }else{
-                return 0
+            if (contentHeight != 0)
+            {
+                return CGFloat(contentHeight)
             }
+            
             
             }
         
         if indexPath.row == 2{
-            
-            var tableViewHeight: CGFloat {
-                let cell = CommentsCell()
-                cell.tableView.layoutIfNeeded()
-                
-                return 400
-            }
-            
-            return tableViewHeight
-            
+            return 303.84375
         }
         
         else{
@@ -366,6 +360,7 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
     }
+    
     
     @objc func clickFavorite(sender:UIButton){
         
@@ -385,6 +380,7 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
             cell.favorite.isSelected = true
+            cell.favorite.setTitle("Favorilerilerinizde", for: UIControl.State.normal)
             cell.favorite.mixedTintColor = MixedColor(normal: UIColor.orange.withAlphaComponent(1.0), night: UIColor.orange.withAlphaComponent(1.0))
         }else{
             print("unselected")
@@ -398,6 +394,7 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
             cell.favorite.isSelected = false
+            cell.favorite.setTitle("Favorilere Ekle", for: UIControl.State.normal)
             cell.favorite.mixedTintColor = MixedColor(normal: UIColor.black, night: UIColor.white.withAlphaComponent(0.5))
         }
         print(favoriler)
@@ -406,20 +403,28 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func webViewDidFinishLoad(_ webView: UIWebView)
     {
-        var frame : CGRect = webView.frame
-        frame.size.height = 1
-        webView.frame.size = webView.sizeThatFits(.zero)
-        frame.size = webView.frame.size
-        webView.frame = frame
-        contentHeight = webView.frame.size.height
-        isWebViewLoaded = true
+        if (contentHeight != 1)
+        {
+            // we already know height, no need to reload cell
+            return
+        }
         
-        DispatchQueue.main.async(execute: { () -> Void in
-            self.tableView.beginUpdates()
-            self.tableView.endUpdates()
-        })
+        var frame: CGRect = webView.frame
+        frame.size.height = 1
+        webView.frame = frame
+        let fittingSize = webView.sizeThatFits(CGSize.zero)
+        frame.size = fittingSize
+        webView.frame = frame
+        contentHeight = Int(fittingSize.height)
+        
+        tableView.reloadData()
+        tableView.layoutIfNeeded()
     }
     
+    @objc func goComments(){
+        let index = IndexPath(row: 2, section: 0)
+        self.tableView.scrollToRow(at: index, at: UITableView.ScrollPosition.top, animated: true)
+    }
     
     
     @objc func shareMethod(){
@@ -733,10 +738,10 @@ class ContentCell: UITableViewCell {
         
         addSubview(body)
         
-        body.leftAnchor.constraint(equalTo: leftAnchor, constant: 15).isActive = true
-        body.rightAnchor.constraint(equalTo: rightAnchor, constant: -15).isActive = true
+        body.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
+        body.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
         body.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        body.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 10).isActive = true
+        body.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
         
     }
     
@@ -789,9 +794,10 @@ class CommentsCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource 
     
     func setupViews(){
         
-        tableView.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#282828"))
+        tableView.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#3f4447"))
         
-        tableView.mixedSeparatorColor = MixedColor(normal: UIColor.lightGray, night: UIColor(hexString: "#3f4447"))
+        tableView.separatorStyle = .none
+        
     }
     
     
@@ -821,7 +827,7 @@ class CommentsCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource 
                             for item in items{
                                 self.commentUserName.append(item.authorName!)
                                 self.commentBody.append((item.content?.rendered)!)
-                                self.commentUserAvatar.append((item.authorAvatarUrls?.foureight)!)
+                                self.commentUserAvatar.append((item.authorAvatarUrls)!)
                                 
                                 if items.last?.id == item.id{
                                     self.tableView.reloadData()
@@ -861,12 +867,18 @@ class CommentsCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource 
             if ((image) != nil){
                 cell.avatar.image = image
             }else{
-                cell.avatar.sd_setImage(with: URL(string: "https://gasome.com/images/avatars/small/1541452120.jpeg"))
+                cell.avatar.sd_setImage(with: URL(string: "https://www.faiktribunu.com/wp-content/uploads/2018/01/faikkartal-125x125.png"))
             }
         })
         
         cell.avatarName.text = commentUserName[indexPath.row]
         cell.body.text = commentBody[indexPath.row].html2String
+        
+        cell.layer.borderWidth = CGFloat(0.5)
+        cell.layer.borderColor = tableView.backgroundColor?.cgColor
+        
+        print(tableView.contentSize.height)
+
         
         return cell
     }
@@ -881,9 +893,9 @@ class CommentsCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource 
         let bodySize = CGSize(width: approximateWidthOfBodyTextView, height:1000)
         let bodyAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]
         
-        let estimatedBodyFrame = NSString(string: commentBody[indexPath.row]).boundingRect(with: bodySize, options: . usesLineFragmentOrigin, attributes: bodyAttributes, context: nil)
+        let estimatedBodyFrame = NSString(string: commentBody[indexPath.row].html2String).boundingRect(with: bodySize, options: . usesLineFragmentOrigin, attributes: bodyAttributes, context: nil)
         
-            return estimatedBodyFrame.height + 72
+            return estimatedBodyFrame.height + 52
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -896,6 +908,7 @@ class postComments: UITableViewCell {
     
     let avatar: UIImageView = {
         let view = UIImageView()
+        view.backgroundColor = .white
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor.white.withAlphaComponent(0.3).cgColor
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -937,8 +950,6 @@ class postComments: UITableViewCell {
     func addViews(){
         
         addSubview(avatar)
-        addSubview(avatarName)
-        addSubview(body)
         
         avatar.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
         avatar.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
@@ -948,15 +959,19 @@ class postComments: UITableViewCell {
         avatar.layer.cornerRadius = 18
         avatar.clipsToBounds = true
         
+        addSubview(avatarName)
+        
         avatarName.leftAnchor.constraint(equalTo: avatar.rightAnchor, constant: 10).isActive = true
         avatarName.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
         avatarName.heightAnchor.constraint(equalToConstant: 36).isActive = true
         avatarName.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 86).isActive = true
         
-        body.leftAnchor.constraint(equalTo: avatar.rightAnchor, constant: 10).isActive = true
-        body.topAnchor.constraint(equalTo: topAnchor, constant: 40).isActive = true
-        body.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
+        addSubview(body)
+        
+        body.leftAnchor.constraint(equalTo: leftAnchor, constant: 66).isActive = true
+        body.topAnchor.constraint(equalTo: avatarName.bottomAnchor).isActive = true
         body.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 86).isActive = true
+        
         
     }
     

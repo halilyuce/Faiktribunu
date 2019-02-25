@@ -46,7 +46,6 @@
 		04CC73A9210294A300197E7E /* GundemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CC73A7210294A300197E7E /* GundemCollectionViewCell.xib */; };
 		04CD18D3210120B100CB3897 /* FiksturViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CD18D1210120B100CB3897 /* FiksturViewController.swift */; };
 		04CD18D4210120B100CB3897 /* FiksturViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CD18D2210120B100CB3897 /* FiksturViewController.xib */; };
-		04CF4CA62222E7140092F761 /* AuthorAvatarUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CF4C9F2222E7130092F761 /* AuthorAvatarUrls.swift */; };
 		04CF4CA82222E7140092F761 /* BaseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CF4CA12222E7130092F761 /* BaseClass.swift */; };
 		04CF4CAB2222E7140092F761 /* CommentsContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CF4CA42222E7140092F761 /* CommentsContent.swift */; };
 		04D1D58820FFBCAA00538AEF /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1D58720FFBCAA00538AEF /* CustomTabBarController.swift */; };
@@ -149,7 +148,6 @@
 		04CC73A7210294A300197E7E /* GundemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GundemCollectionViewCell.xib; sourceTree = "<group>"; };
 		04CD18D1210120B100CB3897 /* FiksturViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiksturViewController.swift; sourceTree = "<group>"; };
 		04CD18D2210120B100CB3897 /* FiksturViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FiksturViewController.xib; sourceTree = "<group>"; };
-		04CF4C9F2222E7130092F761 /* AuthorAvatarUrls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorAvatarUrls.swift; sourceTree = "<group>"; };
 		04CF4CA12222E7130092F761 /* BaseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseClass.swift; sourceTree = "<group>"; };
 		04CF4CA42222E7140092F761 /* CommentsContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsContent.swift; sourceTree = "<group>"; };
 		04D1D58720FFBCAA00538AEF /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
@@ -319,7 +317,6 @@
 		04CF4C9D2222E6D40092F761 /* Comments */ = {
 			isa = PBXGroup;
 			children = (
-				04CF4C9F2222E7130092F761 /* AuthorAvatarUrls.swift */,
 				04CF4CA12222E7130092F761 /* BaseClass.swift */,
 				04CF4CA42222E7140092F761 /* CommentsContent.swift */,
 				043E39392222FA78005A06F7 /* CommentsList.swift */,
@@ -766,7 +763,6 @@
 				7D14368320E91117002C8D9E /* List.swift in Sources */,
 				04CC73992102705E00197E7E /* Sizes.swift in Sources */,
 				7D06B90720C6D07600C3C269 /* StaticVariables.swift in Sources */,
-				04CF4CA62222E7140092F761 /* AuthorAvatarUrls.swift in Sources */,
 				7D14368D20E989D4002C8D9E /* DetayList.swift in Sources */,
 				04172C222109E37C004DDF6A /* faiktribunu.xcdatamodeld in Sources */,
 				043E393A2222FA78005A06F7 /* CommentsList.swift in Sources */,
