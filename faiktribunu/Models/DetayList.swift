@@ -15,6 +15,7 @@ public class DetayList: BaseItem {
     private struct SerializationKeys {
         static let media = "featured_media"
         static let id = "id"
+        static let date = "date"
         static let categories = "categories"
         static let title = "title"
         static let content = "content"
@@ -32,6 +33,7 @@ public class DetayList: BaseItem {
     public var id: Int?
     public var categories: [Int]?
     public var title: Title?
+    public var date: String?
     public var content: Content?
     public var video_url: String?
     public var format: String?
@@ -49,6 +51,7 @@ public class DetayList: BaseItem {
         super.mapping(map: map)
         media <- map[SerializationKeys.media]
         id <- map[SerializationKeys.id]
+        date <- map[SerializationKeys.date]
         categories <- map[SerializationKeys.categories]
         title <- map[SerializationKeys.title]
         content <- map[SerializationKeys.content]
@@ -65,6 +68,7 @@ public class DetayList: BaseItem {
         var dictionary: [String: Any] = [:]
         if let value = media { dictionary[SerializationKeys.media] = value }
         if let value = id { dictionary[SerializationKeys.id] = value }
+        if let value = date { dictionary[SerializationKeys.date] = value }
         if let value = categories { dictionary[SerializationKeys.categories] = value }
         if let value = title { dictionary[SerializationKeys.title] = value }
         if let value = content { dictionary[SerializationKeys.content] = value }

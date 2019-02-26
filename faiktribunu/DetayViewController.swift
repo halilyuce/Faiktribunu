@@ -30,6 +30,7 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var resimShare = String()
     var baslik = String()
     var content = String()
+    var tarih = String()
     var base = [Base]()
     var detayBase = [Title]()
     var resBase = [ResBase]()
@@ -292,6 +293,11 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                                    customAttributes: [:])
                             
                             
+                            let string = detay.date
+                            let dateTo = DateFormatter.date(fromISO8601String: string!)
+                            self.tarih.append(dateTo!.getElapsedInterval())
+                            
+                            
                             if self.yaziFormat == "video" {
                                 
                                 self.content = (detay.content?.rendered)!
@@ -334,10 +340,10 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 2 {
             let sectionHeader = UIView()
-            sectionHeader.backgroundColor = UIColor.black.withAlphaComponent(0.2)
+            sectionHeader.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#3f4447"))
             
             let label = UILabel()
             label.frame = CGRect(x: 15, y: 10, width: UIScreen.main.bounds.width - 165, height: 30)
@@ -349,7 +355,7 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
             label.font = UIFont.systemFont(ofSize: 15)
-            label.textColor = .white
+            label.mixedTextColor = MixedColor(normal: UIColor.black, night: UIColor.white)
             sectionHeader.addSubview(label)
             
             let button = UIButton()
@@ -369,7 +375,7 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == 2 {
         return 50
         }else{
@@ -388,6 +394,7 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
             if self.itemSize == true{
             cell.isHidden = false
             cell.title.text = baslik.uppercased()
+            cell.claps.setTitle(tarih, for: UIControl.State.normal)
             cell.title.mixedTextColor = MixedColor(normal: UIColor.black, night: UIColor.white.withAlphaComponent(0.8))
             cell.avatarName.text = authorName
             cell.avatarName.mixedTextColor = MixedColor(normal: UIColor.black, night: UIColor.white.withAlphaComponent(0.8))
@@ -687,6 +694,8 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
             alert.addAction(UIAlertAction(title: "İlk Yorumu Yap", style: .default, handler: {
                 (alert: UIAlertAction!) in
                 
+                self.addComment()
+                
             }))
             
             alert.addAction(UIAlertAction(title: "Kapat", style: .cancel, handler: {
@@ -776,9 +785,9 @@ class infoCell: UITableViewCell {
     let claps: UIButton = {
         let button = UIButton()
         let image = UIImage(named: "claps")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        button.setTitle("Tarih", for: UIControl.State.normal)
         button.setImage(image, for: UIControl.State.normal)
         button.mixedTintColor = MixedColor(normal: UIColor.black, night: UIColor.white.withAlphaComponent(0.5))
-        button.setTitle("17", for: UIControl.State.normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         button.setMixedTitleColor(MixedColor(normal: UIColor.black, night: UIColor.white.withAlphaComponent(0.5)), forState: UIControl.State.normal)
         button.translatesAutoresizingMaskIntoConstraints = false

@@ -415,3 +415,76 @@ extension UIColor {
         return String(format:"#%06x", rgb)
     }
 }
+
+extension Date {
+    func getElapsedInterval() -> String {
+        
+        var calendar = Calendar.current
+        calendar.locale = Locale(identifier: Bundle.main.preferredLocalizations[0])
+        
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .full
+        formatter.maximumUnitCount = 1
+        formatter.calendar = calendar
+        
+        var dateString: String?
+        
+        let interval = calendar.dateComponents([.year, .month, .weekOfYear, .day], from: self, to: Date())
+        
+        if let year = interval.year, year > 0 {
+            formatter.allowedUnits = [.year] //2 years
+        } else if let month = interval.month, month > 0 {
+            formatter.allowedUnits = [.month] //1 month
+        } else if let week = interval.weekOfYear, week > 0 {
+            formatter.allowedUnits = [.weekOfMonth] //3 weeks
+        } else if let day = interval.day, day > 0 {
+            formatter.allowedUnits = [.day] // 6 days
+        } else {
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: Bundle.main.preferredLocalizations[0])
+            dateFormatter.dateStyle = .medium
+            dateFormatter.doesRelativeDateFormatting = true
+            
+            dateString = dateFormatter.string(from: self)
+        }
+        
+        if dateString == nil {
+            dateString = formatter.string(from: self, to: Date())
+        }
+        
+        return dateString!
+    }
+}
+
+extension DateFormatter {
+    
+    static let iso8601DateFormatter: DateFormatter = {
+        let enUSPOSIXLocale = Locale(identifier: "en_US_POSIX")
+        let iso8601DateFormatter = DateFormatter()
+        iso8601DateFormatter.locale = enUSPOSIXLocale
+        iso8601DateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        iso8601DateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        return iso8601DateFormatter
+    }()
+    
+    static let iso8601WithoutMillisecondsDateFormatter: DateFormatter = {
+        let enUSPOSIXLocale = Locale(identifier: "en_US_POSIX")
+        let iso8601DateFormatter = DateFormatter()
+        iso8601DateFormatter.locale = enUSPOSIXLocale
+        iso8601DateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        iso8601DateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        return iso8601DateFormatter
+    }()
+    
+    static func date(fromISO8601String string: String) -> Date? {
+        if let dateWithMilliseconds = iso8601DateFormatter.date(from: string) {
+            return dateWithMilliseconds
+        }
+        
+        if let dateWithoutMilliseconds = iso8601WithoutMillisecondsDateFormatter.date(from: string) {
+            return dateWithoutMilliseconds
+        }
+        
+        return nil
+    }
+}
