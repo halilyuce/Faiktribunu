@@ -1,5 +1,5 @@
 use_frameworks!
-platform :ios, '11.0'
+platform :ios, '10.0'
 
 target 'faiktribunu' do
 
@@ -10,7 +10,7 @@ target 'faiktribunu' do
   pod 'SVPullToRefresh'
   pod 'SDWebImage'
   pod 'QuickTableViewController', '~> 0.8.0'
-  pod 'OneSignal', '>= 2.5.2', '< 3.0'
+  pod 'OneSignal'
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'ParallaxHeader', '~> 2.0.0'
@@ -21,5 +21,5 @@ target 'faiktribunu' do
 end
 
 target 'OneSignalNotificationServiceExtension' do
-    pod 'OneSignal', '>= 2.6.2', '< 3.0'
+    pod 'OneSignal'
 end

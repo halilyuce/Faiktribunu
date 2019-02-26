@@ -301,7 +301,6 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
                             if self.yaziFormat == "video" {
                                 
                                 self.content = (detay.content?.rendered)!
-                                //self.videoLink
                                 
                                 
                             } else{

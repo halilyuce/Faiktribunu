@@ -36,6 +36,7 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
     let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     var favoriler = [Int]()
     let defaults = UserDefaults.standard
+    var headerView = UIView()
     
     override func viewWillAppear(_ animated: Bool) {
         self.setNavBarItems()
@@ -187,6 +188,10 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
         let favoriler = defaults.array(forKey: "Favoriler")  as? [Int] ?? [Int]()
         let converted = (favoriler.map{String($0)}).joined(separator: ",")
         
+        if favoriler.count != 0 {
+            
+            headerView.removeFromSuperview()
+        
         let url = StaticVariables.baseUrl + "posts?include=" + "\(converted)"
         
         AF.request(url, method: .get, parameters: nil)
@@ -247,7 +252,23 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
                 
                 
         }
-        
+            
+        }else{
+            
+            let headerText = UILabel()
+            headerText.frame = CGRect(x: 0, y: StaticVariables.screenHeight/2 - 100, width: StaticVariables.screenWidth, height: 50)
+            headerText.text = "Henüz favorilerinizde bir gönderi bulunmamaktadır."
+            headerText.textColor = UIColor.gray
+            headerText.numberOfLines = 2
+            headerText.font = UIFont.boldSystemFont(ofSize: 18.0)
+            headerText.textAlignment = .center
+            headerView.addSubview(headerText)
+            headerView.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#282828"))
+            headerView.frame = CGRect(x: 0, y: 0, width: StaticVariables.screenWidth, height: StaticVariables.screenHeight)
+            
+            self.view.addSubview(headerView)
+            
+        }
         
     }
     

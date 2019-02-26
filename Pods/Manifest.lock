@@ -1,33 +1,40 @@
 PODS:
-  - Alamofire (4.7.3)
-  - AlamofireObjectMapper (5.1.0):
-    - Alamofire (~> 4.1)
-    - ObjectMapper (~> 3.3)
-  - Crashlytics (3.10.5):
-    - Fabric (~> 1.7.9)
-  - Fabric (1.7.9)
-  - ObjectMapper (3.3.0)
-  - OneSignal (2.8.5)
+  - Alamofire (5.0.0-beta.2)
+  - AlamofireObjectMapper (6.0.0):
+    - Alamofire (~> 5.0.0-beta.2)
+    - ObjectMapper (~> 3.4)
+  - Crashlytics (3.12.0):
+    - Fabric (~> 1.9.0)
+  - Fabric (1.9.0)
+  - NightNight (0.5.0)
+  - ObjectMapper (3.4.2)
+  - OneSignal (2.9.5)
+  - ParallaxHeader (2.0.0)
   - QuickTableViewController (0.8.4)
   - ScrollableSegmentedControl (1.3.0)
-  - SDWebImage (4.4.2):
-    - SDWebImage/Core (= 4.4.2)
-  - SDWebImage/Core (4.4.2)
+  - SDWebImage (4.4.6):
+    - SDWebImage/Core (= 4.4.6)
+  - SDWebImage/Core (4.4.6)
+  - SnapKit (4.0.1)
   - SVPullToRefresh (0.4.1)
-  - SwiftyJSON (4.1.0)
+  - SwiftyJSON (4.2.0)
+  - XCDYouTubeKit (2.7.3)
 
 DEPENDENCIES:
-  - Alamofire
+  - Alamofire (~> 5.0.0-beta.2)
   - AlamofireObjectMapper
   - Crashlytics
   - Fabric
-  - OneSignal (< 3.0, >= 2.5.2)
-  - OneSignal (< 3.0, >= 2.6.2)
+  - NightNight
+  - OneSignal
+  - ParallaxHeader (~> 2.0.0)
   - QuickTableViewController (~> 0.8.0)
   - ScrollableSegmentedControl (~> 1.3.0)
   - SDWebImage
+  - SnapKit (~> 4.0.0)
   - SVPullToRefresh
   - SwiftyJSON
+  - XCDYouTubeKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -35,27 +42,35 @@ SPEC REPOS:
     - AlamofireObjectMapper
     - Crashlytics
     - Fabric
+    - NightNight
     - ObjectMapper
     - OneSignal
+    - ParallaxHeader
     - QuickTableViewController
     - ScrollableSegmentedControl
     - SDWebImage
+    - SnapKit
     - SVPullToRefresh
     - SwiftyJSON
+    - XCDYouTubeKit
 
 SPEC CHECKSUMS:
-  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  AlamofireObjectMapper: 3395e698901d8b0e6f48b7d0c43bd47875325102
-  Crashlytics: 7f2e38d302d9da96475b3d64d86fb29e31a542b7
-  Fabric: a2917d3895e4c1569b9c3170de7320ea1b1e6661
-  ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
-  OneSignal: 42dae269c7eca517aee34963820e1eb922390031
+  Alamofire: d1e5493588babe3e7b56ae29e8032942f4de09fe
+  AlamofireObjectMapper: 8cf0e01a1b36b485877033f8f6aa733977488da3
+  Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
+  Fabric: f988e33c97f08930a413e08123064d2e5f68d655
+  NightNight: 2a5550fdd9cf424b75ebaab022c26aaba35304c8
+  ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
+  OneSignal: ccdeb961882f8668305e5b694e2cb7cb325fc907
+  ParallaxHeader: fb6ee97915626454f3c029a97b424f79a777c642
   QuickTableViewController: 5daf26dac53985353f8765cae1258087f9bcc74b
   ScrollableSegmentedControl: a90ae91537fd670a46b177301d035223e3bd149e
-  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
-  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  XCDYouTubeKit: 3f4fd3eb3ed494a46a8f007b91315eed6dd6df1f
 
-PODFILE CHECKSUM: 4a053e0a90457df4e6d53375fce07fe50d360a1c
+PODFILE CHECKSUM: f44c0ea5222dd36dc7df7dcb03e691747582b0d5
 
 COCOAPODS: 1.5.3
