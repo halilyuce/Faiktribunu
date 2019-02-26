@@ -39,8 +39,9 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         self.tabBarController?.cleanTitles()
+        
+        view.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#282828"))
         
         mCollectionView.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#282828"))
         
@@ -53,9 +54,12 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
             
             
             self.basliklar.removeAll(keepingCapacity: false)
-            
-            
+            self.resimStr.removeAll(keepingCapacity: false)
+            self.yazinumara.removeAll(keepingCapacity: false)
+            self.resimLink.removeAll(keepingCapacity: false)
+            self.videoLink.removeAll(keepingCapacity: false)
             self.catResim.removeAll(keepingCapacity: false)
+            self.format.removeAll(keepingCapacity: false)
             
             
             self.loadList()
@@ -266,7 +270,7 @@ class YazilarViewController: UIViewController,UICollectionViewDelegate,UICollect
         
         let mDetayViewController = DetayViewController(nibName: "DetayViewController", bundle: nil)
         mDetayViewController.yaziNumara = selectedItem
-        contentID = selectedItem
+        mDetayViewController.contentID = selectedItem
         mDetayViewController.yaziFormat = formatItem
         mDetayViewController.videoLink = videoItem
         mDetayViewController.yazarAvatar = avatar

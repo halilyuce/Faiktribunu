@@ -17,8 +17,8 @@ import ParallaxHeader
 import SnapKit
 import NightNight
 import SDWebImage
+import XCDYouTubeKit
 
-var contentID = String()
 
 class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIWebViewDelegate {
 
@@ -43,6 +43,11 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var itemSize = Bool()
     let defaults = UserDefaults.standard
     var favoriler = [Int]()
+    var contentID = String()
+    
+    var commentUserName = [String]()
+    var commentUserAvatar = [String]()
+    var commentBody = [String]()
     
     var showBackButton = false
     
@@ -57,8 +62,9 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         navigationController?.setNavigationBarHidden(true, animated: animated)
         UIApplication.shared.keyWindow?.windowLevel = UIWindow.Level.statusBar
         
-        let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! infoCell
-        cell.isHidden = true
+        let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? infoCell
+        cell?.isHidden = true
+        tableView.reloadData()
         
         favoriler = defaults.array(forKey: "Favoriler")  as? [Int] ?? [Int]()
     }
@@ -67,7 +73,6 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
         UIApplication.shared.keyWindow?.windowLevel = UIWindow.Level.normal
-        
     }
     
     
@@ -75,6 +80,8 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         
         itemSize = false
+        
+        tableView.tableFooterView = UIView()
         
         self.tableView.register(infoCell.self, forCellReuseIdentifier: "infoCell")
         self.tableView.register(ContentCell.self, forCellReuseIdentifier: "ContentCell")
@@ -91,78 +98,171 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.separatorInset = .zero
         tableView.layoutMargins = .zero
         
-        let share = UIButton(type: .custom)
-        share.setImage(UIImage(named: "share"), for: UIControl.State.normal)
-        share.addTarget(self, action: #selector(self.shareMethod), for: UIControl.Event.touchUpInside)
         
-        share.widthAnchor.constraint(equalToConstant: 28.0).isActive = true
-        share.heightAnchor.constraint(equalToConstant: 28.0).isActive = true
-        
-        
-        let imageView = UIImageView()
-        imageView.image = ilkResim
-        imageView.contentMode = .scaleAspectFill
-        imageView.isUserInteractionEnabled = true
-        imageView.blurView.setup(style: UIBlurEffect.Style.dark, alpha: 0).enable()
-        
-        let buttonBack = UIButton()
-        buttonBack.setTitle("< Geri", for: UIControl.State.normal)
-        buttonBack.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        buttonBack.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: UIControl.State.normal)
-        buttonBack.isUserInteractionEnabled = true
-        buttonBack.isEnabled = true
-        buttonBack.backgroundColor = UIColor.black.withAlphaComponent(0.7)
-        buttonBack.translatesAutoresizingMaskIntoConstraints = false
-        
-        imageView.addSubview(buttonBack)
-        
-        buttonBack.leftAnchor.constraint(equalTo: imageView.leftAnchor, constant: 15).isActive = true
-        buttonBack.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 15).isActive = true
-        buttonBack.widthAnchor.constraint(equalToConstant: 72).isActive = true
-        buttonBack.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        
-        buttonBack.clipsToBounds = true
-        buttonBack.layer.cornerRadius = 16
-        
-        self.tableView.parallaxHeader.view = imageView
-        self.tableView.parallaxHeader.height = 240
-        self.tableView.parallaxHeader.minimumHeight = 70
-        self.tableView.parallaxHeader.mode = .centerFill
-        self.tableView.parallaxHeader.parallaxHeaderDidScrollHandler = { parallaxHeader in
-            //update alpha of blur view on top of image view
-            parallaxHeader.view.blurView.alpha = 1 - parallaxHeader.progress
-        }
-        
-        
-        buttonBack.addTarget(self, action: #selector(self.backTouch), for: UIControl.Event.touchUpInside)
-        
-        loadPost{ () -> () in
+            let imageView = UIImageView()
+            imageView.image = ilkResim
+            imageView.contentMode = .scaleAspectFill
+            imageView.isUserInteractionEnabled = true
+            imageView.blurView.setup(style: UIBlurEffect.Style.dark, alpha: 0).enable()
             
-            self.itemSize = true
+            let buttonBack = UIButton()
+            buttonBack.setTitle("< Geri", for: UIControl.State.normal)
+            buttonBack.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+            buttonBack.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: UIControl.State.normal)
+            buttonBack.isUserInteractionEnabled = true
+            buttonBack.isEnabled = true
+            buttonBack.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+            buttonBack.translatesAutoresizingMaskIntoConstraints = false
             
-            imageView.sd_setImage(with: URL(string: self.resimStr), completed: nil)
+            imageView.addSubview(buttonBack)
             
-            // Label for vibrant text
-            let vibrantLabel = UILabel()
-            vibrantLabel.text = self.baslik
-            vibrantLabel.font = UIFont.systemFont(ofSize: 16.0)
-            vibrantLabel.numberOfLines = 2
-            vibrantLabel.sizeToFit()
-            vibrantLabel.textAlignment = .center
-            imageView.blurView.vibrancyContentView?.addSubview(vibrantLabel)
-            //add constraints using SnapKit library
-            vibrantLabel.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
+            buttonBack.leftAnchor.constraint(equalTo: imageView.leftAnchor, constant: 15).isActive = true
+            buttonBack.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 15).isActive = true
+            buttonBack.widthAnchor.constraint(equalToConstant: 72).isActive = true
+            buttonBack.heightAnchor.constraint(equalToConstant: 32).isActive = true
+            
+            buttonBack.clipsToBounds = true
+            buttonBack.layer.cornerRadius = 16
+        
+            buttonBack.addTarget(self, action: #selector(self.backTouch), for: UIControl.Event.touchUpInside)
+        
+            if yaziFormat == "video"{
+                
+                let playVideo = UIButton()
+                let image = UIImage(named: "play-button")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+                playVideo.setImage(image, for: UIControl.State.normal)
+                playVideo.tintColor = .white
+                playVideo.contentEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+                playVideo.isUserInteractionEnabled = true
+                playVideo.isEnabled = true
+                playVideo.backgroundColor = UIColor.red.withAlphaComponent(0.8)
+                playVideo.translatesAutoresizingMaskIntoConstraints = false
+                
+                imageView.addSubview(playVideo)
+                
+                playVideo.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
+                playVideo.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
+                playVideo.widthAnchor.constraint(equalToConstant: 52).isActive = true
+                playVideo.heightAnchor.constraint(equalToConstant: 52).isActive = true
+                
+                playVideo.clipsToBounds = true
+                playVideo.layer.cornerRadius = 26
+                
+                playVideo.addTarget(self, action: #selector(self.playVideo), for: UIControl.Event.touchUpInside)
+            
+            
             }
             
-            self.effectView.removeFromSuperview()
-            self.tableView.reloadData()
+            self.tableView.parallaxHeader.view = imageView
+            self.tableView.parallaxHeader.height = 240
+            self.tableView.parallaxHeader.minimumHeight = 70
+            self.tableView.parallaxHeader.mode = .centerFill
+            self.tableView.parallaxHeader.parallaxHeaderDidScrollHandler = { parallaxHeader in
+                //update alpha of blur view on top of image view
+                parallaxHeader.view.blurView.alpha = 1 - parallaxHeader.progress
+            }
             
+            loadPost{ () -> () in
+                
+                self.itemSize = true
+                
+                imageView.sd_setImage(with: URL(string: self.resimStr), completed: nil)
+                
+                if self.yaziFormat != "video"{
+                // Label for vibrant text
+                let vibrantLabel = UILabel()
+                vibrantLabel.text = self.baslik
+                vibrantLabel.font = UIFont.systemFont(ofSize: 16.0)
+                vibrantLabel.numberOfLines = 2
+                vibrantLabel.sizeToFit()
+                vibrantLabel.textAlignment = .center
+                imageView.blurView.vibrancyContentView?.addSubview(vibrantLabel)
+                //add constraints using SnapKit library
+                vibrantLabel.snp.makeConstraints { make in
+                    make.edges.equalToSuperview()
+                }
+                    
+                }
+                
+                self.effectView.removeFromSuperview()
+                self.tableView.reloadData()
+                
+            }
+            
+        
+        loadComments{ () -> () in
         }
         
-        
-        
         self.activityIndicator("Yükleniyor")
+        
+    }
+    
+    struct YouTubeVideoQuality {
+        static let hd720 = NSNumber(value: XCDYouTubeVideoQuality.HD720.rawValue)
+        static let medium360 = NSNumber(value: XCDYouTubeVideoQuality.medium360.rawValue)
+        static let small240 = NSNumber(value: XCDYouTubeVideoQuality.small240.rawValue)
+    }
+    
+    @objc func playVideo(){
+        
+        let playerViewController = AVPlayerViewController()
+        self.present(playerViewController, animated: true, completion: nil)
+        
+        XCDYouTubeClient.default().getVideoWithIdentifier(videoLink) { [weak playerViewController] (video: XCDYouTubeVideo?, error: Error?) in
+            if let streamURLs = video?.streamURLs, let streamURL = (streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming] ?? streamURLs[YouTubeVideoQuality.hd720] ?? streamURLs[YouTubeVideoQuality.medium360] ?? streamURLs[YouTubeVideoQuality.small240]) {
+                playerViewController?.player = AVPlayer(url: streamURL)
+                playerViewController?.player?.play()
+            } else {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        
+    }
+    
+    func loadComments(handleComplete:@escaping (()->())){
+        
+        
+        let commentsUrl = StaticVariables.baseUrl + "comments?post=" + contentID
+        
+        AF.request(commentsUrl, method: .get, parameters: nil)
+            .responseString { response in
+                switch(response.result) {
+                case .success(_):
+                    if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                        
+                        let jsonString: String = "{\"lst\":" + utf8Text + "}"
+                        
+                        if let itemsMap = Mapper<CommentsList>().map(JSONString: jsonString){
+                            
+                            let items = itemsMap.lst!
+                            
+                            for item in items{
+                                self.commentUserName.append(item.authorName!)
+                                self.commentBody.append((item.content?.rendered)!)
+                                self.commentUserAvatar.append((item.authorAvatarUrls)!)
+                                
+                                if items.last?.id == item.id{
+                                    self.tableView.reloadData()
+                                    self.tableView.layoutIfNeeded()
+                                    
+                                }
+                                
+                                
+                            }
+                            
+                        }
+                        else{
+                            print("hatalı json")
+                            
+                        }
+                        
+                    }
+                case .failure(_):
+                    print("Error message:\(String(describing: response.result.error))")
+                    break
+                }
+                handleComplete()
+        }
         
     }
     
@@ -218,14 +318,68 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 3
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        } else if section == 1 {
+            return 1
+        }else if section == 2 {
+            return commentUserName.count
+        } else {
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 2 {
+            let sectionHeader = UIView()
+            sectionHeader.backgroundColor = UIColor.black.withAlphaComponent(0.2)
+            
+            let label = UILabel()
+            label.frame = CGRect(x: 15, y: 10, width: UIScreen.main.bounds.width - 165, height: 30)
+            
+            if commentUserName.count != 0{
+                label.text = "Bu gönderi için \(commentUserName.count) yorum var"
+            }else{
+                label.text = "Henüz bir yorum eklenmemiş"
+            }
+            
+            label.font = UIFont.systemFont(ofSize: 15)
+            label.textColor = .white
+            sectionHeader.addSubview(label)
+            
+            let button = UIButton()
+            button.frame = CGRect(x: UIScreen.main.bounds.width - 125, y: 10, width: 100, height: 30)
+            button.setTitle("Yorum Yap", for: UIControl.State.normal)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .bold)
+            button.backgroundColor = UIColor.black
+            button.clipsToBounds = true
+            button.layer.cornerRadius = 15
+            sectionHeader.addSubview(button)
+            
+            button.addTarget(self, action: #selector(self.addComment), for: UIControl.Event.touchUpInside)
+            
+            return sectionHeader
+        } else {
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 2 {
+        return 50
+        }else{
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
-        if indexPath.row == 0{
+        if indexPath.section == 0{
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as! infoCell
             cell.selectionStyle = .none
@@ -244,7 +398,7 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 if favoriler.contains(Int(yaziNumara)!){
                     cell.favorite.isSelected = true
                     cell.favorite.mixedTintColor = MixedColor(normal: UIColor.orange.withAlphaComponent(1.0), night: UIColor.orange.withAlphaComponent(1.0))
-                    cell.favorite.setTitle("Favorilerenizde", for: UIControl.State.normal)
+                    cell.favorite.setTitle("Favorilerinizde", for: UIControl.State.normal)
                 }else{
                      cell.favorite.isSelected = false
                     cell.favorite.mixedTintColor = MixedColor(normal: UIColor.black, night: UIColor.white.withAlphaComponent(0.5))
@@ -261,7 +415,7 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             return cell
             
-        }else if indexPath.row == 1{
+        }else if indexPath.section == 1{
            
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContentCell", for: indexPath) as! ContentCell
             cell.selectionStyle = .none
@@ -283,9 +437,9 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 cell.body.loadHTMLString("<meta name=\"viewport\" content=\"width=device-width, maximum-scale=1, user-scalable=no, initial-scale=1\"> <style>body{font-family:Arial,Helvetica,sans-serif;font-size:18px} .wp-caption{max-width:100%;background:#eee;padding: 5px;} .wp-caption img{max-width:100%;height:auto;width: 100%;} .entry-content img {max-width:100%;height:auto;} img{display:inline; height:auto; max-width:100%;} embed, iframe, object {max-width:100%;height:225px;}</style>" + content, baseURL: nil)
             }
             
-            
-            cell.body.frame = CGRect(x:0, y:0, width:Int(cell.frame.size.width - 20), height:htmlHeight + 20)
-            cell.body.scrollView.isScrollEnabled = false
+                cell.body.frame = CGRect(x: 0, y: 0, width: Int(cell.frame.width), height: htmlHeight)
+                cell.body.scrollView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+                cell.body.scrollView.isScrollEnabled = false
             
             }else{
                 cell.isHidden = true
@@ -293,13 +447,26 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             return cell
             
-        }else if indexPath.row == 2{
+        }else if indexPath.section == 2{
            
             let cell = tableView.dequeueReusableCell(withIdentifier: "CommentsCell", for: indexPath) as! CommentsCell
             cell.selectionStyle = .none
             
             if self.itemSize == true{
                 cell.isHidden = false
+                
+                cell.avatar.sd_setImage(with: URL(string: commentUserAvatar[indexPath.row]), placeholderImage: nil, options: SDWebImageOptions.refreshCached, progress: nil, completed: { (image, error, cache, url) in
+                    if ((image) != nil){
+                        cell.avatar.image = image
+                    }else{
+                        cell.avatar.sd_setImage(with: URL(string: "https://www.faiktribunu.com/wp-content/uploads/2018/01/faikkartal-125x125.png"))
+                    }
+                })
+                
+                cell.avatarName.text = commentUserName[indexPath.row]
+                cell.body.text = commentBody[indexPath.row].html2String
+                
+                cell.layer.addBorder(edge: UIRectEdge.top, color: MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor.black), thickness: 0.5)
                 
                 
             }else{
@@ -331,22 +498,35 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if self.itemSize == true{
         
-        if indexPath.row == 0{
+        if indexPath.section == 0{
             return 220
         }
         
-        if indexPath.row == 1{
+        if indexPath.section == 1{
             
             if (contentHeight != 0)
             {
-                return CGFloat(contentHeight)
+                if contentHeight != 8{
+                   return CGFloat(contentHeight)
+                }else{
+                    return 0
+                }
             }
             
             
             }
         
-        if indexPath.row == 2{
-            return 303.84375
+        if indexPath.section == 2{
+            
+            let approximateWidthOfBodyTextView = UIScreen.main.bounds.width - 86
+            
+            let bodySize = CGSize(width: approximateWidthOfBodyTextView, height:1000)
+            let bodyAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]
+            
+            let estimatedBodyFrame = NSString(string: commentBody[indexPath.row].html2String).boundingRect(with: bodySize, options: . usesLineFragmentOrigin, attributes: bodyAttributes, context: nil)
+            
+            return estimatedBodyFrame.height + 52
+            
         }
         
         else{
@@ -361,6 +541,78 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+    @objc func addComment(){
+        print("yorum yap")
+        
+        let alert = UIAlertController(title: "Yorum Ekle", message: "Lütfen yorum yaparken yazım kurallarına dikkat edin ve argo, hakaret ve küfür vb. sözlerden kaçınınız.", preferredStyle: .alert)
+        
+        let save = UIAlertAction(title: "Yorum Yap", style: .default) { (alertAction) in
+ 
+            let isim = alert.textFields![0] as UITextField
+            let yorum = alert.textFields![1] as UITextField
+            
+            if isim.text != "" && yorum.text != ""{
+                
+                self.activityIndicator("Gönderiliyor")
+                
+                let urlString = "https://www.faiktribunu.com/wp-json/wp/v2/comments"
+                
+                let params: Parameters = [
+                    "post": self.yaziNumara,
+                    "author_name": isim.text!,
+                    "content": yorum.text!
+                ]
+                
+                AF.request(urlString, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON {
+                    response in
+                    
+                    self.commentUserName.removeAll(keepingCapacity: false)
+                    self.commentBody.removeAll(keepingCapacity: false)
+                    self.commentUserAvatar.removeAll(keepingCapacity: false)
+                    
+                    switch response.result {
+                    case .success:
+                        
+                        self.loadComments{ () -> () in
+                            self.effectView.removeFromSuperview()
+                        }
+                        
+                        break
+                    case .failure(let error):
+                        
+                        print(error)
+                    }
+                }
+
+                
+                
+            } else {
+                
+                let alert = UIAlertController(title: "Bir Hata Meydana Geldi", message: "Görünüşe göre İsim veya Yorum alanlarından birini boş bırakmışsınız", preferredStyle: .actionSheet)
+                
+                let cancel = UIAlertAction(title: "Anladım", style: .cancel) { (alertAction) in }
+                alert.addAction(cancel)
+                
+                self.present(alert, animated:true, completion: nil)
+            }
+        }
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "İsminizi Yazınız"
+        }
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "Yorumunuzu Yazınız"
+        }
+        
+        alert.addAction(save)
+        let cancel = UIAlertAction(title: "Vazgeç", style: .destructive) { (alertAction) in }
+        alert.addAction(cancel)
+        
+        
+        self.present(alert, animated:true, completion: nil)
+        
+    }
     
     @objc func clickFavorite(sender:UIButton){
         
@@ -380,7 +632,7 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
             cell.favorite.isSelected = true
-            cell.favorite.setTitle("Favorilerilerinizde", for: UIControl.State.normal)
+            cell.favorite.setTitle("Favorilerinizde", for: UIControl.State.normal)
             cell.favorite.mixedTintColor = MixedColor(normal: UIColor.orange.withAlphaComponent(1.0), night: UIColor.orange.withAlphaComponent(1.0))
         }else{
             print("unselected")
@@ -422,8 +674,30 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @objc func goComments(){
-        let index = IndexPath(row: 2, section: 0)
-        self.tableView.scrollToRow(at: index, at: UITableView.ScrollPosition.top, animated: true)
+        let index = IndexPath(row: 0, section: 2)
+        
+        if commentUserName.count != 0{
+            
+            self.tableView.scrollToRow(at: index, at: UITableView.ScrollPosition.top, animated: true)
+            
+        }else{
+            
+            let alert = UIAlertController(title: "Üzgünüz, bu gönderi için henüz bir yorum yapılmamış.", message: nil, preferredStyle: .actionSheet)
+            
+            alert.addAction(UIAlertAction(title: "İlk Yorumu Yap", style: .default, handler: {
+                (alert: UIAlertAction!) in
+                
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Kapat", style: .cancel, handler: {
+                (alert: UIAlertAction!) in
+                
+            }))
+            
+            self.present(alert, animated: true)
+            
+        }
+        
     }
     
     
@@ -480,6 +754,7 @@ class DetayViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
 
 }
+
 
 class infoCell: UITableViewCell {
     
@@ -734,14 +1009,18 @@ class ContentCell: UITableViewCell {
     }
     
     func addViews(){
+        
         mixedBackgroundColor = MixedColor(normal: UIColor.white, night: UIColor(hexString: "#282828"))
         
         addSubview(body)
         
-        body.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
-        body.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
-        body.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        body.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
+        body.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
+        body.rightAnchor.constraint(equalTo: rightAnchor, constant: 0).isActive = true
+        body.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
+        body.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
+        
+        
+        body.mixedBackgroundColor = MixedColor(normal: UIColor.white, night: UIColor(hexString: "#282828"))
         
     }
     
@@ -751,160 +1030,7 @@ class ContentCell: UITableViewCell {
     
 }
 
-class CommentsCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource {
-    
-    let cellId = "postComments"
-    var commentUserName = [String]()
-    var commentUserAvatar = [String]()
-    var commentBody = [String]()
-    
-    
-    let tableView: UITableView = {
-        let cv = UITableView(frame: .zero, style: .plain)
-        cv.translatesAutoresizingMaskIntoConstraints = false
-        return cv
-    }()
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addViews()
-        setupViews()
-        
-            loadComments{ () -> () in
-            }
-        
-        
-    }
-    
-    
-    func addViews(){
-        
-        addSubview(tableView)
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(postComments.self, forCellReuseIdentifier: cellId)
-        
-        tableView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        
-    }
-    
-    func setupViews(){
-        
-        tableView.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#3f4447"))
-        
-        tableView.separatorStyle = .none
-        
-    }
-    
-    
-   /* func loadComments(){
-        commentUserName = ["Ömer Faruk YÜCE", "Halil İbrahim YÜCE", "Muhammed Ali YÜCE"]
-        commentBody = ["Ellerine sağlık abi yılansın, akıyor maşallah. Senin değerin bilindiğinde çok geç olacak abi", "Çok iyi, bravo", "Babuş akıosun"]
-        commentUserAvatar = ["https://gasome.com/images/avatars/small/1541452120.jpeg", "https://gasome.com/images/avatars/small/1544128227.png", "https://gasome.com/images/avatars/small/1541452120.jpeg"]
-    } */
-    
-    func loadComments(handleComplete:@escaping (()->())){
-        
-        
-        let commentsUrl = StaticVariables.baseUrl + "comments?post=" + contentID
-        
-        AF.request(commentsUrl, method: .get, parameters: nil)
-            .responseString { response in
-                switch(response.result) {
-                case .success(_):
-                    if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                        
-                        let jsonString: String = "{\"lst\":" + utf8Text + "}"
-
-                        if let itemsMap = Mapper<CommentsList>().map(JSONString: jsonString){
-                            
-                            let items = itemsMap.lst!
-                            
-                            for item in items{
-                                self.commentUserName.append(item.authorName!)
-                                self.commentBody.append((item.content?.rendered)!)
-                                self.commentUserAvatar.append((item.authorAvatarUrls)!)
-                                
-                                if items.last?.id == item.id{
-                                    self.tableView.reloadData()
-                                    self.tableView.layoutIfNeeded()
-                                    
-                                }
-                                
-                                
-                            }
-                            
-                        }
-                        else{
-                            print("hatalı json")
-                            
-                        }
-                        
-                    }
-                case .failure(_):
-                    print("Error message:\(String(describing: response.result.error))")
-                    break
-                }
-                handleComplete()
-        }
-        
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return commentUserName.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! postComments
-        
-        cell.selectionStyle = .none
-        
-        cell.avatar.sd_setImage(with: URL(string: commentUserAvatar[indexPath.row]), placeholderImage: nil, options: SDWebImageOptions.refreshCached, progress: nil, completed: { (image, error, cache, url) in
-            if ((image) != nil){
-                cell.avatar.image = image
-            }else{
-                cell.avatar.sd_setImage(with: URL(string: "https://www.faiktribunu.com/wp-content/uploads/2018/01/faikkartal-125x125.png"))
-            }
-        })
-        
-        cell.avatarName.text = commentUserName[indexPath.row]
-        cell.body.text = commentBody[indexPath.row].html2String
-        
-        cell.layer.borderWidth = CGFloat(0.5)
-        cell.layer.borderColor = tableView.backgroundColor?.cgColor
-        
-        print(tableView.contentSize.height)
-
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Bu Gönderi İçin Yapılmış Yorumlar"
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let approximateWidthOfBodyTextView = UIScreen.main.bounds.width - 86
-        
-        let bodySize = CGSize(width: approximateWidthOfBodyTextView, height:1000)
-        let bodyAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]
-        
-        let estimatedBodyFrame = NSString(string: commentBody[indexPath.row].html2String).boundingRect(with: bodySize, options: . usesLineFragmentOrigin, attributes: bodyAttributes, context: nil)
-        
-            return estimatedBodyFrame.height + 52
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-}
-
-class postComments: UITableViewCell {
+class CommentsCell: UITableViewCell {
     
     let avatar: UIImageView = {
         let view = UIImageView()

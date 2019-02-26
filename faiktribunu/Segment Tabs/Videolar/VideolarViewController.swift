@@ -39,10 +39,22 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
     
     override func viewWillAppear(_ animated: Bool) {
         self.setNavBarItems()
+        
+        self.basliklar.removeAll(keepingCapacity: false)
+        self.resimStr.removeAll(keepingCapacity: false)
+        self.yazinumara.removeAll(keepingCapacity: false)
+        self.resimLink.removeAll(keepingCapacity: false)
+        self.videoLink.removeAll(keepingCapacity: false)
+        self.catResim.removeAll(keepingCapacity: false)
+        self.format.removeAll(keepingCapacity: false)
+        
+        self.loadList()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#282828"))
         
         vCollectionView.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#282828"))
         
@@ -56,9 +68,12 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
             
             
             self.basliklar.removeAll(keepingCapacity: false)
-            
-            
+            self.resimStr.removeAll(keepingCapacity: false)
+            self.yazinumara.removeAll(keepingCapacity: false)
+            self.resimLink.removeAll(keepingCapacity: false)
+            self.videoLink.removeAll(keepingCapacity: false)
             self.catResim.removeAll(keepingCapacity: false)
+            self.format.removeAll(keepingCapacity: false)
             
             
             self.loadList()
@@ -68,6 +83,7 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
         
         self.vCollectionView.addInfiniteScrolling() {
             
+            if self.basliklar.count > 10{
             
             self.vCollectionView.infiniteScrollingView.startAnimating()
             
@@ -87,6 +103,8 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
                         if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                             
                             let jsonString: String = "{\"lst\":" + utf8Text + "}"
+                            
+                            print("bela")
                             
                             if let item = Mapper<List>().map(JSONString: jsonString){
                                 
@@ -145,7 +163,9 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
                     
             }
             
-            
+            }else{
+                self.vCollectionView.infiniteScrollingView.stopAnimating()
+            }
             
         }
         
@@ -157,8 +177,6 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
         
         self.activityIndicator("Yükleniyor")
         
-        
-        self.loadList()
         
     }
     
@@ -277,9 +295,10 @@ class VideolarViewController: UIViewController,UICollectionViewDelegate,UICollec
         let formatItem = format[indexPath.row]
         let avatar = catResim[indexPath.row]
         let gorsel = cell.haberGorseli.image
-        contentID = selectedItem
+        
         let mDetayViewController = DetayViewController(nibName: "DetayViewController", bundle: nil)
         mDetayViewController.yaziNumara = selectedItem
+        mDetayViewController.contentID = selectedItem
         mDetayViewController.yaziFormat = formatItem
         mDetayViewController.videoLink = videoItem
         mDetayViewController.yazarAvatar = avatar

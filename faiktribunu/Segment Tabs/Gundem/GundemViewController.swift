@@ -39,6 +39,8 @@ class GundemViewController: UIViewController,UICollectionViewDelegate,UICollecti
         override func viewDidLoad() {
             super.viewDidLoad()
             
+            view.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#282828"))
+            
             gCollectionView.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#282828"))
             
             gCollectionView.register(GundemCollectionViewCell.self, forCellWithReuseIdentifier: "GundemCollectionViewCell")
@@ -49,11 +51,13 @@ class GundemViewController: UIViewController,UICollectionViewDelegate,UICollecti
                 
                 self.gCollectionView.pullToRefreshView.startAnimating()
                 
-                
                 self.basliklar.removeAll(keepingCapacity: false)
-                
-                
+                self.resimStr.removeAll(keepingCapacity: false)
+                self.yazinumara.removeAll(keepingCapacity: false)
+                self.resimLink.removeAll(keepingCapacity: false)
+                self.videoLink.removeAll(keepingCapacity: false)
                 self.catResim.removeAll(keepingCapacity: false)
+                self.format.removeAll(keepingCapacity: false)
                 
                 
                 self.loadList()
@@ -67,7 +71,7 @@ class GundemViewController: UIViewController,UICollectionViewDelegate,UICollecti
                 self.gCollectionView.infiniteScrollingView.startAnimating()
                 
                 self.loadMore += 1
-                let urladd = "https://www.faiktribunu.com/index.php/wp-json/wp/v2/posts?categories=" + "\(page)" + "&page=" + "\(self.loadMore)"
+                let urladd = "https://www.faiktribunu.com/wp-json/wp/v2/posts?categories=" + "\(page)" + "&page=" + "\(self.loadMore)"
                 
                 AF.request(urladd, method: .get, parameters: nil)
                     .responseString { response in
@@ -168,6 +172,8 @@ class GundemViewController: UIViewController,UICollectionViewDelegate,UICollecti
                                     
                                     self.base = item
                                     
+                                    if item.count != 0{
+                                    
                                     for title in item{
                                         
                                         self.basliklar.append((title.title?.rendered)!)
@@ -189,6 +195,30 @@ class GundemViewController: UIViewController,UICollectionViewDelegate,UICollecti
                                             self.effectView.removeFromSuperview()
                                             self.gCollectionView.pullToRefreshView.stopAnimating()
                                         }
+                                        
+                                    }
+                                        
+                                    }else{
+                                        
+                                        self.gCollectionView.reloadData()
+                                        self.effectView.removeFromSuperview()
+                                        self.gCollectionView.pullToRefreshView.stopAnimating()
+                                        
+                                        
+                                        let headerView = UIView()
+                                        let headerText = UILabel()
+                                        headerText.frame = CGRect(x: 0, y: StaticVariables.screenHeight/2 - 100, width: StaticVariables.screenWidth, height: 50)
+                                        headerText.text = "Bu kategoride henüz bir gönderi bulunmamaktadır."
+                                        headerText.textColor = UIColor.gray
+                                        headerText.numberOfLines = 2
+                                        headerText.font = UIFont.boldSystemFont(ofSize: 18.0)
+                                        headerText.textAlignment = .center
+                                        headerView.addSubview(headerText)
+                                        headerView.mixedBackgroundColor = MixedColor(normal: UIColor.groupTableViewBackground, night: UIColor(hexString: "#282828"))
+                                        headerView.frame = CGRect(x: 0, y: 0, width: StaticVariables.screenWidth, height: StaticVariables.screenHeight)
+                                        
+                                        self.view.addSubview(headerView)
+                                        
                                         
                                     }
                                     
@@ -250,16 +280,21 @@ class GundemViewController: UIViewController,UICollectionViewDelegate,UICollecti
         
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             
+            let cell = collectionView.cellForItem(at: indexPath) as! GundemCollectionViewCell
+            
             let selectedItem = yazinumara[indexPath.row]
             let videoItem = videoLink[indexPath.row]
             let formatItem = format[indexPath.row]
             let avatar = catResim[indexPath.row]
-            contentID = selectedItem
+            let gorsel = cell.haberGorseli.image
+            
             let mDetayViewController = DetayViewController(nibName: "DetayViewController", bundle: nil)
             mDetayViewController.yaziNumara = selectedItem
+            mDetayViewController.contentID = selectedItem
             mDetayViewController.yaziFormat = formatItem
             mDetayViewController.videoLink = videoItem
             mDetayViewController.yazarAvatar = avatar
+            mDetayViewController.ilkResim = gorsel!
             self.navigationController?.pushViewController(mDetayViewController, animated: true)
             
         }
